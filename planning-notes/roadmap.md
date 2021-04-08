@@ -4,9 +4,10 @@
 
 ### Thursday, April 8th
 
-[] Wireframe
-[] ERD
+[X] Wireframe
+[X] ERD
 [] Development database set up
+[] Install Google Map API
 
 ## Features
 
@@ -14,20 +15,18 @@
 
 What are the features? Divide up amongst ourself into do-able units
 
-
-[] Install Google Map API
+[] Search Bar
+[] Draggable map action
+[] Place a pin with form
+[] View pin data when clicked
+[] Edit pin data
+[] Delete pin
+[] Filter pins
+[] User Login
+[] Heroku
+[] Create regulation api
+[] Connect regulation api
 [] 
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
-[]
 []
 []
 []
