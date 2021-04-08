@@ -14,4 +14,4 @@ Our target audience are sport fishers, eco-tourists,
 
 ### Team members
 
-Elodie Bouthors, Liam Butler, Rye Gillis
+Elodie Bouthors, Liam Butler, Rye Gilliss
