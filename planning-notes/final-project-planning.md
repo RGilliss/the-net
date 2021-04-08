@@ -83,4 +83,5 @@ Outside of scope for the project at this time:
 (https://www.pac.dfo-mpo.gc.ca/fm-gp/rec/bc-zones-cb-eng.html)
 
 ***
-
+## ERD
+(https://drive.google.com/file/d/1xCmV1SQthk0XOW7mQte6bfhxjHpab63f/view?usp=sharing)
