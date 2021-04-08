@@ -40,6 +40,7 @@ Questions:
 - Should we be developing for web (browser) or mobile , PWA??
 - Does lighthouse have any deals with Google for API use?
 - Regulation API Qs
+- Should we use mapbox https://www.mapbox.com/pricing/
 
 
 https://elodiebouthors528653.invisionapp.com/freehand/The-Net-bbSZUtbIO
