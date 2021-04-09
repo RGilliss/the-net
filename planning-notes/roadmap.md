@@ -7,7 +7,7 @@
 [X] Wireframe
 [X] ERD
 [] Development database set up
-[] Install Google Map API
+[] Install Leaflet
 
 ## Features
 
