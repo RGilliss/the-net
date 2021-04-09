@@ -3,7 +3,7 @@ import { MapContainer } from "react-leaflet";
 import "./App.css";
 import Navbar from "../Navbar";
 import CreateMarker from "../CreateMarker";
-import Layers from "../Layers";
+import Layers from "../LayersControl";
 
 
 export default function App() {
@@ -12,8 +12,6 @@ export default function App() {
   return (
     <div>
       <Navbar />
-    
-
       <MapContainer center={startPosition} zoom={10}>
         <Layers />
         <CreateMarker />
