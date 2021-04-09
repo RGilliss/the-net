@@ -7,7 +7,7 @@
 [X] Wireframe
 [X] ERD
 [] Development database set up
-[] Install Leaflet
+[X] Install Leaflet
 
 ## Features
 
