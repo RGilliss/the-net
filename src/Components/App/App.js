@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './../../logo.svg';
-import './App.css';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { Button, Paper } from '@material-ui/core';
-function App() {
+import React from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Icon } from "leaflet";
+import "./App.css";
+
+export default function App() {
+  let position = [49.499998, -125.499998]
+  
   return (
-    <Container maxWidth="sm" className="App">
-      <Paper>
-        <img src={logo} className="App-logo" alt="logo" />
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App + Material-UI
-        </Typography>
-        <Button variant="contained" color="primary">
-          Primary Button
-        </Button>
-        <Button variant="contained" color="secondary">
-          Secondary Button
-        </Button>
-      </Paper>
-    </Container>
+    <MapContainer center={position} zoom={9}>
+      <TileLayer
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <Marker position={position}>
+        <Popup>
+        A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
   );
 }
-export default App;
