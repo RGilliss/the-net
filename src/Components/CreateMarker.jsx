@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import {useMapEvents, Marker, Popup} from "react-leaflet";
 
 export default function CreateMarker() {
-  const [markers, setMarkers] = useState([])
+  const starterPins = [[49.8303, -125.81],[49.74, -125.891], [49.7383, -124.91],[50.7303, -125.91],[49.7303, -126.91], [49.8903, -125.91],]
+  const [markers, setMarkers] = useState(starterPins)
   const map = useMapEvents({
-    click(e) {
+    dblclick(e) {
       const newMarker = e.latlng
       setMarkers([...markers, newMarker])
     }
