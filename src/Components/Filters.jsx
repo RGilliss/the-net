@@ -5,6 +5,7 @@ import {
   Circle,
   FeatureGroup
 } from "react-leaflet";
+import Regulations from "./Regulations"
 
 export default function Filters() {
   const startPosition = [49.7303, -125.91];
@@ -13,6 +14,7 @@ export default function Filters() {
       <LayersControl.Overlay name="Regulations">
         <FeatureGroup >
           <Popup>No Fishing - {startPosition}</Popup>
+          {/* <Popup><Regulations /></Popup> */}
           <Circle center={startPosition} radius={2000} />
         </FeatureGroup>
       </LayersControl.Overlay>
