@@ -55,6 +55,7 @@ export default function App() {
 
     
     <div>
+
     <Navbar/>
 
     <MapContainer center={position} zoom={15}>

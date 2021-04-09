@@ -1,17 +1,18 @@
 import React from 'react';
-import { withStyles, makeStyles, fade } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import { withStyles, makeStyles, fade} from '@material-ui/core/styles';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import SearchIcon from '@material-ui/icons/Search';
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarsIcon from '@material-ui/icons/Stars';
 import PinDropIcon from '@material-ui/icons/PinDrop';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
-import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-
 
 const StyledMenu = withStyles({
   paper: {
@@ -45,12 +46,18 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 const useStyles = makeStyles((theme) => ({
-
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
   title: {
     flexGrow: 1,
-    color: 'black',
-
-
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
   },
   search: {
     position: 'relative',
@@ -75,9 +82,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   inputRoot: {
-    color: 'black',
+    color: 'inherit',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -91,22 +97,14 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
       },
     },
-    
   },
+  
 
-
-  navbar: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: '50px',
-    padding: '2rem',
-    backgroundColor: 'white',
-
-  }
 }));
 
-export default function CustomizedMenus() {
+export default function SearchAppBar() {
+  const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -117,43 +115,39 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.navbar}>
 
-      <MenuOpenIcon
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
+  <div className={classes.navbar}>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+        <MenuOpenIcon
+          aria-controls="customized-menu"
+          aria-haspopup="true"
+          variant="contained"
+          color="black"
+          onClick={handleClick}
 
-      />
-
-      <div>
-      <Typography variant="h6" className={classes.title}>
-        The Net
-      </Typography>
-      </div>
-
-      <div>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
-      </div>
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ 'aria-label': 'search' }}
-      />
-      </div>
-
+        />
+          <Typography className={classes.title} variant="h6" noWrap>
+            The Net
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
 
 
-      <StyledMenu
+          <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -174,6 +168,12 @@ export default function CustomizedMenus() {
         </StyledMenuItem>
 
       </StyledMenu>
+
+
+        </Toolbar>
+      </AppBar>
     </div>
+    </div>
+    
   );
 }
