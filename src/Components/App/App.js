@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  LayersControl,
-} from "react-leaflet";
-import { Icon } from "leaflet";
+import { MapContainer } from "react-leaflet";
 import "./App.css";
 import Navbar from "../Navbar";
-import { MarkunreadSharp } from "@material-ui/icons";
 import CreateMarker from "../CreateMarker";
 import Layers from "../Layers";
 
