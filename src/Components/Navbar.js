@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     flexGrow: 1,
-    color: 'white',
+    color: 'black',
 
 
   },
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   inputRoot: {
-    color: 'white',
+    color: 'black',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -91,13 +91,18 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
       },
     },
+    
   },
 
 
   navbar: {
     display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     height: '50px',
     padding: '2rem',
+    backgroundColor: 'white',
+
   }
 }));
 
@@ -126,13 +131,13 @@ export default function CustomizedMenus() {
 
       />
 
+      <div>
       <Typography variant="h6" className={classes.title}>
         The Net
       </Typography>
+      </div>
 
-
-
-
+      <div>
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
@@ -144,7 +149,7 @@ export default function CustomizedMenus() {
         }}
         inputProps={{ 'aria-label': 'search' }}
       />
-
+      </div>
 
 
 
