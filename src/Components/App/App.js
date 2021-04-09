@@ -9,6 +9,7 @@ import {
 } from "react-leaflet";
 import { Icon } from "leaflet";
 import "./App.css";
+import Navbar from "../Navbar";
 
 export default function App() {
   let position = [49.499998, -125.499998];
@@ -51,6 +52,11 @@ export default function App() {
   // }
 
   return (
+
+    
+    <div>
+    <Navbar/>
+
     <MapContainer center={position} zoom={15}>
       <LayersControl position="bottomright">
         <LayersControl.BaseLayer checked name="Satelite">
@@ -80,11 +86,13 @@ export default function App() {
       </LayersControl>
       
       <CurrentLocationMarker/>
+
       <Marker position={position}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
     </MapContainer>
+    </div>
   );
 }
