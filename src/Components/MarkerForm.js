@@ -60,7 +60,7 @@ export default function MarkerForm(props) {
     <form className={classes.marker_form}>
 
       <FormControl>
-        <InputLabel htmlFor="Name">Name</InputLabel>
+        <InputLabel htmlFor="Name">Your Name</InputLabel>
         <Input id="Name" aria-describedby="my-helper-text" />
       </FormControl>
 
