@@ -49,7 +49,7 @@ export default function MarkerForm(props) {
 
   const classes = useStyles();
 
-  const onSumbit = (evt) => {
+  const onSubmit = (evt) => {
     console.log(props.marker);
     props.onClose();
   }
@@ -111,7 +111,7 @@ export default function MarkerForm(props) {
         />
       </FormControl>
 
-      <Button variant="contained" color="primary" onClick={onSumbit}>
+      <Button variant="contained" color="primary" onClick={onSubmit}>
         Submit
       </Button>
 
