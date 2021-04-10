@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 
 
@@ -16,10 +18,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  root: {
+  rating_root: {
     width: 200,
     display: 'flex',
     alignItems: 'center',
+  },
+  upload_root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  upload_input: {
+    display: 'none',
   },
 }))
 
@@ -69,7 +79,7 @@ export default function MarkerForm(props) {
         <Input id="Type of fish" aria-describedby="my-helper-text" />
       </FormControl>
 
-      <div className={classes.root}>
+      <div className={classes.rating_root}>
         <Rating
           name="hover-feedback"
           value={value}
@@ -91,6 +101,27 @@ export default function MarkerForm(props) {
         defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua."
       />
+
+      <div className={classes.upload_root}>
+        <input
+          accept="image/*"
+          className={classes.upload_input}
+          id="contained-button-file"
+          multiple
+          type="file"
+        />
+        <label htmlFor="contained-button-file">
+          <Button variant="contained" color="primary" component="span">
+            Upload
+        </Button>
+        </label>
+        <input accept="image/*" className={classes.upload_input} id="icon-button-file" type="file" />
+        <label htmlFor="icon-button-file">
+          <IconButton color="primary" aria-label="upload picture" component="span">
+            <PhotoCamera />
+          </IconButton>
+        </label>
+      </div>
 
       <Button variant="contained" color="primary" onClick={onSumbit}>
         Submit
