@@ -2,8 +2,9 @@ import React from "react";
 import {
   TileLayer,
   LayersControl,
+  FeatureGroup
 } from "react-leaflet";
-
+import Regulations from "./Regulations"
 export default function MapTiles() {
   return (
     <>
@@ -12,6 +13,7 @@ export default function MapTiles() {
           url="https://api.mapbox.com/styles/v1/rgilliss/ckn9nn6nm06sj17o6el953fga/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmdpbGxpc3MiLCJhIjoiY2tuOW5qemR0MGt5azJvcGk1NWo3Z2lmOCJ9.PDRYDZaJE20-RPW9WAWSDw"
           attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
         />
+      
       </LayersControl.BaseLayer>
       <LayersControl.BaseLayer name="Street Map">
         <TileLayer
