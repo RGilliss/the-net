@@ -16,6 +16,7 @@
         - description 
         - time of day
         - date
+        - rating
         - bear sightings?
         - stretch: public/private
         - location (Will be linked to where co-ordinate where pin is located)

@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div>
       <Navbar />
-      <MapContainer center={startPosition} zoom={10}>
+      <MapContainer center={startPosition} zoom={8}>
         <Layers />
         <CreateMarker />
       </MapContainer>
