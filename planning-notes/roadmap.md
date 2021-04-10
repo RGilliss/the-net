@@ -6,7 +6,6 @@
 
 [X] Wireframe
 [X] ERD
-[] Development database set up
 [X] Install Leaflet
 
 ## Features
@@ -15,6 +14,7 @@
 
 What are the features? Divide up amongst ourself into do-able units
 
+[] Development database set up
 [] Search Bar
 [] Draggable map action
 [] Place a pin with form
