@@ -1,3 +1,4 @@
+import useAxios from 'axios-hooks'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -17,32 +18,41 @@ const useStyles = makeStyles({
 });
 export default function PinData (props) {
   const classes = useStyles();
+
+  const [{ data, loading, error }] = useAxios(
+    'https://angler-reg-api.herokuapp.com/pins'
+  )
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error!</p>
+  const returnData = data
+
   return (
+    <>
+    {returnData.pins.map(pin =>
     <Card className={classes.root}>
     <CardActionArea>
       <CardContent>
         <Typography gutterBottom variant="p" component="h4">
-          <div> 25/04/2020</div>
-          <div>@TRosie</div>
+          <div>{pin.date}</div>
+          <div>{pin.user_id}</div>
         </Typography>
         <Typography gutterBottom variant="h6" component="h4">
-          {props.name}
+          {pin.title}
         </Typography>
         <Typography gutterBottom variant="p" component="h4">
-          Steelhead Trout
+          {pin.species_id}
         </Typography>
 
       <CardMedia
         className={classes.media}
-        image={url}
-        title="Contemplative Reptile"
+        image={pin.image}
+        title={pin.title}
       />
         <Typography variant="body2" color="textSecondary" component="p">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-          across all continents except Antarctica
+          {pin.description}
         </Typography>
         <Rating
-          value={4.5}
+          value={pin.rating}
           precision={0.5}
         />
       </CardContent>
@@ -56,7 +66,7 @@ export default function PinData (props) {
       </Button>
     </CardActions>
   </Card>
+    )}
+    </>
   )
 }
-
-// https://i.cbc.ca/1.4388180.1518656834!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/steelhead.jpg

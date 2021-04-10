@@ -52,7 +52,7 @@ console.log("data", data)
 
   return (
     <>
-    {returnData.map(regulation => 
+    {returnData.regulations.map(regulation => 
     <>
     <Popup>
       <Card className={classes.root}>
