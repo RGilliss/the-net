@@ -44,7 +44,7 @@ export default function CreateMarker() {
   const [modalStyle] = React.useState(getModalStyle);
   const [modal, setModal] = useState(false);
   const map = useMapEvents({
-    click(e) {
+    dblclick(e) {
       const newMarker = e.latlng
       setModal(true);
       setMarkers([...markers, newMarker])
