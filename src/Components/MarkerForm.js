@@ -8,8 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
 
@@ -23,14 +24,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  upload_root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
+  add_picture: {
+    margin: theme.spacing(1),
   },
-  upload_input: {
-    display: 'none',
-  },
+
 }))
 
 const labels = {
@@ -102,26 +99,17 @@ export default function MarkerForm(props) {
           ut labore et dolore magna aliqua."
       />
 
-      <div className={classes.upload_root}>
-        <input
-          accept="image/*"
-          className={classes.upload_input}
-          id="contained-button-file"
-          multiple
-          type="file"
+      <FormControl className={classes.add_picture}>
+        <InputLabel htmlFor="input-with-icon-adornment">Add a link of your picture</InputLabel>
+        <Input
+          id="input-with-icon-adornment"
+          startAdornment={
+            <InputAdornment position="start">
+              <AddAPhotoIcon />
+            </InputAdornment>
+          }
         />
-        <label htmlFor="contained-button-file">
-          <Button variant="contained" color="primary" component="span">
-            Upload
-        </Button>
-        </label>
-        <input accept="image/*" className={classes.upload_input} id="icon-button-file" type="file" />
-        <label htmlFor="icon-button-file">
-          <IconButton color="primary" aria-label="upload picture" component="span">
-            <PhotoCamera />
-          </IconButton>
-        </label>
-      </div>
+      </FormControl>
 
       <Button variant="contained" color="primary" onClick={onSumbit}>
         Submit
