@@ -17,6 +17,7 @@ import PinDropIcon from '@material-ui/icons/PinDrop';
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
+  
   },
 })((props) => (
   <Menu
@@ -42,12 +43,18 @@ const StyledMenuItem = withStyles((theme) => ({
         color: theme.palette.common.white,
       },
     },
+  
+   
   },
 }))(MenuItem);
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    // "& .MuiPaper-root": {
+    //   margin:0
+    // }
   },
   menuButton: {
     marginRight: theme.spacing(2),
