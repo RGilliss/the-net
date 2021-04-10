@@ -10,7 +10,7 @@ export default function MapTiles() {
     <>
       <LayersControl.BaseLayer checked name="Satelite">
         <TileLayer
-          url="https://api.mapbox.com/styles/v1/rgilliss/ckn9nn6nm06sj17o6el953fga/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmdpbGxpc3MiLCJhIjoiY2tuOW5qemR0MGt5azJvcGk1NWo3Z2lmOCJ9.PDRYDZaJE20-RPW9WAWSDw"
+          url={process.env.REACT_APP_ACCESS_TOKEN}
           attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
         />
       
