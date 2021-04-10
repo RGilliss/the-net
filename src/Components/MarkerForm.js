@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 
 
@@ -69,23 +70,31 @@ export default function MarkerForm(props) {
       </FormControl>
 
       <div className={classes.root}>
-      <Rating
-        name="hover-feedback"
-        value={value}
-        precision={0.5}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onChangeActive={(event, newHover) => {
-          setHover(newHover);
-        }}
+        <Rating
+          name="hover-feedback"
+          value={value}
+          precision={0.5}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+        {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+      </div>
+
+      <TextareaAutosize
+        rowsMax={4}
+        aria-label="maximum height"
+        placeholder="Maximum 4 rows"
+        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua."
       />
-      {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
-    </div>
 
       <Button variant="contained" color="primary" onClick={onSumbit}>
         Submit
-        </Button>
+      </Button>
 
 
     </form>
