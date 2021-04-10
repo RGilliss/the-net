@@ -38,9 +38,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function CreateMarker() {
+  const starterPins = [[49.8303, -125.81],[49.74, -125.891], [49.7383, -124.91],[50.7303, -125.91],[49.7303, -126.91], [49.8903, -125.91],]
+  const [markers, setMarkers] = useState([])
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [markers, setMarkers] = useState([])
   const [modal, setModal] = useState(false);
   const map = useMapEvents({
     click(e) {
