@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {useMapEvents, Marker, Popup} from "react-leaflet"
 import MarkerForm from "./MarkerForm"
+import PinData from "./PinData"
 import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
@@ -59,7 +60,7 @@ export default function CreateMarker() {
     {/* needs a unique id */}
     {markers.map(marker => 
     <Marker position={marker}>
-      <Popup></Popup>
+      <Popup><PinData /></Popup>
       <Modal
         open={modal}
         className={classes.modal}
