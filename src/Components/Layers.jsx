@@ -1,11 +1,11 @@
 import React from "react";
-import MapTiles from "./MapTiles"
+import MapTiles from "./Maps"
 import Filters from "./Filters"
 import {
   LayersControl,
 } from "react-leaflet";
 
-export default function Layers () {
+export default function Layers() {
   return (
     <LayersControl position="bottomright">
       <MapTiles/>

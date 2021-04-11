@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useAxios from 'axios-hooks'
 import {useMapEvents, Marker, Popup} from "react-leaflet"
 import MarkerForm from "./MarkerForm"
-import PinData from "./PinData"
+import PopupDisplay from "./PopupDisplay"
 import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
@@ -62,7 +62,7 @@ export default function CreateMarker() {
     {/* needs a unique id */}
     {markers.map(marker => 
     <Marker position={marker}>
-      <Popup><PinData /></Popup>
+      <Popup><PopupDisplay/></Popup>
       <Modal
         open={modal}
         className={classes.modal}
@@ -74,7 +74,6 @@ export default function CreateMarker() {
           </div>
         </Fade>
       </Modal>
-
     </Marker>
       )}
     </>
