@@ -1,4 +1,3 @@
-import React from "react";
 import Maps from "./Maps"
 import Filters from "./Filters"
 import {LayersControl} from "react-leaflet";

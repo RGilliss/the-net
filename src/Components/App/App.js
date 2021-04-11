@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "../Navbar";
 import Markers from "../Markers";
 import Layers from "../Layers";
+import NewMarkers from "../NewMarkers"
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <MapContainer center={startPosition} zoom={8}>
         <Layers/>
         <Markers/>
+        <NewMarkers/>
       </MapContainer>
     </div>
   );
