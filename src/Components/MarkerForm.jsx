@@ -9,7 +9,6 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
