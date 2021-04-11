@@ -1,10 +1,7 @@
 import React from "react";
 import {
   LayersControl,
-  Popup,
-  Circle,
   FeatureGroup,
-  Rectangle
 } from "react-leaflet";
 import Regulations from "./Regulations"
 

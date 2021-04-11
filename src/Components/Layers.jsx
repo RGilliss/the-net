@@ -1,9 +1,7 @@
 import React from "react";
 import MapTiles from "./Maps"
 import Filters from "./Filters"
-import {
-  LayersControl,
-} from "react-leaflet";
+import {LayersControl} from "react-leaflet";
 
 export default function Layers() {
   return (

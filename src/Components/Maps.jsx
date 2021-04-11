@@ -2,9 +2,7 @@ import React from "react";
 import {
   TileLayer,
   LayersControl,
-  FeatureGroup
 } from "react-leaflet";
-import Regulations from "./Regulations"
 export default function MapTiles() {
   return (
     <>
