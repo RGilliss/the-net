@@ -15,6 +15,8 @@ const useStyles = makeStyles({
   },
   media: { height: 0, paddingTop: "56.25%" },
 });
+
+//Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
   const classes = useStyles();
 
