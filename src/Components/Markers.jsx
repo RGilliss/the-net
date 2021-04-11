@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import useAxios from 'axios-hooks'
-import {useMapEvents, Marker, Popup} from "react-leaflet"
-import MarkerForm from "./MarkerForm"
-import PopupDisplay from "./PopupDisplay"
-import Modal from '@material-ui/core/Modal'
-import { makeStyles } from '@material-ui/core/styles'
-import Fade from '@material-ui/core/Fade'
+import React, { useState } from "react";
+import useAxios from "axios-hooks";
+import { useMapEvents, Marker, Popup } from "react-leaflet";
+import MarkerForm from "./MarkerForm";
+import PopupDisplay from "./PopupDisplay";
+import Modal from "@material-ui/core/Modal";
+import { makeStyles } from "@material-ui/core/styles";
+import Fade from "@material-ui/core/Fade";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -22,60 +22,69 @@ function getModalStyle() {
   };
 }
 
-
-
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
-
-export default function CreateMarker() {
-
-  
-  const [markers, setMarkers] = useState([])
+export default function Markers() {
+  const [markers, setMarkers] = useState([]);
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [modal, setModal] = useState(false);
   const map = useMapEvents({
     dblclick(e) {
-      const newMarker = e.latlng
+      const newMarker = e.latlng;
       setModal(true);
-      setMarkers([...markers, newMarker])
-    }
-  })
- 
-  
- 
+      setMarkers([...markers, newMarker]);
+    },
+  });
+
+  const [{ data, loading, error }] = useAxios(
+    "https://angler-reg-api.herokuapp.com/pins"
+  );
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+  const returnData = data.pins;
+  console.log("ReturnData",returnData)
   return (
     <>
-    {/* needs a unique id */}
-    {markers.map(marker => 
-    <Marker position={marker}>
-      <Popup><PopupDisplay/></Popup>
-      <Modal
-        open={modal}
-        className={classes.modal}
-        onClose={() => setModal(false)}
-      >
-        <Fade in={modal}>
-          <div className={classes.paper}>
-            <MarkerForm marker={marker} onClose={() => setModal(false)}/>
-          </div>
-        </Fade>
-      </Modal>
-    </Marker>
-      )}
+      {/* needs a unique id */}
+      {returnData.map((marker) => (
+        <Marker key={marker.id}position={[marker.location.x, marker.location.y]}>
+          <Popup>
+            <PopupDisplay 
+              date={marker.date}
+              user_id={marker.user_id}
+              title={marker.title}
+              species_id={marker.species_id}
+              image={marker.image}
+              rating={marker.rating}
+            />
+          </Popup>
+          <Modal
+            open={modal}
+            className={classes.modal}
+            onClose={() => setModal(false)}
+          >
+            <Fade in={modal}>
+              <div className={classes.paper}>
+                <MarkerForm marker={marker} onClose={() => setModal(false)} />
+              </div>
+            </Fade>
+          </Modal>
+        </Marker>
+      ))}
     </>
-  )
+  );
 }
