@@ -53,8 +53,9 @@ console.log("data", data)
   return (
     <>
     {returnData.regulations.map(regulation => 
-    <>
-    <Popup>
+    
+    <section key={regulation.id}>
+    <Popup >
       <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
@@ -75,7 +76,8 @@ console.log("data", data)
      </Card>
     </Popup>
       <Circle center={[regulation.location.x, regulation.location.y]} radius={2000} />
-    </>
+      </section>
+    
     )}
   </>
   )

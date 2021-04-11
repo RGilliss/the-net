@@ -50,13 +50,27 @@ export default function Markers() {
     },
   });
 
+  const [{ data, loading, error }] = useAxios(
+    "https://angler-reg-api.herokuapp.com/pins"
+  );
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+  const returnData = data.pins;
+  console.log("ReturnData",returnData)
   return (
     <>
       {/* needs a unique id */}
-      {markers.map((marker) => (
-        <Marker position={marker}>
+      {returnData.map((marker) => (
+        <Marker key={marker.id}position={[marker.location.x, marker.location.y]}>
           <Popup>
-            <PopupDisplay />
+            <PopupDisplay 
+              date={marker.date}
+              user_id={marker.user_id}
+              title={marker.title}
+              species_id={marker.species_id}
+              image={marker.image}
+              rating={marker.rating}
+            />
           </Popup>
           <Modal
             open={modal}
