@@ -4,7 +4,7 @@ import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
-import { makeStyles, useTheme  } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -13,6 +13,7 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import useAxios from "axios-hooks";
+import { post } from 'axios';
 
 
 
@@ -34,16 +35,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     maxWidth: 300,
   },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
+
 
 }))
 
@@ -74,19 +66,7 @@ const MenuProps = {
   },
 };
 
-const species = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
+//Style species
 function getStyles(name, fishName, theme) {
   return {
     fontWeight:
@@ -105,17 +85,59 @@ export default function MarkerForm(props) {
   const theme = useTheme();
   const [fishName, setFishName] = React.useState([]);
 
-
-  const handleChange = (event) => {
-    setFishName(event.target.value);
+  //Tile(name)
+  const [title, setTitle] = React.useState("");
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
+  //Date
+  const CurrentDate = new Date()
+  const [date, setDate] = React.useState(formatDate(CurrentDate));
+
+
+  const handleDateChange = (event) => {
+    console.log("datechange", event.target.value)
+    setDate(event.target.value);
+  };
+
+  //Formatting the date to work with date of today in our form
+  function formatDate(date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+
+  console.log(formatDate('Sun May 11,2014'));
+
+
+
+  //Species
+  const [species, setSpecies] = React.useState("");
+  const handleSpeciesChange = (event) => {
+    setSpecies(event.target.value);
+  };
+
+
+//OnSubmit Button
   const onSubmit = (evt) => {
     console.log(props.marker);
+    let pinForm = { title: title, date: date, species: species }
+    post("http://localhost:8080/pins", pinForm)
+      .then(() => { console.log("sent") })
     props.onClose();
   };
 
 
+  // species in selector
   const [{ data, loading, error }] = useAxios(
     "https://angler-reg-api.herokuapp.com/species"
   );
@@ -125,12 +147,7 @@ export default function MarkerForm(props) {
 
   const returnData = data.species;
 
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
+
 
   return (
 
@@ -138,14 +155,16 @@ export default function MarkerForm(props) {
 
       <FormControl>
         <InputLabel htmlFor="Name">Your Name</InputLabel>
-        <Input id="Name" aria-describedby="my-helper-text" />
+        <Input name="title" onChange={handleTitleChange} id="Name" aria-describedby="my-helper-text" value={title} />
       </FormControl>
 
 
       <TextField
         id="date"
         type="date"
-        defaultValue="2017-05-24"
+        value={date}
+        name="date"
+        onChange={handleDateChange}
       />
 
       <FormControl className={classes.formControl}>
@@ -153,11 +172,11 @@ export default function MarkerForm(props) {
         <Select
           labelId="demo-mutiple-name-label"
           id="demo-mutiple-name"
-          multiple
-          value={fishName}
-          onChange={handleChange}
+          value={species}
+          onChange={handleSpeciesChange}
           input={<Input />}
           MenuProps={MenuProps}
+          name="species"
         >
           {returnData.map((species) => (
             <MenuItem key={species.id} value={species.name} style={getStyles(species.name, fishName, theme)}>
