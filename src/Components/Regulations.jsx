@@ -15,6 +15,7 @@ export default function Regulations() {
   return (
     <>
       {returnData.map((regulation) => (
+      
           <Circle
             key={regulation.id}
             center={[regulation.location.x, regulation.location.y]}
