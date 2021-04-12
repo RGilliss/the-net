@@ -116,14 +116,21 @@ export default function MarkerForm(props) {
   };
 
 
-  // const [{ data, loading, error }] = useAxios(
-  //   "https://angler-reg-api.herokuapp.com/species"
-  // );
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error!</p>;
+  const [{ data, loading, error }] = useAxios(
+    "https://angler-reg-api.herokuapp.com/species"
+  );
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+  console.log("data_species", data.species)
 
-  // const returnData = data.species;
+  const returnData = data.species;
 
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
 
   return (
 
@@ -152,9 +159,9 @@ export default function MarkerForm(props) {
           input={<Input />}
           MenuProps={MenuProps}
         >
-          {species.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, fishName, theme)}>
-              {name}
+          {returnData.map((species) => (
+            <MenuItem key={species.id} value={species.name} style={getStyles(species.name, fishName, theme)}>
+              {species.name}
             </MenuItem>
           ))}
         </Select>
