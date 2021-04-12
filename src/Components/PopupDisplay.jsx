@@ -7,6 +7,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
+import StarsIcon from '@material-ui/icons/Stars';
+import { Tooltip } from "leaflet";
 
 const useStyles = makeStyles({
   root: {
@@ -24,15 +26,17 @@ export default function PopupDisplay(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardContent>
+            <StarsIcon />
+
             <Typography gutterBottom variant="p" component="h4">
               <div>{props.date}</div>
-              <div>{props.user_id}</div>
+              <div>{props.username}</div>
             </Typography>
             <Typography gutterBottom variant="h6" component="h4">
               {props.title}
             </Typography>
             <Typography gutterBottom variant="p" component="h4">
-              {props.species_id}
+              {props.species}
             </Typography>
 
             <CardMedia
