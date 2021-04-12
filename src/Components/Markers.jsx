@@ -12,7 +12,7 @@ export default function Markers() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data.pins;
-
+    console.log(returnData)
   return (
     <>
       {returnData.map((marker) => (
@@ -22,6 +22,7 @@ export default function Markers() {
               date={marker.date}
               user_id={marker.user_id}
               title={marker.title}
+              description={marker.description}
               species_id={marker.species_id}
               image={marker.image}
               rating={marker.rating}
