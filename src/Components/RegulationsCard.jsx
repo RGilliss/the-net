@@ -48,7 +48,12 @@ export default function RegulationDisplay(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" href="https://bit.ly/3tc2cXN">
+          <Button
+            size="small"
+            href="https://bit.ly/3tc2cXN"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Learn More
           </Button>
         </CardActions>
