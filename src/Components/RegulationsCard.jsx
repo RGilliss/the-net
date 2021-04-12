@@ -34,16 +34,23 @@ export default function RegulationDisplay(props) {
             {props.water_body}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            {`${props.class_water} - ${props.tributary} - ${props.stocked} - ${props.accessible}`}
+            <>
+              {props.class_water ? <div>{"\uD83D\uDCB5"}</div> : null}
+              {props.tributary ? <div>{"\u5DDD"}</div> : null}
+              {props.stocked ? <div>{"\uD83D\uDC1F"}</div> : null}
+              {props.accessible ? <div>{"\u267F"}</div> : null}
+            </>
           </Typography>
           <Typography variant="body2" component="p">
             {`${props.regulation}`}
             <br />
-            {`${props.date_range}`}
+            <>{props.date_range ? <div>{props.date_range}</div> : null}</>
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" href="https://bit.ly/3tc2cXN">Learn More</Button>
+          <Button size="small" href="https://bit.ly/3tc2cXN">
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </>
