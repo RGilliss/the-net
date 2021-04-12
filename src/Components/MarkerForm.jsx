@@ -12,6 +12,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import useAxios from "axios-hooks";
 
 
 
@@ -113,6 +114,15 @@ export default function MarkerForm(props) {
     console.log(props.marker);
     props.onClose();
   };
+
+
+  // const [{ data, loading, error }] = useAxios(
+  //   "https://angler-reg-api.herokuapp.com/species"
+  // );
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error!</p>;
+
+  // const returnData = data.species;
 
 
   return (
