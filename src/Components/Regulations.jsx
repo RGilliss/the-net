@@ -1,66 +1,37 @@
 import useAxios from "axios-hooks";
 import { Popup, Circle } from "react-leaflet";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import RegulationsCard from "./RegulationsCard";
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
-
+//Places regulations on the map and fills in the details from RegulationsCard
 export default function Regulations() {
-  const classes = useStyles();
   const [{ data, loading, error }] = useAxios(
     "https://angler-reg-api.herokuapp.com/regulations"
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
 
+  const returnData = data.regulations;
+
   return (
     <>
-      {data.regulations.map((regulation) => (
-        <section key={regulation.id}>
-          <Popup>
-            <Card className={classes.root}>
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  {regulation.water_body}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                  {`${regulation.class_water} - ${regulation.tributary} - ${regulation.stocked} - ${regulation.accessible}`}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {`${regulation.regulation}`}
-                  <br />
-                  {`${regulation.date_range}`}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          </Popup>
+      {returnData.map((regulation) => (
           <Circle
+            key={regulation.id}
             center={[regulation.location.x, regulation.location.y]}
             radius={2000}
-          />
-        </section>
+          >
+          <Popup>
+            <RegulationsCard
+              water_body={regulation.water_body}
+              class_water={regulation.class_water}
+              tributary={regulation.tributary}
+              stocked={regulation.stocked}
+              accessible={regulation.accessible}
+              regulation={regulation.regulation}
+              date_range={regulation.date_range}
+            />
+          </Popup>
+          </Circle>
       ))}
     </>
   );
