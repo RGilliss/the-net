@@ -78,7 +78,7 @@ function getStyles(name, fishName, theme) {
 
 
 export default function MarkerForm(props) {
-  const [value, setValue] = React.useState(2);
+  // const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
 
   const classes = useStyles();
@@ -126,11 +126,31 @@ export default function MarkerForm(props) {
     setSpecies(event.target.value);
   };
 
+  //Rating
+  const [rate, setRate] = React.useState("");
+  const handleRateChange = (event) => {
+    // console.log("handleRate...", event.target.value )
+    setRate(event.target.value);
+  };
 
-//OnSubmit Button
+  //textarea
+  const [text, setText] = React.useState("");
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  //Picture link
+  const [link, setLink] = React.useState("");
+  const handleLinkChange = (event) => {
+    setLink(event.target.value);
+  };
+
+
+
+  //OnSubmit Button
   const onSubmit = (evt) => {
     console.log(props.marker);
-    let pinForm = { title: title, date: date, species: species }
+    let pinForm = { title: title, date: date, species: species, rate: rate, text: text, link: link}
     post("http://localhost:8080/pins", pinForm)
       .then(() => { console.log("sent") })
     props.onClose();
@@ -148,6 +168,8 @@ export default function MarkerForm(props) {
   const returnData = data.species;
 
 
+  
+
 
   return (
 
@@ -159,6 +181,7 @@ export default function MarkerForm(props) {
       </FormControl>
 
 
+
       <TextField
         id="date"
         type="date"
@@ -166,6 +189,7 @@ export default function MarkerForm(props) {
         name="date"
         onChange={handleDateChange}
       />
+
 
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-name-label">Species</InputLabel>
@@ -186,27 +210,32 @@ export default function MarkerForm(props) {
         </Select>
       </FormControl>
 
+
       <div className={classes.rating_root}>
         <Rating
-          name="hover-feedback"
-          value={value}
+          name="rate"
+          value={rate}
           precision={0.5}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
+          onChange={handleRateChange}
           onChangeActive={(event, newHover) => {
             setHover(newHover);
           }}
         />
-        {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+
+
+        {rate !== null && <Box ml={2}>{labels[hover !== -1 ? hover : rate]}</Box>}
       </div>
+
+
 
       <TextareaAutosize
         rowsMax={4}
         aria-label="maximum height"
-        placeholder="Maximum 4 rows"
-        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua."
+        placeholder="Your comments"
+        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        name="text"
+        value={text}
+        onChange={handleTextChange}
       />
 
       <FormControl className={classes.add_picture}>
@@ -218,6 +247,9 @@ export default function MarkerForm(props) {
               <AddAPhotoIcon />
             </InputAdornment>
           }
+          name="link"
+          value={link}
+          onChange={handleLinkChange}
         />
       </FormControl>
 
