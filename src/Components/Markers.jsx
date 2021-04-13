@@ -21,7 +21,7 @@ export default function Markers() {
           <Popup>
             <PopupDisplay
               date={marker.date}
-              username={marker.name}
+              name={marker.name}
               title={marker.title}
               description={marker.description}
               species={marker.species}
