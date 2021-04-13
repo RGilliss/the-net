@@ -1,4 +1,3 @@
-import React from "react";
 import { MapContainer } from "react-leaflet";
 import "./App.css";
 import Navbar from "../Navbar";

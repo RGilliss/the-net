@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
 import MarkerForm from "./MarkerForm";
 import PopupDisplay from "./PopupDisplay";
@@ -38,35 +38,51 @@ const useStyles = makeStyles((theme) => ({
 //Places new markers on the map and displays a Modal with a form
 export default function NewMarkers() {
   const classes = useStyles();
-  const [markers, setMarkers] = useState([])
-  const [modalStyle] = React.useState(getModalStyle);
+  const [markers, setMarkers] = useState([]);
+  const [modalStyle] = useState(getModalStyle);
   const [modal, setModal] = useState(false);
+  const [popups, setPopups] = useState({});
   const map = useMapEvents({
     dblclick(e) {
       const newMarker = e.latlng;
       setModal(true);
-      setMarkers([...markers, newMarker])
-    }
-  })
-  
+      setMarkers([...markers, newMarker]);
+    },
+  });
+
   return (
     <>
-    {markers.map(marker => 
-      <Marker key={marker} position={marker}>
-        <Popup><PopupDisplay/></Popup>
-        <Modal
+      {markers.map((marker) => (
+        <Marker key={marker} position={marker}>
+          <Popup>
+            <PopupDisplay
+              date={popups.date}
+              name={popups.name}
+              title={popups.title}
+              description={popups.description}
+              species={popups.species}
+              image={popups.link}
+              rating={popups.rate}
+            />
+          </Popup>
+          <Modal
             open={modal}
             className={classes.modal}
             onClose={() => setModal(false)}
           >
             <Fade in={modal}>
               <div className={classes.paper}>
-                <MarkerForm marker={marker} onClose={() => setModal(false)} />
+                <MarkerForm
+                  marker={marker}
+                  onClose={() => setModal(false)}
+                  setPopups={setPopups}
+                  location={marker}
+                />
               </div>
             </Fade>
           </Modal>
-      </Marker>
-    )}
+        </Marker>
+      ))}
     </>
-  )
+  );
 }
