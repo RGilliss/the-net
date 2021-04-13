@@ -5,11 +5,11 @@ import PopupDisplay from "./PopupDisplay";
 //Recieves Marker data from database
 export default function Markers() {
   const [{ data, loading, error }] = useAxios(
-    "https://angler-reg-api.herokuapp.com/pins"
+    "/pins"
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
-  const returnData = data.pins;
+  const returnData = data;
     
   return (
     <>

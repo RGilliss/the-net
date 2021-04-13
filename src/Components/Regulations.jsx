@@ -5,7 +5,7 @@ import RegulationsCard from "./RegulationsCard";
 //Places regulations on the map and fills in the details from RegulationsCard
 export default function Regulations() {
   const [{ data, loading, error }] = useAxios(
-    "https://angler-reg-api.herokuapp.com/regulations"
+    "/regulations"
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
