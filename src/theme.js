@@ -10,8 +10,8 @@ const theme = createMuiTheme({
       dark: '#21a1c4',
     },
     secondary: {
-      main: '#b5ecfb',
-      light: '#61dafb',
+      main: '#ffb74d',
+      light: '#fff59d',
       dark: '#21a1c4',
     },
     error: {
@@ -19,7 +19,7 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#282c34',
-    },
+    }
   },
   overrides: {
     MuiPaper: {
