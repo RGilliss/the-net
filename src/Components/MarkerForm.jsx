@@ -85,10 +85,16 @@ export default function MarkerForm(props) {
   const theme = useTheme();
   const [fishName, setFishName] = React.useState([]);
 
-  //Tile(name)
+  //Tile
   const [title, setTitle] = React.useState("");
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+  };
+
+  //name
+  const [name, setName] = React.useState("");
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
   //Date
@@ -128,9 +134,10 @@ export default function MarkerForm(props) {
 
   //Rating
   const [rate, setRate] = React.useState("");
-  const handleRateChange = (event) => {
-    // console.log("handleRate...", event.target.value )
-    setRate(event.target.value);
+  const handleRateChange = (event, value) => {
+    console.log("value", value)
+    setRate(value);
+
   };
 
   //textarea
@@ -149,9 +156,10 @@ export default function MarkerForm(props) {
 
   //OnSubmit Button
   const onSubmit = (evt) => {
-    console.log(props.marker);
-    let pinForm = { title: title, date: date, species: species, rate: rate, text: text, link: link}
-    post("http://localhost:8080/pins", pinForm)
+    // console.log(props.marker);
+    let pinForm = { title: title,name: name, date: date, species: species, rate: rate, text: text, link: link }
+    console.log("pinForm", pinForm)
+    post("https://angler-reg-api.herokuapp.com/pins", pinForm)
       .then(() => { console.log("sent") })
     props.onClose();
   };
@@ -168,7 +176,7 @@ export default function MarkerForm(props) {
   const returnData = data.species;
 
 
-  
+
 
 
   return (
@@ -176,8 +184,14 @@ export default function MarkerForm(props) {
     <form className={classes.marker_form}>
 
       <FormControl>
+        <InputLabel htmlFor="Title">Your Title</InputLabel>
+        <Input name="title" onChange={handleTitleChange} id="Title" aria-describedby="my-helper-text" value={title} />
+      </FormControl>
+
+
+      <FormControl>
         <InputLabel htmlFor="Name">Your Name</InputLabel>
-        <Input name="title" onChange={handleTitleChange} id="Name" aria-describedby="my-helper-text" value={title} />
+        <Input name="name" onChange={handleNameChange} id="Name" aria-describedby="my-helper-text" value={name} />
       </FormControl>
 
 
