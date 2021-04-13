@@ -76,6 +76,7 @@ export default function NewMarkers() {
                   marker={marker}
                   onClose={() => setModal(false)}
                   setPopups={setPopups}
+                  location={marker}
                 />
               </div>
             </Fade>

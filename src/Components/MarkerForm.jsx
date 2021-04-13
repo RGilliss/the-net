@@ -154,6 +154,7 @@ export default function MarkerForm(props) {
       rate: rate,
       text: text,
       link: link,
+      location: `(${props.location.lat}, ${props.location.lng})`,
     };
     console.log("pinForm", pinForm);
     props.setPopups({ ...pinForm, pinForm });
@@ -162,7 +163,6 @@ export default function MarkerForm(props) {
       .post("/pins", pinForm)
       .then((res) => {
         console.log(res);
-       
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -237,7 +237,7 @@ export default function MarkerForm(props) {
           {speciesList.map((fish) => (
             <MenuItem
               key={fish.id}
-              value={fish.name}
+              value={fish.id}
               style={getStyles(fish.name, fishName, theme)}
             >
               {fish.name}
