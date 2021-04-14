@@ -122,22 +122,22 @@ export default function MarkerForm(props) {
   };
 
   //Rating
-  const [rate, setRate] = useState("");
-  const handleRateChange = (event, value) => {
+  const [rating, setRating] = useState("");
+  const handleRatingChange = (event, value) => {
     console.log("value", value);
-    setRate(value);
+    setRating(value);
   };
 
-  //textarea
-  const [text, setText] = useState("");
-  const handleTextChange = (event) => {
-    setText(event.target.value);
+  //Description
+  const [description, setDescription] = useState("");
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
   };
 
-  //Picture link
-  const [link, setLink] = useState("");
-  const handleLinkChange = (event) => {
-    setLink(event.target.value);
+  //Image link
+  const [image, setImage] = useState("");
+  const handleImageChange = (event) => {
+    setImage(event.target.value);
   };
 
   const [speciesList, setSpeciesList] = useState([]);
@@ -148,12 +148,11 @@ export default function MarkerForm(props) {
 
     let pinForm = {
       title: title,
-      // name: name,
       date: date,
       species: species,
-      rate: rate,
-      text: text,
-      link: link,
+      rating: rating,
+      description: description,
+      image: image,
       location: `(${props.location.lat}, ${props.location.lng})`,
     };
     console.log("pinForm", pinForm);
@@ -165,7 +164,7 @@ export default function MarkerForm(props) {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
 
     props.onClose();
@@ -204,17 +203,6 @@ export default function MarkerForm(props) {
         />
       </FormControl>
 
-      {/* <FormControl>
-        <InputLabel htmlFor="Name">Your Name</InputLabel>
-        <Input
-          name="name"
-          onChange={handleNameChange}
-          id="Name"
-          aria-describedby="my-helper-text"
-          value={name}
-        />
-      </FormControl> */}
-
       <TextField
         id="date"
         type="date"
@@ -248,17 +236,17 @@ export default function MarkerForm(props) {
 
       <div className={classes.rating_root}>
         <Rating
-          name="rate"
-          value={rate}
+          name="rating"
+          value={rating}
           precision={0.5}
-          onChange={handleRateChange}
+          onChange={handleRatingChange}
           onChangeActive={(event, newHover) => {
             setHover(newHover);
           }}
         />
 
-        {rate !== null && (
-          <Box ml={2}>{labels[hover !== -1 ? hover : rate]}</Box>
+        {rating !== null && (
+          <Box ml={2}>{labels[hover !== -1 ? hover : rating]}</Box>
         )}
       </div>
 
@@ -267,14 +255,14 @@ export default function MarkerForm(props) {
         aria-label="maximum height"
         placeholder="Your comments"
         defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        name="text"
-        value={text}
-        onChange={handleTextChange}
+        name="description"
+        value={description}
+        onChange={handleDescriptionChange}
       />
 
       <FormControl className={classes.add_picture}>
         <InputLabel htmlFor="input-with-icon-adornment">
-          Add a link of your picture
+          Add a link to your picture
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
@@ -283,9 +271,9 @@ export default function MarkerForm(props) {
               <AddAPhotoIcon />
             </InputAdornment>
           }
-          name="link"
-          value={link}
-          onChange={handleLinkChange}
+          name="image"
+          value={image}
+          onChange={handleImageChange}
         />
       </FormControl>
 
