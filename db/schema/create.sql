@@ -78,6 +78,6 @@ CREATE TABLE regulations (
 );
 
 COPY regulations(water_body, class_water, tributary, stocked, accessible, date_range, regulation, location)
-FROM '/vagrant/the-net/db/seeds/fishregswcoords.csv'
+FROM '/the-net/db/seeds/fishregswcoords.csv'
 DELIMITER ','
-CSV HEADER;-
+CSV HEADER;
