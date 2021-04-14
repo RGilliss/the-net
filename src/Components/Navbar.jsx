@@ -13,6 +13,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import StarsIcon from "@material-ui/icons/Stars";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 
+
+import GeoSearch from "./GeoSearch";
+
 const StyledMenu = withStyles({
   paper: {
     border: "1px solid #d3d4d5",
@@ -130,6 +133,7 @@ export default function SearchAppBar() {
             <Typography className={classes.title} variant="h6" noWrap>
               The Net
             </Typography>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

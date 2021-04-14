@@ -12,13 +12,15 @@
     "axios": "^0.21.1",
     "axios-hooks": "^2.6.1",
     "leaflet": "^1.7.1",
+    "leaflet-geosearch": "^3.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.1.0",
+    "react-leaflet-geosearch": "^0.3.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.1"
   },
- "proxy": "http://localhost:8000",
+  "proxy": "http://localhost:8000",
   "scripts": {
     "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
@@ -45,5 +47,3 @@
   },
   "devDependencies": {}
 }
-
-      
