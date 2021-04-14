@@ -26,6 +26,7 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const [selected, setSelected] = useState([]);
   const classes = useStyles({});
+  console.log("popup props", props)
 
   return (
     <>

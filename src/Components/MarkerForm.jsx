@@ -12,7 +12,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import useAxios from "axios-hooks";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -85,12 +84,6 @@ export default function MarkerForm(props) {
     setTitle(event.target.value);
   };
 
-  // //name
-  // const [name, setName] = useState("");
-  // const handleNameChange = (event) => {
-  //   setName(event.target.value);
-  // };
-
   //Date
   const CurrentDate = new Date();
   const [date, setDate] = useState(formatDate(CurrentDate));
@@ -112,8 +105,6 @@ export default function MarkerForm(props) {
 
     return [year, month, day].join("-");
   }
-
-  console.log(formatDate("Sun May 11,2014"));
 
   //Species
   const [species, setSpecies] = useState("");
@@ -145,7 +136,7 @@ export default function MarkerForm(props) {
   //OnSubmit Button
   const onSubmit = (evt) => {
     // console.log(props.marker);
-
+   
     let pinForm = {
       title: title,
       date: date,
@@ -155,20 +146,35 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${props.location.lat}, ${props.location.lng})`,
     };
-    console.log("pinForm", pinForm);
     props.setPopups({ ...pinForm, pinForm });
+    console.log(pinForm.image)
+    console.log("pinForm", pinForm);
+    // console.log("SpeciesList", speciesList[species - 1].name);
 
+    
     axios
-      .post("/pins", pinForm)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .post("/pins", pinForm)
+    .then((res) => {
+      console.log(res);
+      // let pinForm = {  
+      //   title: title,
+      //   date: date,
+      //   species: speciesList[species - 1].name,
+      //   rating: rating,
+      //   description: description,
+      //   image: image,
+      //   location: `(${props.location.lat}, ${props.location.lng})`
+      // };
+      // console.log("pinForm, again!", pinForm)
+      // props.setPopups({ ...pinForm, pinForm });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
     props.onClose();
   };
+
   useEffect(
     () =>
       axios
@@ -182,12 +188,12 @@ export default function MarkerForm(props) {
         }),
     []
   );
+
   // species in selector
   // const [{ data, loading, error }] = useAxios("/species");
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error!</p>;
   // console.log("data_species", data.species);
-
   // const returnData = data.species;
 
   return (
@@ -225,7 +231,7 @@ export default function MarkerForm(props) {
           {speciesList.map((fish) => (
             <MenuItem
               key={fish.id}
-              value={fish.id}
+              value={fish.name}
               style={getStyles(fish.name, fishName, theme)}
             >
               {fish.name}

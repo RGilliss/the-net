@@ -57,12 +57,11 @@ export default function NewMarkers() {
           <Popup>
             <PopupDisplay
               date={popups.date}
-              name={popups.name}
               title={popups.title}
               description={popups.description}
               species={popups.species}
-              image={popups.link}
-              rating={popups.rate}
+              image={popups.image}
+              rating={popups.rating}
             />
           </Popup>
           <Modal

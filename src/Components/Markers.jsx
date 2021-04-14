@@ -10,7 +10,7 @@ export default function Markers() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
-    
+  console.log("Markers returnData", returnData)
   return (
     <>
       {returnData.map((marker) => (
@@ -21,10 +21,9 @@ export default function Markers() {
           <Popup>
             <PopupDisplay
               date={marker.date}
-              name={marker.name}
               title={marker.title}
               description={marker.description}
-              species={marker.species}
+              species={marker.species_name}
               image={marker.image}
               rating={marker.rating}
             />
