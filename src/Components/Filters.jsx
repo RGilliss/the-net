@@ -5,6 +5,7 @@ import {
 import Regulations from "./Regulations"
 import MyPins from "./MyPins"
 import AllMarkers from "./AllMarkers"
+import Favourites from "./Favourites"
 
 export default function Filters() {
 
@@ -16,15 +17,21 @@ export default function Filters() {
         </FeatureGroup>
       </LayersControl.Overlay>
 
-      <LayersControl.Overlay name="MyPins">
+      <LayersControl.Overlay name="My Pins">
         <FeatureGroup >
           <MyPins />
         </FeatureGroup>
       </LayersControl.Overlay>
 
-      <LayersControl.Overlay name="AllPins">
+      <LayersControl.Overlay name="All Pins">
         <FeatureGroup >
           <AllMarkers />
+        </FeatureGroup>
+      </LayersControl.Overlay>
+
+      <LayersControl.Overlay name="My Favourites">
+        <FeatureGroup >
+          <Favourites />
         </FeatureGroup>
       </LayersControl.Overlay>
     </>

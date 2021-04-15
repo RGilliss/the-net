@@ -39,10 +39,25 @@ export default function PopupDisplay(props) {
       .catch((err) => {
         console.log(err);
       });
-      
+
     //props.onClose();
   };
-  const onEdit = () => {};
+  const onEditClick = () => {};
+
+  const setFavourite = () => {
+    console.log("props.user_id:", { userPropsId: props.user_id });
+    console.log("props:", props);
+    const user_id = { user_id: props.user_id };
+    // const pin_id = { pin_id: props.pin_id}
+    axios
+      .post("/favourites", user_id)
+      .then((res) => {
+        console.log("res.data", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -66,18 +81,20 @@ export default function PopupDisplay(props) {
               >
                 {dateParser(props.date)}
               </Typography>
-              <ToggleButton
-                className={classes.fav}
-                size="small"
-                value="fav"
-                aria-label="fav"
-                selected={selected}
-                onChange={() => {
-                  setSelected(!selected);
-                }}
-              >
-                <StarsIcon />
-              </ToggleButton>
+              <div class="fav-icon-wrapper" onClick={setFavourite}>
+                <ToggleButton
+                  className={classes.fav}
+                  size="small"
+                  value="fav"
+                  aria-label="fav"
+                  selected={selected}
+                  onChange={() => {
+                    setSelected(!selected);
+                  }}
+                >
+                  <StarsIcon />
+                </ToggleButton>
+              </div>
             </div>
             <Typography
               gutterBottom
@@ -126,7 +143,7 @@ export default function PopupDisplay(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" color="primary" onClick={onEdit}>
+          <Button variant="contained" color="primary" onClick={onEditClick}>
             Edit
           </Button>
           <Button variant="contained" color="secondary" onClick={onDelete}>
