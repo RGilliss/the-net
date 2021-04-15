@@ -1,85 +1,23 @@
-import { useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
-import MarkerForm from "./MarkerForm";
 import PopupDisplay from "./PopupDisplay";
-import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
-import Fade from "@material-ui/core/Fade";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-//Places new markers on the map and displays a Modal with a form
-export default function NewMarkers() {
-  const classes = useStyles();
-  const [markers, setMarkers] = useState([]);
-  const [modalStyle] = useState(getModalStyle);
-  const [modal, setModal] = useState(false);
-  const [popups, setPopups] = useState({});
-  const map = useMapEvents({
-    dblclick(e) {
-      const newMarker = e.latlng;
-      setModal(true);
-      setMarkers([...markers, newMarker]);
-    },
-  });
+//Places new markers on the map after a user submits the Marker Form
+export default function NewMarkers(props) {
 
   return (
     <>
-      {markers.map((marker) => (
-        <Marker key={marker} position={marker}>
+      {props.popups.map((popup) => (
+        <Marker key={popup.leafletLocation} position={popup.leafletLocation}>
           <Popup>
             <PopupDisplay
-              date={popups.date}
-              title={popups.title}
-              description={popups.description}
-              species={popups.species}
-              image={popups.image}
-              rating={popups.rating}
+              date={popup.date}
+              title={popup.title}
+              description={popup.description}
+              species={popup.species}
+              image={popup.image}
+              rating={popup.rating}
             />
           </Popup>
-          <Modal
-            open={modal}
-            className={classes.modal}
-            onClose={() => setModal(false)}
-          >
-            <Fade in={modal}>
-              <div className={classes.paper}>
-                <MarkerForm
-                  marker={marker}
-                  onClose={() => setModal(false)}
-                  setPopups={setPopups}
-                  location={marker}
-                />
-              </div>
-            </Fade>
-          </Modal>
         </Marker>
       ))}
     </>

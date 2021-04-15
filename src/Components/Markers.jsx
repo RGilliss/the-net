@@ -11,7 +11,6 @@ export default function Markers() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
-  console.log("Markers returnData", returnData)
 
   return (
     <>

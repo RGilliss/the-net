@@ -13,6 +13,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import NewMarkers from "./NewMarkers"
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -133,51 +134,53 @@ export default function MarkerForm(props) {
 
   const [speciesList, setSpeciesList] = useState([]);
 
-  //OnSubmit Button
-  const onSubmit = (evt) => {
-    let pinForm = {
-      title: title,
-      date: date,
-      species: species,
-      rating: rating,
-      description: description,
-      image: image,
-      location: `(${props.location.lat}, ${props.location.lng})`,
-    };
-    props.setPopups({ ...pinForm, pinForm });
-    console.log(pinForm.image);
-    console.log("pinForm", pinForm);
-
+  
+  useEffect(
+    () =>
     axios
-      .post("/pins", pinForm)
-      .then((res) => res)
+    .get("/species")
+    .then((res) => {
+      console.log(res.data);
+      setSpeciesList(res.data);
+    })
+    .catch((err) => {
+      console.log(err.response.data);
+    }),
+    []
+    );
+    
+    //OnSubmit Button makes post request to /pins, submitting the form data
+    const onSubmit = (evt) => {
+      let currentLocation = [...props.location]
+      currentLocation = currentLocation.pop()
+      const popup = {
+        leafletLocation: currentLocation,
+        title: title,
+        date: date,
+        species: species,
+        rating: rating,
+        description: description,
+        image: image,
+        location: `(${currentLocation.lat}, ${currentLocation.lng})`,
+      };
+      props.setPopups([ ...props.popups, popup ]);
+      
+      console.log("Post => popup", popup);
+      console.log("Post => popups", props.popups);
+      
+      axios
+      .post("/pins", popup)
+      .then((res) => {
+        console.log("RES",res);      
+      })
       .catch((err) => {
         console.log(err);
       });
+      
+      props.onClose();
+    };
+    
 
-    props.onClose();
-  };
-
-  useEffect(
-    () =>
-      axios
-        .get("/species")
-        .then((res) => {
-          console.log(res.data);
-          setSpeciesList(res.data);
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-        }),
-    []
-  );
-
-  // species in selector using axios hooks
-  // const [{ data, loading, error }] = useAxios("/species");
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error!</p>;
-  // console.log("data_species", data.species);
-  // const returnData = data.species;
 
   return (
     <form className={classes.marker_form}>
@@ -266,7 +269,7 @@ export default function MarkerForm(props) {
         />
       </FormControl>
 
-      <Button variant="contained" color="primary" onClick={onSubmit}>
+      <Button variant="contained" color="primary" onClick={() => onSubmit()}>
         Submit
       </Button>
     </form>
