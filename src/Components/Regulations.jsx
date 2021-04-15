@@ -12,6 +12,8 @@ export default function Regulations() {
 
   const returnData = data.regulations;
 
+  
+
   return (
     <>
       {returnData.map((regulation) => (

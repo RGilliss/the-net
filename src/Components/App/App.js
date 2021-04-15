@@ -19,7 +19,7 @@ export default function App() {
       <MapContainer center={startPosition} zoom={8}>
         <GeoSearch provider= {new OpenStreetMapProvider()}/>
         <Layers/>
-        <Markers/>
+        {/* <Markers/> */}
         <NewMarkers/>
       </MapContainer>
     </div>
