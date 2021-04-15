@@ -135,8 +135,6 @@ export default function MarkerForm(props) {
 
   //OnSubmit Button
   const onSubmit = (evt) => {
-    // console.log(props.marker);
-   
     let pinForm = {
       title: title,
       date: date,
@@ -147,30 +145,15 @@ export default function MarkerForm(props) {
       location: `(${props.location.lat}, ${props.location.lng})`,
     };
     props.setPopups({ ...pinForm, pinForm });
-    console.log(pinForm.image)
+    console.log(pinForm.image);
     console.log("pinForm", pinForm);
-    // console.log("SpeciesList", speciesList[species - 1].name);
 
-    
     axios
-    .post("/pins", pinForm)
-    .then((res) => {
-      console.log(res);
-      // let pinForm = {  
-      //   title: title,
-      //   date: date,
-      //   species: speciesList[species - 1].name,
-      //   rating: rating,
-      //   description: description,
-      //   image: image,
-      //   location: `(${props.location.lat}, ${props.location.lng})`
-      // };
-      // console.log("pinForm, again!", pinForm)
-      // props.setPopups({ ...pinForm, pinForm });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .post("/pins", pinForm)
+      .then((res) => res)
+      .catch((err) => {
+        console.log(err);
+      });
 
     props.onClose();
   };
@@ -189,7 +172,7 @@ export default function MarkerForm(props) {
     []
   );
 
-  // species in selector
+  // species in selector using axios hooks
   // const [{ data, loading, error }] = useAxios("/species");
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error!</p>;
