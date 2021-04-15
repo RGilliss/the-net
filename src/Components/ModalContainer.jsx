@@ -44,8 +44,8 @@ export default function ModalContainer (props) {
             <MarkerForm
               onClose={() => setModal(false)}
               location={markerLocations}
-              setPopups={props.setPopups}
-              popups={props.popups}
+              setPopups={props.setMarkers}
+              popups={props.markers}
             />
           </div>
         </Fade>

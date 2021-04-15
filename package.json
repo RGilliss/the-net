@@ -18,6 +18,7 @@
     "react-leaflet": "^3.1.0",
     "react-leaflet-geosearch": "^0.3.0",
     "react-scripts": "4.0.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.1"
   },
   "proxy": "http://localhost:8080",

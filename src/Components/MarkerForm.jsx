@@ -13,7 +13,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
-import NewMarkers from "./NewMarkers"
+import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -151,10 +151,12 @@ export default function MarkerForm(props) {
     
     //OnSubmit Button makes post request to /pins, submitting the form data
     const onSubmit = (evt) => {
+      const uuid = uuidv4();
       let currentLocation = [...props.location]
       currentLocation = currentLocation.pop()
       const popup = {
         leafletLocation: currentLocation,
+        uuid: uuid,
         title: title,
         date: date,
         species: species,

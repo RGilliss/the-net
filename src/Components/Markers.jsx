@@ -1,6 +1,6 @@
 import useAxios from "axios-hooks";
-import { Marker, Popup } from "react-leaflet";
-import PopupDisplay from "./PopupDisplay";
+import NewMarkers from "./NewMarkers";
+
 
 //Recieves Marker data from database
 export default function Markers() {
@@ -10,28 +10,11 @@ export default function Markers() {
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
-  const returnData = data;
-
+  const returnData = data.map((marker) => ({...marker, leafletLocation: [marker.location.x, marker.location.y]}));
+    
   return (
-    <>
-      {returnData.map((marker) => (
-        <Marker
-          key={marker.id}
-          position={[marker.location.x, marker.location.y]}
-        >
-          <Popup>
-            <PopupDisplay
-              id={marker.id}
-              date={marker.date}
-              title={marker.title}
-              description={marker.description}
-              species={marker.species_name}
-              image={marker.image}
-              rating={marker.rating}
-            />
-          </Popup>
-        </Marker>
-      ))}
-    </>
+
+    <NewMarkers markers={returnData}/>
+
   );
 }
