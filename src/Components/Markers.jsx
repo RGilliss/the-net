@@ -20,6 +20,7 @@ export default function Markers() {
         >
           <Popup>
             <PopupDisplay
+              id={marker.id}
               date={marker.date}
               title={marker.title}
               description={marker.description}
