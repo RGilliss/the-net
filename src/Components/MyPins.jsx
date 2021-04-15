@@ -1,16 +1,10 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./PopupDisplay";
-import {useState} from 'react';
 
 
 export default function MyPins() {
-  //make API call to pin for that user
-  //it should retourn a json with infos about what pin this user has
-  //drop pins on map by paring that info
-
-  // const [userPins, setUserPins] = useState([1,2]);
-
+  
   const [{ data, loading, error }] = useAxios(
     "/mypins"
   );
@@ -18,15 +12,6 @@ export default function MyPins() {
   if (error) return <p>Error!</p>;
   const returnData = data;
   console.log("Mypins returnData", returnData)
-
-  // const filterPins = ()=> {
-  //   return data.filter(pin => { 
-  //     return userPins.includes(pin.id)
-  //   })
-    
-  // }
-  // console.log(filterPins())
-
 
   return (
     <>
