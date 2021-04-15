@@ -14,8 +14,6 @@ import StarsIcon from "@material-ui/icons/Stars";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 
 
-import GeoSearch from "./GeoSearch";
-
 const StyledMenu = withStyles({
   paper: {
     border: "1px solid #d3d4d5",
