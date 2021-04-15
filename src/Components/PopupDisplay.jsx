@@ -29,26 +29,13 @@ export default function PopupDisplay(props) {
   const classes = useStyles({});
   console.log("popup props", props);
 
-  const onDelete = () => {
-    const id = props.id;
-    axios
-      .delete("/pins", { data: { pinId: id } })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    //props.onClose();
-  };
   const onEditClick = () => {};
 
   const setFavourite = () => {
+
     console.log("props.user_id:", { userPropsId: props.user_id });
     console.log("props:", props);
     const user_id = { user_id: props.user_id };
-    // const pin_id = { pin_id: props.pin_id}
     axios
       .post("/favourites", user_id)
       .then((res) => {
@@ -146,7 +133,7 @@ export default function PopupDisplay(props) {
           <Button variant="contained" color="primary" onClick={onEditClick}>
             Edit
           </Button>
-          <Button variant="contained" color="secondary" onClick={onDelete}>
+          <Button variant="contained" color="secondary" onClick={props.onDelete}>
             Delete
           </Button>
         </CardActions>
