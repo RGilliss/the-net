@@ -4,12 +4,14 @@ import PopupDisplay from "./PopupDisplay";
 
 //Recieves Marker data from database
 export default function Markers() {
+
   const [{ data, loading, error }] = useAxios(
     "/pins"
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
+
   return (
     <>
       {returnData.map((marker) => (
@@ -19,6 +21,7 @@ export default function Markers() {
         >
           <Popup>
             <PopupDisplay
+              id={marker.id}
               date={marker.date}
               title={marker.title}
               description={marker.description}

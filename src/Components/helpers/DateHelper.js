@@ -1,5 +1,5 @@
 const monthLookup = function(monthVal) {
-  console.log(monthVal)
+  //console.log(monthVal)
   switch (monthVal) {
     case "01":
       return 'January'

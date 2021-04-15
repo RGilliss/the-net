@@ -11,6 +11,7 @@ import Rating from "@material-ui/lab/Rating";
 import StarsIcon from "@material-ui/icons/Stars";
 import { useState } from "react";
 import { dateParser } from "./helpers/DateHelper";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +27,37 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const [selected, setSelected] = useState([]);
   const classes = useStyles({});
-  console.log("popup props", props)
+  console.log("popup props", props);
+
+  const onDelete = () => {
+    const id = props.id;
+    axios
+      .delete("/pins", { data: { pinId: id } })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    //props.onClose();
+  };
+  const onEditClick = () => {};
+
+  const setFavourite = () => {
+    console.log("props.user_id:", { userPropsId: props.user_id });
+    console.log("props:", props);
+    const user_id = { user_id: props.user_id };
+    // const pin_id = { pin_id: props.pin_id}
+    axios
+      .post("/favourites", user_id)
+      .then((res) => {
+        console.log("res.data", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -50,18 +81,20 @@ export default function PopupDisplay(props) {
               >
                 {dateParser(props.date)}
               </Typography>
-              <ToggleButton
-                className={classes.fav}
-                size="small"
-                value="fav"
-                aria-label="fav"
-                selected={selected}
-                onChange={() => {
-                  setSelected(!selected);
-                }}
-              >
-                <StarsIcon />
-              </ToggleButton>
+              <div class="fav-icon-wrapper" onClick={setFavourite}>
+                <ToggleButton
+                  className={classes.fav}
+                  size="small"
+                  value="fav"
+                  aria-label="fav"
+                  selected={selected}
+                  onChange={() => {
+                    setSelected(!selected);
+                  }}
+                >
+                  <StarsIcon />
+                </ToggleButton>
+              </div>
             </div>
             <Typography
               gutterBottom
@@ -110,11 +143,11 @@ export default function PopupDisplay(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" color="primary">
-            Share
+          <Button variant="contained" color="primary" onClick={onEditClick}>
+            Edit
           </Button>
-          <Button variant="contained" color="primary">
-            Regulations
+          <Button variant="contained" color="secondary" onClick={onDelete}>
+            Delete
           </Button>
         </CardActions>
       </Card>
