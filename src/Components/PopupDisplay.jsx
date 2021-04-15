@@ -39,10 +39,23 @@ export default function PopupDisplay(props) {
       .catch((err) => {
         console.log(err);
       });
-      
+
     //props.onClose();
   };
-  const onEdit = () => {};
+  const onEditClick = () => {};
+
+  const setFavourite = () => {
+    axios
+    .post("/favourites", props.user_id)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+
+  };
 
   return (
     <>
@@ -75,6 +88,8 @@ export default function PopupDisplay(props) {
                 onChange={() => {
                   setSelected(!selected);
                 }}
+                
+          
               >
                 <StarsIcon />
               </ToggleButton>
@@ -126,7 +141,7 @@ export default function PopupDisplay(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" color="primary" onClick={onEdit}>
+          <Button variant="contained" color="primary" onClick={onEditClick}>
             Edit
           </Button>
           <Button variant="contained" color="secondary" onClick={onDelete}>
