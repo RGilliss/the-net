@@ -28,11 +28,14 @@ export default function PopupDisplay(props) {
   const [selected, setSelected] = useState([]);
   const classes = useStyles({});
   console.log("popup props", props);
+  console.log("popup props.edit", props.editPopup)
+  console.log("popup props.editPopup, props.editPopup", props.setEditPopup([...props.editPopup, props]))
 
-  const onEditClick = () => {};
+
+
+  // const onEditClick = () => {};
 
   const setFavourite = () => {
-
     console.log("props.user_id:", { userPropsId: props.user_id });
     console.log("props:", props);
     const user_id = { user_id: props.user_id };
@@ -130,10 +133,14 @@ export default function PopupDisplay(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" color="primary" onClick={onEditClick}>
+          <Button variant="contained" color="primary" onClick={props.onEdit}>
             Edit
           </Button>
-          <Button variant="contained" color="secondary" onClick={props.onDelete}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={props.onDelete}
+          >
             Delete
           </Button>
         </CardActions>
