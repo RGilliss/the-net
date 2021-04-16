@@ -29,7 +29,7 @@ export default function PopupDisplay(props) {
   const classes = useStyles({});
   console.log("popup props", props);
   console.log("popup props.edit", props.editPopup)
-  console.log("popup props.editPopup, props.editPopup", props.setEditPopup([...props.editPopup, props]))
+  // console.log("popup props.editPopup, props.editPopup", props.setEditPopup([...props.editPopup, props]))
 
 
 

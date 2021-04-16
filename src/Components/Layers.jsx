@@ -8,7 +8,7 @@ import {useRef, useEffect, useState} from 'react';
 const layerNames = [" My Pins", " All Pins", " My Favourites"]
 
 //Controls the layers of the map interface
-export default function Layers() {
+export default function Layers(props) {
   //Hook to access DOM elements
   const control = useRef();
 
@@ -34,7 +34,7 @@ export default function Layers() {
     container.addEventListener("click", handleClick)
     return () => container.removeEventListener("click", handleClick)
     }, [selected])
-
+console.log("Layers props", props)
   return (
     <LayersControl position="bottomright" ref={control}>
       <Maps/>

@@ -48,9 +48,24 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Fix Mapbox satellite view issues
 - [ ] Search box doesn't close
 - [x] Pin Popup doesn't close on delete submit
-- [ ] Regulations
 - [ ] Decide on how to style navbar (or have navbar at all?)
- 
+- [ ] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
+
+### April 16
+- [ ] Scrap MarkerCreation.jsx
+- [ ] onSubmit &&  onCancel => setEdit(false)
+- [ ] Existing markers description and species pre-populated in editPopup
+- [ ] Change Date formatting to show in edit form
+- [ ] Create edited popup object and put to API
+- [ ] Set edited popup state
+
+- [ ] Import Context API and create user component
+- [ ] Create app context (wrap context provider in app.js) with current_user variable set to 1 in user component
+- [ ] Complete Favourites integration with current_user var, start icon toggles the post and delete axios calls
+- [ ] Favourite API calls working
+- [ ] My Favourites GET call working
+
+
 ### April 18 - 21
 
 - [ ] Logo

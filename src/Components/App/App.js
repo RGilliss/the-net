@@ -13,10 +13,11 @@ export default function App() {
   const [markers, setMarkers] = useState([]);
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editPopup, setEditPopup] = useState([{test: "Hello world"}]);
+  const [editPopup, setEditPopup] = useState({});
 
   console.log("APP markers", markers);
   console.log("APP modal", modal);
+  console.log("APP editPopup", editPopup);
 
   return (
     <div>
@@ -40,10 +41,7 @@ export default function App() {
               return !prev;
             });
           }}
-          setEditPopup={() => {setEditPopup((prev) => {
-            console.log("prev:", prev)
-            return 
-          })}}
+          setEditPopup={setEditPopup}
         />
         {/* <Markers/>      */}
         <MarkerCreation

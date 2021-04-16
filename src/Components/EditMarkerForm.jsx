@@ -79,14 +79,14 @@ export default function MarkerForm(props) {
   const [fishName, setFishName] = useState([]);
 
   //Tile
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(props.editPopup.title);
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
   //Date
   const CurrentDate = new Date();
-  const [date, setDate] = useState(formatDate(CurrentDate));
+  const [date, setDate] = useState(CurrentDate);
 
   const handleDateChange = (event) => {
     console.log("datechange", event.target.value);
@@ -113,20 +113,20 @@ export default function MarkerForm(props) {
   };
 
   //Rating
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(props.editPopup.rating);
   const handleRatingChange = (event, value) => {
     console.log("value", value);
     setRating(value);
   };
 
   //Description
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(props.editPopup.description);
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
   //Image link
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(props.editPopup.image);
   const handleImageChange = (event) => {
     setImage(event.target.value);
   };
@@ -155,6 +155,7 @@ export default function MarkerForm(props) {
   
     let currentLocation = [...props.location];
     currentLocation = currentLocation.pop();
+    console.log("currentLocation", currentLocation)
     // const popup = {
       //   leafletLocation: currentLocation,
       //   uuid: uuid,
