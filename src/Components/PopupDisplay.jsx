@@ -29,7 +29,7 @@ export default function PopupDisplay(props) {
   const classes = useStyles({});
   console.log("popup props", props);
 
-  const onEditClick = () => {};
+  // const onEditClick = () => {};
 
   const setFavourite = () => {
 
@@ -130,7 +130,7 @@ export default function PopupDisplay(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" color="primary" onClick={onEditClick}>
+          <Button variant="contained" color="primary" onClick={props.onEdit}>
             Edit
           </Button>
           <Button variant="contained" color="secondary" onClick={props.onDelete}>

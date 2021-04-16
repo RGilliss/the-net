@@ -4,11 +4,11 @@ import {
 } from "react-leaflet";
 import Regulations from "./Regulations"
 import MyPins from "./MyPins"
-import AllMarkers from "./AllMarkers"
+import Markers from "./Markers"
 import Favourites from "./Favourites"
 
-export default function Filters() {
-
+export default function Filters(props) {
+  console.log("props from FILTERS", props)
   return (
     <>
       <LayersControl.Overlay name="Regulations">
@@ -25,7 +25,11 @@ export default function Filters() {
 
       <LayersControl.Overlay name="All Pins">
         <FeatureGroup >
-          <AllMarkers />
+          <Markers 
+           markers={props.markers}
+           setMarkers={props.setMarkers}
+           modal={props.modal}
+           setModal={props.setModal}/>
         </FeatureGroup>
       </LayersControl.Overlay>
 

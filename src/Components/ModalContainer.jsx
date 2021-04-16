@@ -23,26 +23,26 @@ const useStyles = makeStyles((theme) => ({
 //The Modal Component that contains the form when a user double clicks to create a new marker
 export default function ModalContainer (props) {
   const classes = useStyles();
-  const [modal, setModal] = useState(false);
+ 
   const [markerLocations, setMarkerLocation] = useState([])
   const map = useMapEvent('dblclick', (e) => {
     const location = e.latlng;
     setMarkerLocation([...markerLocations, location])
-    setModal(true);
+    props.setModal(true);
   })
 
 
   return (
     <>
       <Modal
-        open={modal}
+        open={props.modal}
         className={classes.modal}
-        onClose={() => setModal(false)}
+        onClose={() => props.setModal(false)}
       >
-        <Fade in={modal}>   
+        <Fade in={props.modal}>   
           <div className={classes.paper}>
             <MarkerForm
-              onClose={() => setModal(false)}
+              onClose={() => props.setModal(false)}
               location={markerLocations}
               setPopups={props.setMarkers}
               popups={props.markers}
