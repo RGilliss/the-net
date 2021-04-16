@@ -14,7 +14,7 @@
 
 What are the features? Divide up amongst ourself into do-able units
 
-- [X] Development database set up
+- [x] Development database set up
 - [x] Draggable map action
 - [x] Place a pin with form
 - [x] View pin data when clicked
@@ -23,23 +23,38 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] Connect regulation api
 - [x] View regulations on map
 - [ ] Edit pin data
-- [ ] Delete pin
-- [ ] Filter pins
+- [x] Delete pin
+- [x] Filter pins
 - [ ] My Favourite pins
-- [ ] Search Bar
-- [ ] User Login (Auth0)
-- [ ] 
+- [x] Search Bar
 
-Bugs
+### Stretch
+
+- [ ] User Login (Auth0) (Maybe not)
+- [ ] Saltwater Vancouver Island regulations
+- [ ] Saltwater regulations filter
+- [ ] Add feature to pins that display regulations within a nearby radius
+- [ ] Darkmode / Alternative theme toggle?
+- [ ] Different coloured pins
+- [ ] Private/Public pins
+
+### Bugs / TO-DO
 
 - [ ] Break out Marker Form component to helpers
-- [ ] Non ending POST axios req in the onSubmit of marker form
-
-
-
+- [x] Non ending POST axios req in the onSubmit of marker form
+- [ ] Fix incorrect regulations locations
+- [ ] Fix issue of regulations displaying on top of each other
+- [ ] Style regulations card, pin card, and submit form to be alike
+- [ ] Fix Mapbox satellite view issues
+- [ ] Search box doesn't close
+- [x] Pin Popup doesn't close on delete submit
+- [ ] Regulations
+- [ ] Decide on how to style navbar (or have navbar at all?)
+ 
 ### April 18 - 21
 
+- [ ] Logo
 - [ ] Testing
 - [ ] Presentation prep
 - [ ] Readme
-- [ ] Screenshots, gifs
+- [ ] Screenshots, gifs for Readme

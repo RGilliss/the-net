@@ -1,3 +1,4 @@
+
 import Maps from "./Maps"
 import Filters from "./Filters"
 import RegulationFilter from "./RegulationFilter"
@@ -38,7 +39,17 @@ export default function Layers() {
     <LayersControl position="bottomright" ref={control}>
       <Maps/>
       <RegulationFilter/>
-      <Filters {...{selected}}/>
+      <Filters 
+        {...{selected}}
+        edit={props.edit}
+        setEdit={props.setEdit}
+        markers={props.markers}
+        setMarkers={props.setMarkers}
+        modal={props.modal}
+        setModal={props.setModal}
+        editPopup={props.editPopup}
+        setEditPopup={props.setEditPopup}/>
+
     </LayersControl>
-  )
+  );
 }

@@ -13,7 +13,6 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -148,45 +147,52 @@ export default function MarkerForm(props) {
     []
   );
 
+  console.log("props.popups before edit:", props.popups)
   console.log("props before edit:", props)
+  console.log("props.editPopup", props.editPopup)
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-    const uuid = uuidv4();
+  
     let currentLocation = [...props.location];
     currentLocation = currentLocation.pop();
-    const popup = {
-      leafletLocation: currentLocation,
-      uuid: uuid,
-      title: title,
-      date: date,
-      species: species,
-      rating: rating,
-      description: description,
-      image: image,
-      location: `(${currentLocation.lat}, ${currentLocation.lng})`,
-    };
-    props.setPopups([...props.popups, popup]);
-
-    console.log("Post => popup", popup);
-    console.log("Post => popups", props.popups);
-
-    axios
-      .post("/pins", popup)
-      .then((res) => {
-        console.log("RES", res);
-        console.log("pin after editing:", popup)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
+    // const popup = {
+      //   leafletLocation: currentLocation,
+      //   uuid: uuid,
+      //   title: title,
+      //   date: date,
+      //   species: species,
+      //   rating: rating,
+      //   description: description,
+      //   image: image,
+      //   location: `(${currentLocation.lat}, ${currentLocation.lng})`,
+      // };
+      // props.setPopups([...props.popups, popup]);
+      
+      // // console.log("Post => popup", popup);
+      // // console.log("Post => popups", props.popups);
+      
+      // axios
+      //   .post("/pins", popup)
+      //   .then((res) => {
+        //     console.log("RES", res);
+        //     console.log("pin after editing:", popup)
+        //   })
+        //   .catch((err) => {
+          //     console.log(err);
+          //   });
+          
+    // props.setEdit(false);
     props.onClose();
   };
+
+  const onCancel = () => {};
+
+  
 
   return (
     <form className={classes.marker_form}>
       <FormControl>
-        <InputLabel htmlFor="Title">Your Title</InputLabel>
+        <InputLabel htmlFor="Title">Edit This</InputLabel>
         <Input
           name="title"
           onChange={handleTitleChange}
@@ -272,6 +278,9 @@ export default function MarkerForm(props) {
 
       <Button variant="contained" color="primary" onClick={() => onSubmit()}>
         Submit
+      </Button>
+      <Button variant="contained" color="secondary" onClick={() => onCancel()}>
+        Cancel
       </Button>
     </form>
   );
