@@ -4,13 +4,16 @@ import PopupDisplay from "./PopupDisplay";
 import axios from "axios";
 
 //Places new markers on the map after a user submits the Marker Form
+
+//Marker function is called in NewMarkers component at bottom of file
 function Marker(props) {
-  console.log("NEW Marker Props", props);
+    console.log("NEW Marker Props", props);
   const markerRef = useRef();
+  console.log("markerRef", markerRef)
+
+  //Delete a pin
   const handleDelete = function () {
     const id = props.uuid;
-    console.log(id);
-    console.log();
     axios
       .delete("/pins", { data: { pinId: id } })
       .then((res) => {
@@ -22,12 +25,15 @@ function Marker(props) {
 
     markerRef.current.remove();
   };
-
+  //Edit a pin
   const handleEdit = () => {
     console.log("props from NEW MARKER:", props);
+    // console.log("props.setModal from NEWWWWWWWWWWWWWW MARKER", props.setModal);
     props.setModal(true);
-
+    props.setEdit(true);
+debugger
     // const popup = {
+
     //   leafletLocation: currentLocation,
     //   uuid: uuid,
     //   title: title,
@@ -40,19 +46,17 @@ function Marker(props) {
     // };
 
     const id = props.uuid;
-    console.log(id);
-    console.log();
 
-    axios
-      .put("/pins", { data: { pinId: id } })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .put("/pins", { data: { pinId: id } })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
-    //markerRef.current.remove();
+    markerRef.current.remove();
   };
   return (
     <LeafletMarker
@@ -71,16 +75,28 @@ function Marker(props) {
           rating={props.rating}
           onDelete={handleDelete}
           onEdit={handleEdit}
+          leafletLocation={props.leafletLocation}
+          editPopup={props.editPopup}
+          setEditPopup={props.setEditPopup}
         />
       </Popup>
     </LeafletMarker>
   );
 }
+
+//This component maps through the array of markers and executes the above function on each marker
 export default function NewMarkers(props) {
   return (
     <>
       {props.markers.map((popup) => (
-        <Marker key={popup.leafletLocation} {...popup} />
+        <Marker
+          key={popup.leafletLocation}
+          {...popup}
+          setModal={props.setModal}
+          setEdit={props.setEdit}
+          editPopup={props.editPopup}
+          setEditPopup={props.setEditPopup}
+        />
       ))}
     </>
   );

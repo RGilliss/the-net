@@ -8,21 +8,9 @@
 - As a user I want to be able to place a pin at the location that I double clicked because that's where I want my pin!
 - As a user when I add a pin to a location I can see the pin appear on the map and I see a menu appear where I can add information because I want to be able to be specific about what my pin is all about
 
-- As a user I can add information to the menu such as my
-        - name
-        - user name 
-        - catch
-        - picture 
-        - description 
-        - time of day
-        - date
-        - rating
-        - bear sightings?
-        - stretch: public/private
-        - location (Will be linked to where co-ordinate where pin is located)
-      
+- As a user I can add information to the menu such as my - name - user name - catch - picture - description - time of day - date - rating - bear sightings? - stretch: public/private - location (Will be linked to where co-ordinate where pin is located)
 
-- As a user I can see the fishing regulations for the area I clicked on because I want to be informed about the area's regulations 
+- As a user I can see the fishing regulations for the area I clicked on because I want to be informed about the area's regulations
 - After I enter my information into the menu, I can click submit and the information will be saved to the pin location because I want to be able to refer to this information later and I want other people to be able to see my pin
 - As a user I want to be able to click on any perviously created pin and see the information for that pin because I am forgetful
 - I want to be able to click a pin and edit or delete information on that pin, or delete the in entirely because I don't want to share that information anymore
@@ -35,7 +23,6 @@ User login path:
 - When I am logged in, I want to be able to see the map, all the pins on the map, and all the pins I have created (in a different colour code) and (stretch: all my 'favourite' pins)
 - (Stretch:) The pins that I have created can be shared to any users or kept private for me
 
-
 Questions:
 
 - Should we be developing for web (browser) or mobile , PWA??
@@ -43,19 +30,8 @@ Questions:
 - Regulation API Qs
 - Should we use mapbox https://www.mapbox.com/pricing/
 
-
 https://elodiebouthors528653.invisionapp.com/freehand/The-Net-bbSZUtbIO
 https://docs.google.com/spreadsheets/d/1eysI9MS91-uOw0fFr49aGOwbGc3IHSLJr7Wb1v0p3tY/edit?usp=sharing
-
-
-
-
-
-
-
-
-
-
 
 -App
 --MapContainer
@@ -65,7 +41,6 @@ https://docs.google.com/spreadsheets/d/1eysI9MS91-uOw0fFr49aGOwbGc3IHSLJr7Wb1v0p
 ------------Markers
 ---------------NewMarkers
 -----------------PopupDisplay
-
 
 ----MarkerCreation
 -------ModalContainer

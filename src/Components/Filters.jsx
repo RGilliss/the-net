@@ -29,7 +29,12 @@ export default function Filters(props) {
            markers={props.markers}
            setMarkers={props.setMarkers}
            modal={props.modal}
-           setModal={props.setModal}/>
+           setModal={props.setModal}
+           edit={props.edit}
+           setEdit={props.setEdit}
+           editPopup={props.editPopup}
+           setEditPopup={props.setEditPopup}
+          />
         </FeatureGroup>
       </LayersControl.Overlay>
 
