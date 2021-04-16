@@ -2,6 +2,23 @@ import { Marker as LeafletMarker, Popup } from "react-leaflet";
 import {useRef} from 'react'
 import PopupDisplay from "./PopupDisplay";
 import axios from 'axios'
+import L from 'leaflet';
+
+// const iconPerson = new L.Icon({
+//   iconUrl: require('../img/fish.png'),
+//   iconRetinaUrl: require('../img/fish.png'),
+//   iconAnchor: null,
+//   popupAnchor: null,
+//   shadowUrl: null,
+//   shadowSize: null,
+//   shadowAnchor: null,
+//   iconSize: new L.Point(60, 75),
+//   className: 'leaflet-marker-icon'
+// });
+// L.marker([50.505, 30.57], {icon: iconPerson}).addTo(map);
+
+
+
 
 //Places new markers on the map after a user submits the Marker Form
 function Marker(props) {
@@ -22,7 +39,7 @@ function Marker(props) {
     markerRef.current.remove()
   }
   return (
-        <LeafletMarker key={props.leafletLocation} position={props.leafletLocation} ref={markerRef}>
+        <LeafletMarker key={props.leafletLocation} position={props.leafletLocation}  ref={markerRef}>
           <Popup>
             <PopupDisplay
               pin_id={props.id}

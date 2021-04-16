@@ -1,6 +1,20 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./PopupDisplay";
+import L from 'leaflet';
+
+//change pin
+const iconFavPins = new L.Icon({
+  iconUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGJaFQQLvEJ5qi0sKUYTFTcs-ySvZT8dE0Sg&usqp=CAU",
+  iconRetinaUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGJaFQQLvEJ5qi0sKUYTFTcs-ySvZT8dE0Sg&usqp=CAU",
+  iconAnchor: null,
+  popupAnchor: null,
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(50, 55),
+  className: 'leaflet-marker-icon'
+});
 
 
 
@@ -21,6 +35,7 @@ export default function Favourites() {
         <Marker
           key={pin.id}
           position={[pin.location.x, pin.location.y]}
+          icon = {iconFavPins}
   
         >
           <Popup>
