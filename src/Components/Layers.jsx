@@ -19,17 +19,16 @@ export default function Layers() {
     const container = control.current.getContainer()
    
     const handleClick = function (event){
+      const sib = event.target.nextSibling
       //target a toggle
-      const text = event.target.nextSibling.innerText;
-      //return a bolean true if toggled
-      const isLayer = layerNames.includes(text);
-     
-
-      if (event.target.checked && isLayer){
+      const text = sib && sib.innerText;
+       //return a bolean true if toggled
+      const isLayer = text && layerNames.includes(text);
+      if (isLayer && event.target.checked){
           setSelected(selected === text.trim() ? "" : text.trim())
-        
       }
     }
+
     container.addEventListener("click", handleClick)
     return () => container.removeEventListener("click", handleClick)
     }, [selected])
