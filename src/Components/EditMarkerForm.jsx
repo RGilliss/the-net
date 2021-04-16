@@ -72,6 +72,10 @@ function getStyles(name, fishName, theme) {
 
 export default function MarkerForm(props) {
   // const [value, setValue] = useState(2);
+
+
+
+
   const [hover, setHover] = useState(-1);
 
   const classes = useStyles();
@@ -147,46 +151,51 @@ export default function MarkerForm(props) {
     []
   );
 
-  console.log("props.popups before edit:", props.popups)
+  
   console.log("props before edit:", props)
   console.log("props.editPopup", props.editPopup)
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-  
-    let currentLocation = [...props.location];
-    currentLocation = currentLocation.pop();
+  console.log("pprrroppppss. leafletLOCATION@@@@@@@@@@@", props.editPopup.leafletLocation)
+    let currentLocation = {...props.editPopup.leafletLocation};
     console.log("currentLocation", currentLocation)
-    // const popup = {
-      //   leafletLocation: currentLocation,
-      //   uuid: uuid,
-      //   title: title,
-      //   date: date,
-      //   species: species,
-      //   rating: rating,
-      //   description: description,
-      //   image: image,
-      //   location: `(${currentLocation.lat}, ${currentLocation.lng})`,
-      // };
-      // props.setPopups([...props.popups, popup]);
-      
+    const popup = {
+        leafletLocation: props.editPopup.currentLocation,
+        uuid: props.editPopup.uuid,
+        title: props.editPopup.title,
+        date: props.editPopup.date,
+        species: props.editPopup.species,
+        rating: props.editPopup.rating,
+        description: props.editPopup.description,
+        image: props.editPopup.image,
+        location: `(${currentLocation.lat}, ${currentLocation.lng})`,
+      };
+      props.setPopups(popup);
+      // props.setMarkers([...props.markers, popup])
+      console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
       // // console.log("Post => popup", popup);
       // // console.log("Post => popups", props.popups);
-      
-      // axios
-      //   .post("/pins", popup)
-      //   .then((res) => {
-        //     console.log("RES", res);
-        //     console.log("pin after editing:", popup)
-        //   })
-        //   .catch((err) => {
-          //     console.log(err);
-          //   });
+
+
+    // axios
+    //   .put("/pins", { data: { pinId: id } })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
           
-    // props.setEdit(false);
+    props.setEdit(false);
     props.onClose();
   };
 
-  const onCancel = () => {};
+  const onCancel = () => {
+
+    props.setEdit(false);
+   
+    props.onClose();
+  };
 
   
 

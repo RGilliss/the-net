@@ -27,8 +27,14 @@ function Marker(props) {
   };
   //Edit a pin
   const handleEdit = () => {
-    console.log("NM props handleEdit:", props);
+    console.log("uuid !!!!!!!!:", props.uuid);
     // console.log("props.setModal from NEWWWWWWWWWWWWWW MARKER", props.setModal);
+
+    //HANDLE EDIT FUNCTION
+    // triggers when you click edit, popupData is the currently stored data in that popup
+  
+
+    // we want this information to populate the edit marker form
     const popupData = {
       pin_id: props.id,
       date: props.date,
@@ -37,38 +43,16 @@ function Marker(props) {
       species: props.species,
       image: props.image,
       rating: props.rating,
-      leafletLocation: props.leafletLocation
+      leafletLocation: props.leafletLocation,
+      uuid: props.uuid
     }
     console.log("popupData", popupData)
     props.setModal(true);
     props.setEdit(true);
     props.setEditPopup(popupData)
     console.log("NM props.editPopup,", props.editPopup)
-    // const popup = {
 
-    //   leafletLocation: currentLocation,
-    //   uuid: uuid,
-    //   title: title,
-    //   date: date,
-    //   species: species,
-    //   rating: rating,
-    //   description: description,
-    //   image: image,
-
-    // };
-
-    const id = props.uuid;
-
-    // axios
-    //   .put("/pins", { data: { pinId: id } })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    markerRef.current.remove();
+    
   };
   return (
     <LeafletMarker
@@ -85,6 +69,7 @@ function Marker(props) {
           species={props.species}
           image={props.image}
           rating={props.rating}
+          uuid={props.uuid}
           onDelete={handleDelete}
           onEdit={handleEdit}
           leafletLocation={props.leafletLocation}
