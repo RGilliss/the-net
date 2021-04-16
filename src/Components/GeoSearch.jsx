@@ -11,6 +11,7 @@ const Search = (props) => {
     useEffect(() => {
         const searchControl = new GeoSearchControl({
             provider,
+            autoClose: true
         })
 
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
