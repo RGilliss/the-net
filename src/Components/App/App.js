@@ -22,6 +22,7 @@ export default function App() {
     <div>
       <Navbar />
       <MapContainer center={startPosition} zoom={8}>
+
         <GeoSearch provider={new OpenStreetMapProvider()} />
         <Layers
           markers={markers}
@@ -55,6 +56,7 @@ export default function App() {
           editPopup={editPopup}
           setEditPopup={setEditPopup}
         />
+
       </MapContainer>
     </div>
   );

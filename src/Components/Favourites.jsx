@@ -12,7 +12,7 @@ export default function Favourites() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
-  console.log("Favourites returnData", returnData)
+  //console.log("Favourites returnData", returnData)
 
   return (
     <>
