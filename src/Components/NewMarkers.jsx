@@ -1,6 +1,7 @@
 import { Marker as LeafletMarker, Popup } from "react-leaflet";
 import { useRef } from "react";
 import PopupDisplay from "./PopupDisplay";
+
 import axios from "axios";
 
 //Places new markers on the map after a user submits the Marker Form
@@ -59,6 +60,7 @@ debugger
     markerRef.current.remove();
   };
   return (
+
     <LeafletMarker
       key={props.leafletLocation}
       position={props.leafletLocation}
@@ -81,6 +83,7 @@ debugger
         />
       </Popup>
     </LeafletMarker>
+
   );
 }
 
