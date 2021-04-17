@@ -9,9 +9,10 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import StarsIcon from "@material-ui/icons/Stars";
-import { useState } from "react";
 import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
+import { useState, useContext } from "react";
+import UserContext from "../../../UserContext";
 
 const useStyles = makeStyles({
   root: {
@@ -45,7 +46,7 @@ export default function PopupDisplay(props) {
         console.log(err);
       });
   };
-
+  const user = useContext(UserContext);
 
   return (
     <>
@@ -109,7 +110,7 @@ export default function PopupDisplay(props) {
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              Found by {props.name}
+              Found by {user.name}
             </Typography>
             <CardMedia
               className={classes.media}
