@@ -13,6 +13,8 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+const _ = require('lodash');
+const assign = require('lodash.assign');
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -166,6 +168,7 @@ export default function MarkerForm(props) {
       console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
 
   //this is the exact information going to the axios edit request
+
       const pin = {
       
         title: title,
@@ -177,7 +180,19 @@ export default function MarkerForm(props) {
         uuid: props.editPopup.uuid,
      
       }
-      console.log("editedPinInformation", pin);
+      function assignValue(pin, markers, value) {
+        //const uuid = props.editPopup.uuid
+        let pinValue = pin.uuid;
+        if (markers[pinValue]) {
+          _.assign(markers[pinValue], pin)
+          console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
+        };
+      };
+
+  
+      
+    
+      assignValue(pin, props.markers)
     axios
       .put("/pins", pin)
       .then((res) => {

@@ -165,7 +165,7 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${currentLocation.lat}, ${currentLocation.lng})`,
     };
-    props.setMarkers([...props.markers, marker]);
+    props.setMarkers({...props.markers, marker});
 
     axios
       .post("/pins", marker)
