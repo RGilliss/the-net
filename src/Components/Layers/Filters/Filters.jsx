@@ -19,7 +19,7 @@ export default function Filters(props) {
       </LayersControl.Overlay>
 
 
-      <LayersControl.Overlay name="All Pins">
+      <LayersControl.Overlay name="All Pins" checked={props.selected === "All Pins"}>
         <FeatureGroup >
           <Markers 
            markers={props.markers}
