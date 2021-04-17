@@ -1,7 +1,7 @@
 
-import Maps from "./Layers/Maps"
-import Filters from "./Layers/Filters/Filters"
-import RegulationFilter from "./Layers/Regulations/RegulationFilter"
+import Maps from "./Maps"
+import Filters from "./Filters/Filters"
+import RegulationFilter from "./Regulations/RegulationFilter"
 import {LayersControl} from "react-leaflet";
 import {useRef, useEffect, useState} from 'react';
 

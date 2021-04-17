@@ -3,7 +3,7 @@ import {
   FeatureGroup,
 } from "react-leaflet";
 import MyPins from "./MyPins"
-import Markers from "./Markers"
+import Markers from "./Markers/Markers"
 import Favourites from "./Favourites"
 
 export default function Filters(props) {

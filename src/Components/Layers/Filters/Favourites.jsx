@@ -1,6 +1,6 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./PopupDisplay";
+import PopupDisplay from "./Markers/PopupDisplay";
 
 
 

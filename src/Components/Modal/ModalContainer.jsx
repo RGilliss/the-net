@@ -31,16 +31,15 @@ export default function ModalContainer(props) {
     props.setModal(true);
   });
 
-  //console.log("props dot edit!!!!!!!!!:", props.edit)
-  console.log("props???????????????????????!!!!!!!!!:", props)
+
+  console.log("props in MODAL CONTAINER:", props)
   const whichForm = function (edit) {
     if (edit) {
       return (
         <EditMarkerForm
           onClose={() => props.setModal(false)}
           location={markerLocations}
-          setPopups={props.setMarkers}
-          popups={props.markers}
+          setMarkers={props.setMarkers}
           setEdit={props.setEdit}
           edit={edit}
           markers={props.markers}
@@ -53,8 +52,8 @@ export default function ModalContainer(props) {
         <MarkerForm
           onClose={() => props.setModal(false)}
           location={markerLocations}
-          setPopups={props.setMarkers}
-          popups={props.markers}
+          setMarkers={props.setMarkers}
+          markers={props.markers}
         />
       );
     }

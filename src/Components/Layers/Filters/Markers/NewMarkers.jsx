@@ -7,10 +7,8 @@ import axios from "axios";
 
 //Marker function is called in NewMarkers component at bottom of file
 function Marker(props) {
-    console.log("NEW Marker Props Marker()", props);
+  
   const markerRef = useRef();
-  console.log("markerRef", markerRef)
-
   //Delete a pin
   const handleDelete = function () {
     const id = props.uuid;
@@ -27,13 +25,8 @@ function Marker(props) {
   };
   //Edit a pin
   const handleEdit = () => {
-    console.log("uuid !!!!!!!!:", props.uuid);
-    // console.log("props.setModal from NEWWWWWWWWWWWWWW MARKER", props.setModal);
-
     //HANDLE EDIT FUNCTION
     // triggers when you click edit, popupData is the currently stored data in that popup
-  
-
     // we want this information to populate the edit marker form
     const popupData = {
       pin_id: props.id,
@@ -50,7 +43,8 @@ function Marker(props) {
     props.setModal(true);
     props.setEdit(true);
     props.setEditPopup(popupData)
-    console.log("NM props.editPopup,", props.editPopup)
+    console.log("Marker props.editPopup coming from inside HandleE,", props.editPopup)
+    
 
     
   };
@@ -75,6 +69,8 @@ function Marker(props) {
           leafletLocation={props.leafletLocation}
           editPopup={props.editPopup}
           setEditPopup={props.setEditPopup}
+          setMarkers={props.setMarkers}
+          markers={props.markers}
         />
       </Popup>
     </LeafletMarker>
@@ -84,16 +80,20 @@ function Marker(props) {
 //This component maps through the array of markers and executes the above function on each marker
 export default function NewMarkers(props) {
   console.log("NewMarkers props", props)
+  const pins = Object.values(props.markers);
+  console.log("Pins", pins);
   return (
     <>
-      {props.markers.map((popup) => (
+      {pins.map((popup) => (
         <Marker
-          key={popup.leafletLocation}
+          key={popup.uuid}
           {...popup}
           setModal={props.setModal}
           setEdit={props.setEdit}
           editPopup={props.editPopup}
           setEditPopup={props.setEditPopup}
+          setMarkers={props.setMarkers}
+          markers={props.markers}
         />
       ))}
     </>

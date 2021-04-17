@@ -1,6 +1,6 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./PopupDisplay";
+import PopupDisplay from "./Markers/PopupDisplay";
 
 
 export default function MyPins() {
@@ -11,7 +11,7 @@ export default function MyPins() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
-  console.log("Mypins returnData", returnData)
+  //console.log("Mypins returnData", returnData)
 
   return (
     <>

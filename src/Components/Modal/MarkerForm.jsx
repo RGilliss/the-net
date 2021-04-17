@@ -13,6 +13,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -72,10 +73,6 @@ function getStyles(name, fishName, theme) {
 
 export default function MarkerForm(props) {
   // const [value, setValue] = useState(2);
-
-
-
-
   const [hover, setHover] = useState(-1);
 
   const classes = useStyles();
@@ -83,14 +80,14 @@ export default function MarkerForm(props) {
   const [fishName, setFishName] = useState([]);
 
   //Tile
-  const [title, setTitle] = useState(props.editPopup.title);
+  const [title, setTitle] = useState("");
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
   //Date
   const CurrentDate = new Date();
-  const [date, setDate] = useState(CurrentDate);
+  const [date, setDate] = useState(formatDate(CurrentDate));
 
   const handleDateChange = (event) => {
     console.log("datechange", event.target.value);
@@ -117,20 +114,20 @@ export default function MarkerForm(props) {
   };
 
   //Rating
-  const [rating, setRating] = useState(props.editPopup.rating);
+  const [rating, setRating] = useState("");
   const handleRatingChange = (event, value) => {
     console.log("value", value);
     setRating(value);
   };
 
   //Description
-  const [description, setDescription] = useState(props.editPopup.description);
+  const [description, setDescription] = useState("");
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
   //Image link
-  const [image, setImage] = useState(props.editPopup.image);
+  const [image, setImage] = useState("");
   const handleImageChange = (event) => {
     setImage(event.target.value);
   };
@@ -151,58 +148,42 @@ export default function MarkerForm(props) {
     []
   );
 
-  
   console.log("props before edit:", props)
-  console.log("props.editPopup", props.editPopup)
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-  console.log("pprrroppppss. leafletLOCATION@@@@@@@@@@@", props.editPopup.leafletLocation)
-    let currentLocation = {...props.editPopup.leafletLocation};
-    console.log("currentLocation", currentLocation)
-    const popup = {
-        leafletLocation: props.editPopup.currentLocation,
-        uuid: props.editPopup.uuid,
-        title: props.editPopup.title,
-        date: props.editPopup.date,
-        species: props.editPopup.species,
-        rating: props.editPopup.rating,
-        description: props.editPopup.description,
-        image: props.editPopup.image,
-        location: `(${currentLocation.lat}, ${currentLocation.lng})`,
-      };
-      props.setPopups(popup);
-      // props.setMarkers([...props.markers, popup])
-      console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
-      // // console.log("Post => popup", popup);
-      // // console.log("Post => popups", props.popups);
+    const uuid = uuidv4();
+    let currentLocation = [...props.location];
+    currentLocation = currentLocation.pop();
+    const marker = {
+      leafletLocation: currentLocation,
+      uuid: uuid,
+      title: title,
+      date: date,
+      species: species,
+      rating: rating,
+      description: description,
+      image: image,
+      location: `(${currentLocation.lat}, ${currentLocation.lng})`,
+    };
+    props.setMarkers([...props.markers, marker]);
 
+    axios
+      .post("/pins", marker)
+      .then((res) => {
+        console.log("RES", res);
+        console.log("pin after editing:", marker)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    // axios
-    //   .put("/pins", { data: { pinId: id } })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-          
-    props.setEdit(false);
     props.onClose();
   };
-
-  const onCancel = () => {
-
-    props.setEdit(false);
-   
-    props.onClose();
-  };
-
-  
 
   return (
     <form className={classes.marker_form}>
       <FormControl>
-        <InputLabel htmlFor="Title">Edit This</InputLabel>
+        <InputLabel htmlFor="Title">Your Title</InputLabel>
         <Input
           name="title"
           onChange={handleTitleChange}
@@ -288,9 +269,6 @@ export default function MarkerForm(props) {
 
       <Button variant="contained" color="primary" onClick={() => onSubmit()}>
         Submit
-      </Button>
-      <Button variant="contained" color="secondary" onClick={() => onCancel()}>
-        Cancel
       </Button>
     </form>
   );

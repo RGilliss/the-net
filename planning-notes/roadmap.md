@@ -50,6 +50,8 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] Pin Popup doesn't close on delete submit
 - [ ] Decide on how to style navbar (or have navbar at all?)
 - [ ] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
+- [ ] Work our way through all the warnings and get them out of there, they could have weird side effects
+- [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components
 
 ### April 16
 - [ ] Scrap MarkerCreation.jsx
