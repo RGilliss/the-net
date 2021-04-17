@@ -4,9 +4,11 @@ import Navbar from "../Navbar";
 import Markers from "../Markers";
 import Layers from "../Layers";
 
+
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import GeoSearch from '../GeoSearch'
 import MarkerCreation from '../MarkerCreation'
+
 
 
 export default function App() {
@@ -14,13 +16,15 @@ export default function App() {
 
   return (
     <div>
-      <Navbar/>
-      <MapContainer center={startPosition} zoom={8}>
-        <GeoSearch provider= {new OpenStreetMapProvider()}/>
-        <Layers/>
-        {/* <Markers/>      */}
-        <MarkerCreation/>
-      </MapContainer>
+   
+        <Navbar />
+        <MapContainer center={startPosition} zoom={8}>
+          <GeoSearch provider={new OpenStreetMapProvider()} />
+          <Layers />
+          {/* <Markers/>      */}
+          <MarkerCreation />
+        </MapContainer>
+     
     </div>
   );
 }
