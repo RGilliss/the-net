@@ -22,7 +22,7 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] Create regulation api
 - [x] Connect regulation api
 - [x] View regulations on map
-- [ ] Edit pin data
+- [x] Edit pin data
 - [x] Delete pin
 - [x] Filter pins
 - [ ] My Favourite pins
