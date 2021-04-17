@@ -1,10 +1,10 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./PopupDisplay";
+import PopupDisplay from "./Markers/PopupDisplay";
 
 // import L from 'leaflet';
 
-// //change pin 
+// // change pin 
 // const iconMypins = new L.Icon({
 //   iconUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
 //   iconRetinaUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
@@ -26,8 +26,7 @@ export default function MyPins() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
   const returnData = data;
-  console.log("Mypins returnData", returnData)
-  
+  //console.log("Mypins returnData", returnData)
 
   return (
     <>

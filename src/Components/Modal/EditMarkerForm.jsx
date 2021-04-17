@@ -13,7 +13,9 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { marker } from "leaflet";
+const _ = require('lodash');
+const assign = require('lodash.assign');
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
@@ -80,17 +82,16 @@ export default function MarkerForm(props) {
   const [fishName, setFishName] = useState([]);
 
   //Tile
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(props.editPopup.title);
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
   //Date
   const CurrentDate = new Date();
-  const [date, setDate] = useState(formatDate(CurrentDate));
+  const [date, setDate] = useState(CurrentDate);
 
   const handleDateChange = (event) => {
-    console.log("datechange", event.target.value);
     setDate(event.target.value);
   };
 
@@ -114,80 +115,116 @@ export default function MarkerForm(props) {
   };
 
   //Rating
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(props.editPopup.rating);
   const handleRatingChange = (event, value) => {
-    console.log("value", value);
     setRating(value);
   };
 
   //Description
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(props.editPopup.description);
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
   //Image link
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(props.editPopup.image);
   const handleImageChange = (event) => {
     setImage(event.target.value);
   };
 
   const [speciesList, setSpeciesList] = useState([]);
 
-  
   useEffect(
     () =>
-    axios
-    .get("/species")
-    .then((res) => {
-      console.log(res.data);
-      setSpeciesList(res.data);
-    })
-    .catch((err) => {
-      console.log(err.response.data);
-    }),
+      axios
+        .get("/species")
+        .then((res) => {
+          // console.log(res.data);
+          setSpeciesList(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        }),
     []
-    );
-    
-    //OnSubmit Button makes post request to /pins, submitting the form data
-    const onSubmit = (evt) => {
-      const uuid = uuidv4();
-      let currentLocation = [...props.location]
-      currentLocation = currentLocation.pop()
-      const popup = {
-        leafletLocation: currentLocation,
-        uuid: uuid,
+  );
+
+  //OnSubmit Button makes post request to /pins, submitting the form data
+  const onSubmit = (evt) => {
+  console.log("PROPS. leaflet LOCATION ========>", props.editPopup.leafletLocation)
+    let currentLocation = {...props.editPopup.leafletLocation};
+    console.log("currentLocation", currentLocation)
+    const popup = {
+        leafletLocation: props.editPopup.leafletLocation,
+        uuid: props.editPopup.uuid,
         title: title,
         date: date,
         species: species,
         rating: rating,
         description: description,
         image: image,
-        location: `(${currentLocation.lat}, ${currentLocation.lng})`,
+        location: `(${props.editPopup.leafletLocation[0]}, ${props.editPopup.leafletLocation[1]})`,
       };
-      props.setPopups([ ...props.popups, popup ]);
+      props.setEditPopup(popup);
+      // props.setMarkers([...props.markers, popup])
+      console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
+
+  //this is the exact information going to the axios edit request
+
+      const pin = {
       
-      console.log("Post => popup", popup);
-      console.log("Post => popups", props.popups);
+        title: title,
+        description: description,
+        date: date,
+        image: image, 
+        rating: rating,
+        species: species,
+        uuid: props.editPopup.uuid,
+     
+      }
+      function assignValue(pin, markers, value) {
+        //const uuid = props.editPopup.uuid
+        console.log("pin", pin)
+        console.log("marker", markers)
+        console.log("value", value)
+        let pinValue = pin.uuid;
+        if (markers[pinValue] || markers.marker.uuid === pinValue) {
+          _.assign(markers[pinValue], pin)
+          console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
+        }
+        else {
+          console.log("UUID NOT VALID")
+        };
+      };
+
+  
       
-      axios
-      .post("/pins", popup)
+    
+      assignValue(pin, props.markers)
+    axios
+      .put("/pins", pin)
       .then((res) => {
-        console.log("RES",res);      
+        console.log("EDITED")
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-      
-      props.onClose();
-    };
-    
+          
+    props.setEdit(false);
+    props.onClose();
+  };
 
+  const onCancel = () => {
+    props.setEdit(false);
+    props.onClose();
+  };
+
+  
 
   return (
     <form className={classes.marker_form}>
       <FormControl>
-        <InputLabel htmlFor="Title">Your Title</InputLabel>
+        <InputLabel htmlFor="Title">Edit This</InputLabel>
         <Input
           name="title"
           onChange={handleTitleChange}
@@ -273,6 +310,9 @@ export default function MarkerForm(props) {
 
       <Button variant="contained" color="primary" onClick={() => onSubmit()}>
         Submit
+      </Button>
+      <Button variant="contained" color="secondary" onClick={() => onCancel()}>
+        Cancel
       </Button>
     </form>
   );

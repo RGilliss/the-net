@@ -1,6 +1,6 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./PopupDisplay";
+import PopupDisplay from "./Markers/PopupDisplay";
 // import L from 'leaflet';
 
 // //change pin
@@ -15,8 +15,6 @@ import PopupDisplay from "./PopupDisplay";
 //   iconSize: new L.Point(50, 55),
 //   className: 'leaflet-marker-icon'
 // });
-
-
 
 export default function Favourites() {
   
