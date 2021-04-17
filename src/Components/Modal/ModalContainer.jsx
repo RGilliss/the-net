@@ -25,7 +25,7 @@ export default function ModalContainer(props) {
   const classes = useStyles();
 
   const [markerLocations, setMarkerLocation] = useState([]);
-  const map = useMapEvent("click", (e) => {
+  const map = useMapEvent("dblclick", (e) => {
     const location = e.latlng;
     setMarkerLocation([...markerLocations, location]);
     props.setModal(true);
