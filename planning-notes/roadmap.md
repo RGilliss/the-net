@@ -22,10 +22,10 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] Create regulation api
 - [x] Connect regulation api
 - [x] View regulations on map
-- [ ] Edit pin data
+- [x] Edit pin data
 - [x] Delete pin
 - [x] Filter pins
-- [ ] My Favourite pins
+- [x] My Favourite pins
 - [x] Search Bar
 
 ### Stretch
@@ -35,7 +35,7 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Saltwater regulations filter
 - [ ] Add feature to pins that display regulations within a nearby radius
 - [ ] Darkmode / Alternative theme toggle?
-- [ ] Different coloured pins
+- [x] Different coloured pins
 - [ ] Private/Public pins
 
 ### Bugs / TO-DO
@@ -48,23 +48,25 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Fix Mapbox satellite view issues
 - [ ] Search box doesn't close
 - [x] Pin Popup doesn't close on delete submit
-- [ ] Decide on how to style navbar (or have navbar at all?)
+- [x] Decide on how to style navbar (or have navbar at all?)
 - [ ] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components
+- [ ] Species not showing from DB seeds (may not be important)
+- [ ] In edit the date must be filled out or it glitches
 
 ### April 16
-- [ ] Scrap MarkerCreation.jsx
-- [ ] onSubmit &&  onCancel => setEdit(false)
-- [ ] Existing markers description and species pre-populated in editPopup
-- [ ] Change Date formatting to show in edit form
-- [ ] Create edited popup object and put to API
-- [ ] Set edited popup state
+- [x] Scrap MarkerCreation.jsx
+- [x] onSubmit &&  onCancel => setEdit(false)
+- [x] Existing markers description and species pre-populated in editPopup
+- [x] Change Date formatting to show in edit form
+- [x] Create edited popup object and put to API
+- [x] Set edited popup state
 
-- [ ] Import Context API and create user component
-- [ ] Create app context (wrap context provider in app.js) with current_user variable set to 1 in user component
-- [ ] Complete Favourites integration with current_user var, start icon toggles the post and delete axios calls
-- [ ] Favourite API calls working
+- [x] Import Context API and create user component
+- [x] Create app context (wrap context provider in app.js) with current_user variable set to 1 in user component
+- [x] Complete Favourites integration with current_user var, start icon toggles the post and delete axios calls
+- [x] Favourite API calls working
 - [ ] My Favourites GET call working
 
 
