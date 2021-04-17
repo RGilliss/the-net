@@ -81,7 +81,7 @@ function Marker(props) {
 export default function NewMarkers(props) {
   console.log("NewMarkers props", props)
   const pins = Object.values(props.markers);
-  console.log("Pins", pins);
+  console.log("Pins", pins)
   return (
     <>
       {pins.map((popup) => (

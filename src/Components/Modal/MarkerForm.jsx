@@ -148,7 +148,6 @@ export default function MarkerForm(props) {
     []
   );
 
-  console.log("props before edit:", props)
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
     const uuid = uuidv4();
@@ -165,13 +164,13 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${currentLocation.lat}, ${currentLocation.lng})`,
     };
-    props.setMarkers({...props.markers, marker});
+    props.setMarkers({...props.markers, [marker.uuid]:marker});
 
     axios
       .post("/pins", marker)
       .then((res) => {
         console.log("RES", res);
-        console.log("pin after editing:", marker)
+       
       })
       .catch((err) => {
         console.log(err);

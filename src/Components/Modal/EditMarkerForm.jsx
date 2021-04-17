@@ -13,6 +13,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
+import { marker } from "leaflet";
 const _ = require('lodash');
 const assign = require('lodash.assign');
 
@@ -182,10 +183,16 @@ export default function MarkerForm(props) {
       }
       function assignValue(pin, markers, value) {
         //const uuid = props.editPopup.uuid
+        console.log("pin", pin)
+        console.log("marker", markers)
+        console.log("value", value)
         let pinValue = pin.uuid;
-        if (markers[pinValue]) {
+        if (markers[pinValue] || markers.marker.uuid === pinValue) {
           _.assign(markers[pinValue], pin)
           console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
+        }
+        else {
+          console.log("UUID NOT VALID")
         };
       };
 
