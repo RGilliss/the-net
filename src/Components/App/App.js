@@ -53,6 +53,7 @@ export default function App() {
             });
           }}
           setEdit={() => {
+            console.log("setEDIT")
             setEdit((prev) => {
               return !prev;
             });
