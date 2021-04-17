@@ -12,6 +12,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,11 +20,14 @@ const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-evenly"
   },
   rating_root: {
     width: 200,
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+
   },
   add_picture: {
     margin: theme.spacing(1),
@@ -164,13 +168,13 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${currentLocation.lat}, ${currentLocation.lng})`,
     };
-    props.setMarkers({...props.markers, [marker.uuid]:marker});
+    props.setMarkers({ ...props.markers, [marker.uuid]: marker });
 
     axios
       .post("/pins", marker)
       .then((res) => {
         console.log("RES", res);
-       
+
       })
       .catch((err) => {
         console.log(err);
@@ -181,17 +185,21 @@ export default function MarkerForm(props) {
 
   return (
     <form className={classes.marker_form}>
-      <FormControl>
-        <InputLabel htmlFor="Title">Your Title</InputLabel>
-        <Input
-          name="title"
-          onChange={handleTitleChange}
-          id="Title"
-          aria-describedby="my-helper-text"
-          value={title}
-        />
-      </FormControl>
 
+      <div className={classes.title_root}>
+        <FormControl>
+          <InputLabel htmlFor="Title">Your Title</InputLabel>
+          <Input
+            name="title"
+            onChange={handleTitleChange}
+            id="Title"
+            aria-describedby="my-helper-text"
+            value={title}
+          />
+        </FormControl>
+      </div>
+
+      <div className={classes.date_root}>
       <TextField
         id="date"
         type="date"
@@ -199,6 +207,8 @@ export default function MarkerForm(props) {
         name="date"
         onChange={handleDateChange}
       />
+
+      </div>
 
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-name-label">Species</InputLabel>
@@ -224,6 +234,7 @@ export default function MarkerForm(props) {
       </FormControl>
 
       <div className={classes.rating_root}>
+        <Typography component="legend">Rate your spot</Typography>
         <Rating
           name="rating"
           value={rating}
@@ -232,11 +243,13 @@ export default function MarkerForm(props) {
           onChangeActive={(event, newHover) => {
             setHover(newHover);
           }}
+
         />
 
         {rating !== null && (
           <Box ml={2}>{labels[hover !== -1 ? hover : rating]}</Box>
         )}
+
       </div>
 
       <TextareaAutosize
