@@ -8,6 +8,7 @@ import GeoSearch from "../GeoSearch";
 import ModalContainer from "../Modal/ModalContainer";
 import axios from "axios";
 
+
 export default function App() {
   let startPosition = [49.7303, -125.91];
   const [markers, setMarkers] = useState({});
