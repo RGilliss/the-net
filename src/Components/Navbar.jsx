@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '10px'
   },
   typo:{
-    fontFamily: "Papyrus"
+    fontFamily: 'Courgette',
   }
   
 
