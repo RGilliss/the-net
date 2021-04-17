@@ -1,4 +1,3 @@
-
 import Maps from "./Maps"
 import Filters from "./Filters/Filters"
 import RegulationFilter from "./Regulations/RegulationFilter"
@@ -20,15 +19,11 @@ export default function Layers(props) {
     const container = control.current.getContainer()
    
     const handleClick = function (event){
-      //target a toggle
-      const text = event.target.nextSibling.innerText;
-      //return a bolean true if toggled
-      const isLayer = layerNames.includes(text);
-     
-
-      if (event.target.checked && isLayer){
+      const sib = event.target.nextSibling
+      const text = sib && sib.innerText;
+      const isLayer = text && layerNames.includes(text);
+      if (isLayer && event.target.checked){
           setSelected(selected === text.trim() ? "" : text.trim())
-        
       }
     }
     container.addEventListener("click", handleClick)
