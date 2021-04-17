@@ -148,13 +148,12 @@ export default function MarkerForm(props) {
     []
   );
 
-  console.log("props before edit:", props)
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
     const uuid = uuidv4();
     let currentLocation = [...props.location];
     currentLocation = currentLocation.pop();
-    const popup = {
+    const marker = {
       leafletLocation: currentLocation,
       uuid: uuid,
       title: title,
@@ -165,16 +164,13 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${currentLocation.lat}, ${currentLocation.lng})`,
     };
-    props.setPopups([...props.popups, popup]);
-
-    console.log("Post => popup", popup);
-    console.log("Post => popups", props.popups);
+    props.setMarkers({...props.markers, [marker.uuid]:marker});
 
     axios
-      .post("/pins", popup)
+      .post("/pins", marker)
       .then((res) => {
         console.log("RES", res);
-        console.log("pin after editing:", popup)
+       
       })
       .catch((err) => {
         console.log(err);

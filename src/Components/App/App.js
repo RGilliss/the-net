@@ -1,22 +1,38 @@
 import { MapContainer } from "react-leaflet";
 import "./App.css";
 import Navbar from "../Navbar";
-import Markers from "../Markers";
-import Layers from "../Layers";
-import { useState } from "react";
+import Layers from "../Layers/Layers";
+import { useState, useEffect } from "react";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import GeoSearch from "../GeoSearch";
-import MarkerCreation from "../MarkerCreation";
+import ModalContainer from "../Modal/ModalContainer";
+import axios from "axios";
 
 export default function App() {
   let startPosition = [49.7303, -125.91];
-  const [markers, setMarkers] = useState([]);
+  const [markers, setMarkers] = useState({});
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [editPopup, setEditPopup] = useState([{test: "Hello world"}]);
+  const [editPopup, setEditPopup] = useState({});
+
+  useEffect(() => {
+    axios.get('/pins')
+      .then((res) => {
+        console.log(res)
+        const returnData = res.data.reduce((acc, val) => {
+          return {...acc, [val.uuid]:{...val, leafletLocation: [val.location.x, val.location.y]}};
+        }, {});
+        setMarkers(returnData);
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+
+  }, []);
 
   console.log("APP markers", markers);
-  console.log("APP modal", modal);
+  console.log("APP editPopup", editPopup);
+  
 
   return (
     <div>
@@ -40,13 +56,10 @@ export default function App() {
               return !prev;
             });
           }}
-          setEditPopup={() => {setEditPopup((prev) => {
-            console.log("prev:", prev)
-            return 
-          })}}
+          setEditPopup={setEditPopup}
         />
         {/* <Markers/>      */}
-        <MarkerCreation
+        <ModalContainer
           edit={edit}
           setEdit={setEdit}
           markers={markers}

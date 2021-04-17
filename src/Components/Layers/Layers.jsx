@@ -1,7 +1,7 @@
 
-import Maps from "./Layers/Maps"
-import Filters from "./Layers/Filters/Filters"
-import RegulationFilter from "./Layers/Regulations/RegulationFilter"
+import Maps from "./Maps"
+import Filters from "./Filters/Filters"
+import RegulationFilter from "./Regulations/RegulationFilter"
 import {LayersControl} from "react-leaflet";
 import {useRef, useEffect, useState} from 'react';
 
@@ -20,16 +20,17 @@ export default function Layers(props) {
     const container = control.current.getContainer()
    
     const handleClick = function (event){
-      const sib = event.target.nextSibling
       //target a toggle
-      const text = sib && sib.innerText;
-       //return a bolean true if toggled
-      const isLayer = text && layerNames.includes(text);
-      if (isLayer && event.target.checked){
+      const text = event.target.nextSibling.innerText;
+      //return a bolean true if toggled
+      const isLayer = layerNames.includes(text);
+     
+
+      if (event.target.checked && isLayer){
           setSelected(selected === text.trim() ? "" : text.trim())
+        
       }
     }
-
     container.addEventListener("click", handleClick)
     return () => container.removeEventListener("click", handleClick)
     }, [selected])

@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import StarsIcon from "@material-ui/icons/Stars";
 import { useState } from "react";
-import { dateParser } from "./helpers/DateHelper";
+import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
 
 const useStyles = makeStyles({
@@ -27,17 +27,14 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const [selected, setSelected] = useState([]);
   const classes = useStyles({});
-  console.log("popup props", props);
-  console.log("popup props.edit", props.editPopup)
-  console.log("popup props.editPopup, props.editPopup", props.setEditPopup([...props.editPopup, props]))
-
+  console.log("POPUPDISPLAY props", props);
 
 
   // const onEditClick = () => {};
 
   const setFavourite = () => {
-    console.log("props.user_id:", { userPropsId: props.user_id });
-    console.log("props:", props);
+    // console.log("props.user_id:", { userPropsId: props.user_id });
+    // console.log("props from PopUpDisplay inside set Favourite:", props);
     const user_id = { user_id: props.user_id };
     axios
       .post("/favourites", user_id)
@@ -48,6 +45,7 @@ export default function PopupDisplay(props) {
         console.log(err);
       });
   };
+
 
   return (
     <>
