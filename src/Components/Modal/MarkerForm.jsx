@@ -158,7 +158,8 @@ export default function MarkerForm(props) {
   };
 
   //Image link
-  const [image, setImage] = useState("");
+  
+  const [image, setImage] = useState('');
   const handleImageChange = (event) => {
     setImage(event.target.value);
   };
