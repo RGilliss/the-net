@@ -40,20 +40,20 @@ What are the features? Divide up amongst ourself into do-able units
 
 ### Bugs / TO-DO
 
-- [ ] Break out Marker Form component to helpers
+- [x] Break out Marker Form component to helpers
 - [x] Non ending POST axios req in the onSubmit of marker form
-- [ ] Fix incorrect regulations locations
-- [ ] Fix issue of regulations displaying on top of each other
-- [ ] Style regulations card, pin card, and submit form to be alike
-- [ ] Fix Mapbox satellite view issues
-- [ ] Search box doesn't close
+- [x] Search box doesn't close
 - [x] Pin Popup doesn't close on delete submit
 - [x] Decide on how to style navbar (or have navbar at all?)
-- [ ] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
-- [ ] Work our way through all the warnings and get them out of there, they could have weird side effects
-- [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components
-- [ ] Species not showing from DB seeds (may not be important)
-- [ ] In edit the date must be filled out or it glitches
+- [x] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
+- [ ] Fix incorrect regulations locations (Rye)
+- [ ] Fix issue of regulations displaying on top of each other (Rye)
+- [ ] Style regulations card, pin card, and submit form to be alike (Elodie)
+- [ ] Fix Mapbox satellite view issues (Liam)
+- [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
+- [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
+- [ ] Species not showing from DB seeds (may not be important) (Liam)
+- [ ] In edit the date must be filled out or it glitches (Rye)
 
 ### April 16
 - [x] Scrap MarkerCreation.jsx
