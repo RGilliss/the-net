@@ -28,6 +28,20 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] My Favourite pins
 - [x] Search Bar
 
+### April 16
+- [x] Scrap MarkerCreation.jsx
+- [x] onSubmit &&  onCancel => setEdit(false)
+- [x] Existing markers description and species pre-populated in editPopup
+- [x] Change Date formatting to show in edit form
+- [x] Create edited popup object and put to API
+- [x] Set edited popup state
+
+- [x] Import Context API and create user component
+- [x] Create app context (wrap context provider in app.js) with current_user variable set to 1 in user component
+- [x] Complete Favourites integration with current_user var, start icon toggles the post and delete axios calls
+- [x] Favourite API calls working
+- [x] My Favourites GET call working
+
 ### Stretch
 
 - [ ] User Login (Auth0) (Maybe not)
@@ -48,27 +62,15 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
 - [ ] Fix incorrect regulations locations (Rye)
 - [ ] Fix issue of regulations displaying on top of each other (Rye)
-- [ ] Style regulations card, pin card, and submit form to be alike (Elodie)
+- [x] Style regulations card, pin card, and submit form to be alike (Elodie)
 - [ ] Fix Mapbox satellite view issues (Liam)
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
 - [x] Species not showing from DB seeds in All Pins (Liam)
-- [ ] In edit the date must be filled out or it glitches (Rye)
-
-
-### April 16
-- [x] Scrap MarkerCreation.jsx
-- [x] onSubmit &&  onCancel => setEdit(false)
-- [x] Existing markers description and species pre-populated in editPopup
-- [x] Change Date formatting to show in edit form
-- [x] Create edited popup object and put to API
-- [x] Set edited popup state
-
-- [x] Import Context API and create user component
-- [x] Create app context (wrap context provider in app.js) with current_user variable set to 1 in user component
-- [x] Complete Favourites integration with current_user var, start icon toggles the post and delete axios calls
-- [x] Favourite API calls working
-- [ ] My Favourites GET call working
+- [x] In edit the date must be filled out or it glitches (Rye)
+- [ ] Edit and Delete button don't work when viewing my pins
+- [ ] Edit and Delete button don't work when viewing my favourites
+- [ ] Fish species not changing in edit (in state)
 
 
 ### April 18 - 21
