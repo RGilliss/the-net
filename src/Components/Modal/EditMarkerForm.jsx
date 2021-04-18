@@ -21,19 +21,33 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  date_root: {
+    marginTop: "15px"
+  },
   rating_root: {
-    width: 200,
-    display: "flex",
-    alignItems: "center",
+    marginTop: "15px"
+  },
+  text_root: {
+    marginTop: "15px"
   },
   add_picture: {
-    margin: theme.spacing(1),
+    marginTop: "15px"
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
+  buttons: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "15px",
   },
+  submit: {
+    marginTop: "10px",
+    backgroundColor: "#c5cae9"
+  },
+  cancel: {
+    marginTop: "10px",
+    backgroundColor: "#e3f2fd"
+  },
+
+
 }));
 
 //Rating
@@ -149,56 +163,56 @@ export default function MarkerForm(props) {
 
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-  console.log("PROPS. leaflet LOCATION ========>", props.editPopup.leafletLocation)
-    let currentLocation = {...props.editPopup.leafletLocation};
+    console.log("PROPS. leaflet LOCATION ========>", props.editPopup.leafletLocation)
+    let currentLocation = { ...props.editPopup.leafletLocation };
     console.log("currentLocation", currentLocation)
     const popup = {
-        leafletLocation: props.editPopup.leafletLocation,
-        uuid: props.editPopup.uuid,
-        title: title,
-        date: date,
-        species: species,
-        rating: rating,
-        description: description,
-        image: image,
-        location: `(${props.editPopup.leafletLocation[0]}, ${props.editPopup.leafletLocation[1]})`,
-      };
-      props.setEditPopup(popup);
-      // props.setMarkers([...props.markers, popup])
-      console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
+      leafletLocation: props.editPopup.leafletLocation,
+      uuid: props.editPopup.uuid,
+      title: title,
+      date: date,
+      species: species,
+      rating: rating,
+      description: description,
+      image: image,
+      location: `(${props.editPopup.leafletLocation[0]}, ${props.editPopup.leafletLocation[1]})`,
+    };
+    props.setEditPopup(popup);
+    // props.setMarkers([...props.markers, popup])
+    console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
 
-  //this is the exact information going to the axios edit request
+    //this is the exact information going to the axios edit request
 
-      const pin = {
-      
-        title: title,
-        description: description,
-        date: date,
-        image: image, 
-        rating: rating,
-        species: species,
-        uuid: props.editPopup.uuid,
-     
+    const pin = {
+
+      title: title,
+      description: description,
+      date: date,
+      image: image,
+      rating: rating,
+      species: species,
+      uuid: props.editPopup.uuid,
+
+    }
+    function assignValue(pin, markers, value) {
+      //const uuid = props.editPopup.uuid
+      console.log("pin", pin)
+      console.log("marker", markers)
+      console.log("value", value)
+      let pinValue = pin.uuid;
+      if (markers[pinValue] || markers.marker.uuid === pinValue) {
+        _.assign(markers[pinValue], pin)
+        console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
       }
-      function assignValue(pin, markers, value) {
-        //const uuid = props.editPopup.uuid
-        console.log("pin", pin)
-        console.log("marker", markers)
-        console.log("value", value)
-        let pinValue = pin.uuid;
-        if (markers[pinValue] || markers.marker.uuid === pinValue) {
-          _.assign(markers[pinValue], pin)
-          console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
-        }
-        else {
-          console.log("UUID NOT VALID")
-        };
+      else {
+        console.log("UUID NOT VALID")
       };
+    };
 
-  
-      
-    
-      assignValue(pin, props.markers)
+
+
+
+    assignValue(pin, props.markers)
     axios
       .put("/pins", pin)
       .then((res) => {
@@ -208,7 +222,7 @@ export default function MarkerForm(props) {
       .catch((err) => {
         console.log(err);
       });
-          
+
     props.setEdit(false);
     props.onClose();
   };
@@ -218,13 +232,15 @@ export default function MarkerForm(props) {
     props.onClose();
   };
 
-  
+
 
   return (
     <form className={classes.marker_form}>
-      <FormControl>
-        <InputLabel htmlFor="Title">Edit This</InputLabel>
+
+      <FormControl className={classes.title_root} >
+        <InputLabel htmlFor="Title">Edit Your Pin</InputLabel>
         <Input
+        
           name="title"
           onChange={handleTitleChange}
           id="Title"
@@ -233,7 +249,9 @@ export default function MarkerForm(props) {
         />
       </FormControl>
 
+
       <TextField
+        className={classes.date_root}
         id="date"
         type="date"
         value={date}
@@ -241,7 +259,7 @@ export default function MarkerForm(props) {
         onChange={handleDateChange}
       />
 
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.species}>
         <InputLabel id="demo-mutiple-name-label">Species</InputLabel>
         <Select
           labelId="demo-mutiple-name-label"
@@ -264,23 +282,25 @@ export default function MarkerForm(props) {
         </Select>
       </FormControl>
 
-      <div className={classes.rating_root}>
-        <Rating
-          name="rating"
-          value={rating}
-          precision={0.5}
-          onChange={handleRatingChange}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
-        />
 
-        {rating !== null && (
-          <Box ml={2}>{labels[hover !== -1 ? hover : rating]}</Box>
-        )}
-      </div>
+      <Rating
+        className={classes.rating_root}
+        name="rating"
+        value={rating}
+        precision={0.5}
+        onChange={handleRatingChange}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+      />
+
+      {rating !== null && (
+        <Box ml={2}>{labels[hover !== -1 ? hover : rating]}</Box>
+      )}
+
 
       <TextareaAutosize
+        className={classes.text_root}
         rowsMax={4}
         aria-label="maximum height"
         placeholder="Your comments"
@@ -307,12 +327,22 @@ export default function MarkerForm(props) {
         />
       </FormControl>
 
-      <Button variant="contained" color="primary" onClick={() => onSubmit()}>
-        Submit
+      <div className={classes.buttons}>
+        <Button
+          className={classes.submit}
+          variant="contained"
+          onClick={() => onSubmit()}>
+          Submit
+        </Button>
+
+        <Button
+          className={classes.cancel}
+          variant="contained"
+          onClick={() => onCancel()}>
+          Cancel
       </Button>
-      <Button variant="contained" color="secondary" onClick={() => onCancel()}>
-        Cancel
-      </Button>
+      </div>
+
     </form>
   );
 }
