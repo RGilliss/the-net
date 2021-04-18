@@ -7,10 +7,16 @@ import { OpenStreetMapProvider } from "leaflet-geosearch";
 import GeoSearch from "../GeoSearch";
 import ModalContainer from "../Modal/ModalContainer";
 import axios from "axios";
-
+import UserContext from '../UserContext'
 
 export default function App() {
+  const user = {
+    id: 1,
+    name: 'Tom Rosenbauer',
+    email: 'Tom@orvis.com',
+  }
   let startPosition = [49.7303, -125.91];
+
   const [markers, setMarkers] = useState({});
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -37,42 +43,43 @@ export default function App() {
 
   return (
     <div>
-      <Navbar />
-      <MapContainer center={startPosition} zoom={8}>
+      <UserContext.Provider value={user} >
+        <Navbar />
+        <MapContainer center={startPosition} zoom={8}>
+            <GeoSearch provider={new OpenStreetMapProvider()} />
+            <Layers
+              markers={markers}
+              setMarkers={setMarkers}
+              modal={modal}
+              edit={edit}
+              editPopup={editPopup}
+              setModal={() => {
+                setModal((prev) => {
+                  return !prev;
+                });
+              }}
+              setEdit={() => {
+                setEdit((prev) => {
+                  return !prev;
+                });
+              }}
+              setEditPopup={setEditPopup}
+            />
+            <ModalContainer
+              edit={edit}
+              setEdit={setEdit}
+              markers={markers}
+              setMarkers={setMarkers}
+              modal={modal}
+              setModal={setModal}
+              editPopup={editPopup}
+              setEditPopup={setEditPopup}
+              />
 
-        <GeoSearch provider={new OpenStreetMapProvider()} />
-        <Layers
-          markers={markers}
-          setMarkers={setMarkers}
-          modal={modal}
-          edit={edit}
-          editPopup={editPopup}
-          setModal={() => {
-            setModal((prev) => {
-              return !prev;
-            });
-          }}
-          setEdit={() => {
-            console.log("setEDIT")
-            setEdit((prev) => {
-              return !prev;
-            });
-          }}
-          setEditPopup={setEditPopup}
-        />
-        {/* <Markers/>      */}
-        <ModalContainer
-          edit={edit}
-          setEdit={setEdit}
-          markers={markers}
-          setMarkers={setMarkers}
-          modal={modal}
-          setModal={setModal}
-          editPopup={editPopup}
-          setEditPopup={setEditPopup}
-        />
+        </MapContainer>
 
-      </MapContainer>
+
+      </UserContext.Provider>
     </div>
   );
 }

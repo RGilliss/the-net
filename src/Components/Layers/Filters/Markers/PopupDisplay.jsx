@@ -9,9 +9,10 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import StarsIcon from "@material-ui/icons/Stars";
-import { useState } from "react";
 import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
+import { useState, useContext } from "react";
+import UserContext from "../../../UserContext";
 
 const useStyles = makeStyles({
   root: {
@@ -25,19 +26,26 @@ const useStyles = makeStyles({
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
+  const user = useContext(UserContext);
   const [selected, setSelected] = useState([]);
   const classes = useStyles({});
   console.log("POPUPDISPLAY props", props);
 
+  console.log(
+    "user outside favourite functions but inside pop up display:",
+    user
+  );
 
-  // const onEditClick = () => {};
+  console.log("uuid outside favourite functions but inside pop up", props.uuid);
 
   const setFavourite = () => {
     // console.log("props.user_id:", { userPropsId: props.user_id });
     // console.log("props from PopUpDisplay inside set Favourite:", props);
-    const user_id = { user_id: props.user_id };
+    // console.log("user inside setFavourite:", user);
+    // console.log("pin uuid inside setFavourite:", props.uuid);
+    const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
-      .post("/favourites", user_id)
+      .post("/favourites", postProps)
       .then((res) => {
         console.log("res.data", res.data);
       })
@@ -46,6 +54,26 @@ export default function PopupDisplay(props) {
       });
   };
 
+  const deleteFavourite = () => {
+    //const values = { user: user.id, uuid: props.uuid }
+    axios
+      .delete("/favourites", { data: { user: user.id,  uuid: props.uuid} })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const favouriteToggle = () => {
+    if (selected) {
+      setFavourite();
+    }
+    if (!selected) {
+      deleteFavourite();
+    }
+  };
 
   return (
     <>
@@ -69,7 +97,7 @@ export default function PopupDisplay(props) {
               >
                 {dateParser(props.date)}
               </Typography>
-              <div class="fav-icon-wrapper" onClick={setFavourite}>
+              <div class="fav-icon-wrapper">
                 <ToggleButton
                   className={classes.fav}
                   size="small"
@@ -77,6 +105,7 @@ export default function PopupDisplay(props) {
                   aria-label="fav"
                   selected={selected}
                   onChange={() => {
+                    favouriteToggle();
                     setSelected(!selected);
                   }}
                 >
@@ -109,7 +138,7 @@ export default function PopupDisplay(props) {
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              Found by {props.name}
+              Found by {user.name}
             </Typography>
             <CardMedia
               className={classes.media}

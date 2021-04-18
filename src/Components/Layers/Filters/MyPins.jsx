@@ -1,8 +1,10 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./Markers/PopupDisplay";
+import UserContext from "../../UserContext";
+import L from "leaflet";
+import { useContext } from "react";
 
-import L from 'leaflet';
 
 
   // change pin 
@@ -23,25 +25,29 @@ import L from 'leaflet';
 
 export default function MyPins() {
 
-  
-  const [{ data, loading, error }] = useAxios(
-    "/mypins"
-  );
+
+  const user = useContext(UserContext);
+
+  const [{ data, loading, error }] = useAxios({
+    url: "/mypins",
+    params: { user_id: user.id },
+  });
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
+
   const returnData = data;
-  //console.log("Mypins returnData", returnData)
 
   return (
     <>
       {returnData.map((myPin) => (
-
         <Marker
           key={myPin.id}
           position={[myPin.location.x, myPin.location.y]}
           icon = {iconMypins}
-  
         >
+    
           <Popup>
             <PopupDisplay
               title={myPin.title}
