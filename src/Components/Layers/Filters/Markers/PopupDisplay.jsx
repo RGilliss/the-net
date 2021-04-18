@@ -51,8 +51,11 @@ const useStyles = makeStyles({
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
+
   const user = useContext(UserContext);
+
   const [selected, setSelected] = useState([]);
+
   const classes = useStyles({});
   console.log("POPUPDISPLAY props", props);
 
@@ -63,9 +66,13 @@ export default function PopupDisplay(props) {
 
   console.log("uuid outside favourite functions but inside pop up", props.uuid);
 
+
+
   const setFavourite = () => {
     // console.log("props.user_id:", { userPropsId: props.user_id });
     // console.log("props from PopUpDisplay inside set Favourite:", props);
+
+    
     // console.log("user inside setFavourite:", user);
     // console.log("pin uuid inside setFavourite:", props.uuid);
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
@@ -167,7 +174,7 @@ export default function PopupDisplay(props) {
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              Species: {props.species}
+              Species: {props.species_name}
             </Typography>
 
             <Typography variant="body2" color="textSecondary" component="p">

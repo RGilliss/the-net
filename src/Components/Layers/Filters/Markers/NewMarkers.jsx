@@ -8,7 +8,7 @@ import axios from "axios";
 
 //Marker function is called in NewMarkers component at bottom of file
 function Marker(props) {
-  
+  console.log("Marker props:", props.species_name)
   const markerRef = useRef();
   //Delete a pin
   const handleDelete = function () {
@@ -34,7 +34,7 @@ function Marker(props) {
       date: props.date,
       title: props.title,
       description: props.description,
-      species: props.species,
+      species: props.species_name,
       image: props.image,
       rating: props.rating,
       leafletLocation: props.leafletLocation,
@@ -44,7 +44,7 @@ function Marker(props) {
     props.setModal(true);
     props.setEdit(true);
     props.setEditPopup(popupData)
-    console.log("Marker props.editPopup coming from inside HandleE,", props.editPopup)
+    console.log("Marker props species,", props.species_name)
     
 
     
@@ -62,7 +62,7 @@ function Marker(props) {
           date={props.date}
           title={props.title}
           description={props.description}
-          species={props.species}
+          species={props.species_name}
           image={props.image}
           rating={props.rating}
           uuid={props.uuid}

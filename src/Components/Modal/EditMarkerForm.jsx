@@ -13,7 +13,6 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
-import { marker } from "leaflet";
 const _ = require('lodash');
 const assign = require('lodash.assign');
 

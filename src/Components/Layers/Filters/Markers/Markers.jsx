@@ -1,6 +1,6 @@
-import useAxios from "axios-hooks";
+
 import NewMarkers from "./NewMarkers";
-import { useEffect } from "react"
+
 
 //Recieves Marker data from database
 export default function Markers(props) {

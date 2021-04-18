@@ -55,6 +55,7 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Species not showing from DB seeds (may not be important) (Liam)
 - [ ] In edit the date must be filled out or it glitches (Rye)
 
+
 ### April 16
 - [x] Scrap MarkerCreation.jsx
 - [x] onSubmit &&  onCancel => setEdit(false)
@@ -71,7 +72,7 @@ What are the features? Divide up amongst ourself into do-able units
 
 
 ### April 18 - 21
-
+- [ ] Species Search
 - [ ] Logo
 - [ ] Testing
 - [ ] Presentation prep
