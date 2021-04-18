@@ -117,7 +117,7 @@ export default function MarkerForm(props) {
  
 
   //Species
-  const [species, setSpecies] = useState(props.editPopup.species);
+  const [species, setSpecies] = useState(props.editPopup.species_name);
   const handleSpeciesChange = (event) => {
     setSpecies(event.target.value);
   };
@@ -158,14 +158,13 @@ export default function MarkerForm(props) {
 
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-    let currentLocation = {...props.editPopup.leafletLocation};
 
     const popup = {
       leafletLocation: props.editPopup.leafletLocation,
       uuid: props.editPopup.uuid,
       title: title,
       date: date,
-      species: species,
+      species_name: species,
       rating: rating,
       description: description,
       image: image,
@@ -184,15 +183,14 @@ export default function MarkerForm(props) {
       date: date,
       image: image,
       rating: rating,
-      species: species,
+      species_name: species,
+      // species: species,
       uuid: props.editPopup.uuid,
 
     }
-    function assignValue(pin, markers, value) {
-      //const uuid = props.editPopup.uuid
+    function assignValue(pin, markers) {
       console.log("pin", pin)
       console.log("marker", markers)
-      console.log("value", value)
       let pinValue = pin.uuid;
       if (markers[pinValue] || markers.marker.uuid === pinValue) {
         _.assign(markers[pinValue], pin)
@@ -202,10 +200,6 @@ export default function MarkerForm(props) {
         console.log("UUID NOT VALID")
       };
     };
-
-
-
-
 
     assignValue(pin, props.markers)
     
@@ -264,7 +258,7 @@ export default function MarkerForm(props) {
           onChange={handleSpeciesChange}
           input={<Input />}
           MenuProps={MenuProps}
-          name="species"
+          name="species_name"
         >
           {speciesList.map((fish) => (
             <MenuItem

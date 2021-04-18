@@ -34,7 +34,7 @@ function Marker(props) {
       date: props.date,
       title: props.title,
       description: props.description,
-      species: props.species_name,
+      species_name: props.species_name,
       image: props.image,
       rating: props.rating,
       leafletLocation: props.leafletLocation,
@@ -62,7 +62,7 @@ function Marker(props) {
           date={props.date}
           title={props.title}
           description={props.description}
-          species={props.species_name}
+          species_name={props.species_name}
           image={props.image}
           rating={props.rating}
           uuid={props.uuid}

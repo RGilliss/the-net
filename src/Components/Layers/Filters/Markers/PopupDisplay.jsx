@@ -186,7 +186,7 @@ export default function PopupDisplay(props) {
               component="h4"
             
             >
-              Species: {props.species || props.species_name}
+              Species: {props.species_name}
             </Typography>
 
             <Typography

@@ -190,7 +190,7 @@ export default function MarkerForm(props) {
       uuid: uuid,
       title: title,
       date: date,
-      species: species,
+      species_name: species,
       rating: rating,
       description: description,
       image: image,
