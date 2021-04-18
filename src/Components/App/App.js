@@ -3,11 +3,15 @@ import "./App.css";
 import Navbar from "../Navbar";
 import Layers from "../Layers/Layers";
 import { useState, useEffect } from "react";
-import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { OpenStreetMapProvider, JsonProvider } from "leaflet-geosearch";
 import GeoSearch from "../GeoSearch";
 import ModalContainer from "../Modal/ModalContainer";
 import axios from "axios";
 import UserContext from '../UserContext'
+import SpeciesSearch from "../SpeciesSearch";
+import { pink } from "@material-ui/core/colors";
+import MyProvider from '../MyProvider'
+
 
 export default function App() {
   const user = {
@@ -39,7 +43,9 @@ export default function App() {
 
   console.log("APP markers", markers);
   console.log("APP editPopup", editPopup);
-  
+  // const provider = new Provider({
+  //   speciesUrl: 'http://localhost:8080/pins/species'
+  // })
 
   return (
     <div>
@@ -47,6 +53,7 @@ export default function App() {
         <Navbar />
         <MapContainer center={startPosition} zoom={8}>
             <GeoSearch provider={new OpenStreetMapProvider()} />
+            <SpeciesSearch provider={new MyProvider()} />
             <Layers
               markers={markers}
               setMarkers={setMarkers}
@@ -77,6 +84,7 @@ export default function App() {
               />
 
         </MapContainer>
+
 
       </UserContext.Provider>
     </div>
