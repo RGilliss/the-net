@@ -132,7 +132,7 @@ export default function PopupDisplay(props) {
           <CardContent>
 
 
-          <div class= "fav-icon-wrapper" onClick={setFavourite}>
+          <div class= "fav-icon-wrapper">
 
               <ToggleButton
                 className={classes.fav}
@@ -142,7 +142,6 @@ export default function PopupDisplay(props) {
                 selected={selected}
                 onChange={() => {
                   favouriteToggle();
-
                   setSelected(!selected);
                 }}
               >
