@@ -1,4 +1,3 @@
-
 import { Map, useMap } from 'react-leaflet'
 import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch'
 import react, {useEffect} from 'react'
