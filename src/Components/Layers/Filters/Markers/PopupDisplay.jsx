@@ -104,7 +104,7 @@ export default function PopupDisplay(props) {
               {dateParser(props.date)}
             </Typography>
 
-            <div class="fav-icon-wrapper" onClick={setFavourite}>
+            <div class="fav-icon-wrapper" color="secondary">
               <ToggleButton
                 className={classes.fav}
                 size="small"
@@ -158,7 +158,7 @@ export default function PopupDisplay(props) {
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              Species: {props.species_name}
+              Species: {props.species || props.species_name}
             </Typography>
 
             <Typography variant="body2" color="textSecondary" component="p">
