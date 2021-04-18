@@ -18,34 +18,63 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    padding: 0,
+    margin: 0
   },
   date: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    alignItems: "flex-end"
   },
-  fav: {
-    display: "flex",
-    flexDirection: "column"
-  },
+ 
   title: {
     display: "flex",
     flexDirection: "column",
+    alignItems:"center",
+    marginTop: "10px"
   },
   rating: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  fav: {
+    backgroundColor:"#a7ffeb",
   },
   media: {
     height: 0, paddingTop: "56.25%",
     display: "flex",
     flexDirection: "column",
+    marginTop: "10px"
   },
   species: {
     display: "flex",
     flexDirection: "column",
+    marginTop: "10px"
+  }, 
+  text: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
-
+  buttons: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  edit: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor:"#a7ffeb",
+    width: "40%"
+    
+  },
+  delete: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor:"#ffccbc",
+    width: "40%"
+  }
 
 });
 
@@ -113,15 +142,7 @@ export default function PopupDisplay(props) {
         <CardActionArea>
           <CardContent>
 
-            <Typography className={classes.date}
-              gutterBottom
-              variant="body2"
-              component="h6"
-            >
-              {dateParser(props.date)}
-            </Typography>
-
-            <div class="fav-icon-wrapper" onClick={setFavourite}>
+          <div class= "fav-icon-wrapper" onClick={setFavourite}>
               <ToggleButton
                 className={classes.fav}
                 size="small"
@@ -135,6 +156,14 @@ export default function PopupDisplay(props) {
                 <StarsIcon />
               </ToggleButton>
             </div>
+
+            <Typography className={classes.date}
+              gutterBottom
+              variant="body2"
+              component="h6"
+            >
+              {dateParser(props.date)}
+            </Typography>
 
             <Typography
               className={classes.title}
@@ -152,15 +181,7 @@ export default function PopupDisplay(props) {
               disabled={true}
 
             />
-             {/* <Typography
-              gutterBottom
-              variant="p"
-              component="h4"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              Found by {props.name}
-            </Typography> */}
-
+             
             <CardMedia
               className={classes.media}
               image={props.image}
@@ -172,23 +193,37 @@ export default function PopupDisplay(props) {
               gutterBottom
               variant="p"
               component="h4"
-              style={{ display: "flex", justifyContent: "center" }}
+            
             >
               Species: {props.species_name}
             </Typography>
 
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography
+            className={classes.text}
+            variant="body2" 
+            color="textSecondary" 
+            component="p"
+            >
               {props.description}
             </Typography>
+
           </CardContent>
+
+
         </CardActionArea>
-        <CardActions>
-          <Button variant="contained" color="primary" onClick={props.onEdit}>
+
+        <CardActions className={classes.buttons}>
+          <Button 
+          className={classes.edit}
+          variant="contained" 
+          onClick={props.onEdit}
+          >
             Edit
           </Button>
+
           <Button
+          className={classes.delete}
             variant="contained"
-            color="secondary"
             onClick={props.onDelete}
           >
             Delete
