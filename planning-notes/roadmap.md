@@ -60,17 +60,17 @@ What are the features? Divide up amongst ourself into do-able units
 - [x] Pin Popup doesn't close on delete submit
 - [x] Decide on how to style navbar (or have navbar at all?)
 - [x] If you click on filter text instead of the check box, app crashes and throws Inner Text of null error
+- [x] Fish species not changing in edit (in state)
+- [x] Style regulations card, pin card, and submit form to be alike (Elodie)
+- [x] Species not showing from DB seeds in All Pins (Liam)
+- [x] In edit the date must be filled out or it glitches (Rye)
 - [ ] Fix incorrect regulations locations (Rye)
 - [ ] Fix issue of regulations displaying on top of each other (Rye)
-- [x] Style regulations card, pin card, and submit form to be alike (Elodie)
 - [ ] Fix Mapbox satellite view issues (Liam)
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
-- [x] Species not showing from DB seeds in All Pins (Liam)
-- [x] In edit the date must be filled out or it glitches (Rye)
 - [ ] Edit and Delete button don't work when viewing my pins
 - [ ] Edit and Delete button don't work when viewing my favourites
-- [ ] Fish species not changing in edit (in state)
 
 
 ### April 18 - 21
