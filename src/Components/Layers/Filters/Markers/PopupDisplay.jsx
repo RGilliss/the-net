@@ -16,11 +16,36 @@ import axios from "axios";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    display: "flex",
+    flexDirection: "column"
   },
-  media: { height: 0, paddingTop: "56.25%" },
+  date: {
+    display: "flex",
+    flexDirection: "column"
+  },
   fav: {
-    color: "#ffb74d",
+    display: "flex",
+    flexDirection: "column"
   },
+  title: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  rating: {
+    display: "flex",
+    justifyContent: "center"
+  },
+  media: {
+    height: 0, paddingTop: "56.25%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  species: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+
 });
 
 //Displays the inner content of each marker popup
@@ -52,71 +77,63 @@ export default function PopupDisplay(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardContent>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                backgroundColor: "#61dafb",
-                paddingLeft: "10px",
-              }}
+
+            <Typography className={classes.date}
+              gutterBottom
+              variant="body2"
+              component="h6"
             >
-              <Typography
-                gutterBottom
-                variant="body2"
-                component="h6"
-                style={{ alignSelf: "flex-end" }}
+              {dateParser(props.date)}
+            </Typography>
+
+            <div class="fav-icon-wrapper" onClick={setFavourite}>
+              <ToggleButton
+                className={classes.fav}
+                size="small"
+                value="fav"
+                aria-label="fav"
+                selected={selected}
+                onChange={() => {
+                  setSelected(!selected);
+                }}
               >
-                {dateParser(props.date)}
-              </Typography>
-              <div class="fav-icon-wrapper" onClick={setFavourite}>
-                <ToggleButton
-                  className={classes.fav}
-                  size="small"
-                  value="fav"
-                  aria-label="fav"
-                  selected={selected}
-                  onChange={() => {
-                    setSelected(!selected);
-                  }}
-                >
-                  <StarsIcon />
-                </ToggleButton>
-              </div>
+                <StarsIcon />
+              </ToggleButton>
             </div>
+
             <Typography
+              className={classes.title}
               gutterBottom
               variant="h6"
               component="h4"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                alignItems: "flex-end",
-              }}
             >
               {props.title}
             </Typography>
+
             <Rating
+              className={classes.rating}
               value={props.rating}
               precision={0.5}
               disabled={true}
-              style={{ display: "flex", justifyContent: "center" }}
+
             />
-            <Typography
+            {/* <Typography
               gutterBottom
               variant="p"
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
               Found by {props.name}
-            </Typography>
+            </Typography> */}
+
             <CardMedia
               className={classes.media}
               image={props.image}
               title={props.title}
             />
+            
             <Typography
+            className={classes.species}
               gutterBottom
               variant="p"
               component="h4"
