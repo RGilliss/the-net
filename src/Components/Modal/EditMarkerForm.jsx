@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FormControl from "@material-ui/core/FormControl";
+import CardMedia from "@material-ui/core/CardMedia";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
@@ -33,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
+  },
+  media: {
+    height: 0,
+    marginTop: '20px',
+    paddingTop: "56.25%",
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 
@@ -73,7 +81,6 @@ function getStyles(name, fishName, theme) {
 }
 
 export default function MarkerForm(props) {
-  // const [value, setValue] = useState(2);
   const [hover, setHover] = useState(-1);
 
   const classes = useStyles();
@@ -87,28 +94,17 @@ export default function MarkerForm(props) {
   };
 
   //Date
-  const CurrentDate = new Date();
-  const [date, setDate] = useState(CurrentDate);
+  const creationDate = props.editPopup.date.substring(0,10)
+  const [date, setDate] = useState(creationDate);
 
   const handleDateChange = (event) => {
+    console.log("datechange", event.target.value);
     setDate(event.target.value);
   };
-
-  //Formatting the date to work with date of today in our form
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
+ 
 
   //Species
-  const [species, setSpecies] = useState("");
+  const [species, setSpecies] = useState(props.editPopup.species);
   const handleSpeciesChange = (event) => {
     setSpecies(event.target.value);
   };
@@ -149,9 +145,7 @@ export default function MarkerForm(props) {
 
   //OnSubmit Button makes post request to /pins, submitting the form data
   const onSubmit = (evt) => {
-  console.log("PROPS. leaflet LOCATION ========>", props.editPopup.leafletLocation)
     let currentLocation = {...props.editPopup.leafletLocation};
-    console.log("currentLocation", currentLocation)
     const popup = {
         leafletLocation: props.editPopup.leafletLocation,
         uuid: props.editPopup.uuid,
@@ -195,9 +189,6 @@ export default function MarkerForm(props) {
         };
       };
 
-  
-      
-    
       assignValue(pin, props.markers)
     axios
       .put("/pins", pin)
@@ -289,7 +280,11 @@ export default function MarkerForm(props) {
         value={description}
         onChange={handleDescriptionChange}
       />
-
+        <CardMedia
+            className={classes.media}
+            image={image}
+            title={props.title}
+          />
       <FormControl className={classes.add_picture}>
         <InputLabel htmlFor="input-with-icon-adornment">
           Add a link to your picture
