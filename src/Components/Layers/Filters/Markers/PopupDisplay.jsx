@@ -18,15 +18,15 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   date: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   fav: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   title: {
     display: "flex",
@@ -34,10 +34,11 @@ const useStyles = makeStyles({
   },
   rating: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   media: {
-    height: 0, paddingTop: "56.25%",
+    height: 0,
+    paddingTop: "56.25%",
     display: "flex",
     flexDirection: "column",
   },
@@ -45,20 +46,17 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-
-
 });
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
-
   const user = useContext(UserContext);
 
   const [selected, setSelected] = useState([]);
 
   const classes = useStyles({});
-  console.log("POPUPDISPLAY props", props);
 
+  console.log("POPUPDISPLAY props", props);
 
   const setFavourite = () => {
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
@@ -74,7 +72,7 @@ export default function PopupDisplay(props) {
 
   const deleteFavourite = () => {
     axios
-      .delete("/favourites", { data: { user: user.id,  uuid: props.uuid} })
+      .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
       .then((res) => {
         console.log(res);
       })
@@ -97,8 +95,8 @@ export default function PopupDisplay(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardContent>
-
-            <Typography className={classes.date}
+            <Typography
+              className={classes.date}
               gutterBottom
               variant="body2"
               component="h6"
@@ -114,6 +112,8 @@ export default function PopupDisplay(props) {
                 aria-label="fav"
                 selected={selected}
                 onChange={() => {
+                  favouriteToggle();
+
                   setSelected(!selected);
                 }}
               >
@@ -135,9 +135,8 @@ export default function PopupDisplay(props) {
               value={props.rating}
               precision={0.5}
               disabled={true}
-
             />
-             {/* <Typography
+            {/* <Typography
               gutterBottom
               variant="p"
               component="h4"
@@ -151,9 +150,9 @@ export default function PopupDisplay(props) {
               image={props.image}
               title={props.title}
             />
-            
+
             <Typography
-            className={classes.species}
+              className={classes.species}
               gutterBottom
               variant="p"
               component="h4"
