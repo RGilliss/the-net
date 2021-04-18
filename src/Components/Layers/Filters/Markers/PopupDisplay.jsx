@@ -34,22 +34,8 @@ export default function PopupDisplay(props) {
   const classes = useStyles({});
   console.log("POPUPDISPLAY props", props);
 
-  console.log(
-    "user outside favourite functions but inside pop up display:",
-    user
-  );
-
-  console.log("uuid outside favourite functions but inside pop up", props.uuid);
-
-
 
   const setFavourite = () => {
-    // console.log("props.user_id:", { userPropsId: props.user_id });
-    // console.log("props from PopUpDisplay inside set Favourite:", props);
-
-    
-    // console.log("user inside setFavourite:", user);
-    // console.log("pin uuid inside setFavourite:", props.uuid);
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
       .post("/favourites", postProps)
@@ -62,7 +48,6 @@ export default function PopupDisplay(props) {
   };
 
   const deleteFavourite = () => {
-    //const values = { user: user.id, uuid: props.uuid }
     axios
       .delete("/favourites", { data: { user: user.id,  uuid: props.uuid} })
       .then((res) => {
