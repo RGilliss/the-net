@@ -51,8 +51,11 @@ const useStyles = makeStyles({
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
+
   const user = useContext(UserContext);
+
   const [selected, setSelected] = useState([]);
+  
   const classes = useStyles({});
   console.log("POPUPDISPLAY props", props);
 
