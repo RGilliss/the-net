@@ -9,40 +9,9 @@ import ModalContainer from "../Modal/ModalContainer";
 import axios from "axios";
 import UserContext from '../UserContext'
 import SpeciesSearch from "../SpeciesSearch";
+import { pink } from "@material-ui/core/colors";
+import MyProvider from '../MyProvider'
 
-// const provider = new OpenStreetMapProvider({
-//   searchUrl: 'http://localhost:8080/search',
-// })
-class MyProvider extends JsonProvider {
-  endpoint({ query, type }) {
-    // Result: https://example.com/api/search?q=some%20address&f=json
-    console.log("query", query)
-    return this.getUrl('http://localhost:8080/search', {
-      q: query,
-      f: 'json',
-    });
-  }
-  parse({ data }) {
-    console.log("Query Data", data)
-   
-    // Note that `data` is the raw result returned by the server. This
-    // method should return data in the SearchResult format.
-    return data.map((pin) => ({
-      x: pin.location.x,
-      y: pin.location.y,
-      date: pin.date,
-      description: pin.description,
-      id: pin.id,
-      image: pin.image,
-      location: {x: pin.location.x, y: pin.location.y},
-      rating: pin.rating,
-      species_name: pin.species_name,
-      title: pin.title,
-      uuid: pin.uuid
-    }));
-  }
- 
-}
 
 export default function App() {
   const user = {
