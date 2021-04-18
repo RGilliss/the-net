@@ -9,18 +9,20 @@ import axios from "axios";
 
 // import L from 'leaflet';
 
-// //change pin
-// const iconFavPins = new L.Icon({
-//   iconUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGJaFQQLvEJ5qi0sKUYTFTcs-ySvZT8dE0Sg&usqp=CAU",
-//   iconRetinaUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGJaFQQLvEJ5qi0sKUYTFTcs-ySvZT8dE0Sg&usqp=CAU",
-//   iconAnchor: null,
-//   popupAnchor: null,
-//   shadowUrl: null,
-//   shadowSize: null,
-//   shadowAnchor: null,
-//   iconSize: new L.Point(50, 55),
-//   className: 'leaflet-marker-icon'
-// });
+//  // change pin 
+//  const iconUrl = require('../../../images/marker-icon-2x-gold.png').default;
+
+//  const iconFavpins = new L.Icon({
+//    iconUrl,
+//    iconRetinaUrl: iconUrl,
+//    iconAnchor: null,
+//    popupAnchor: [-3, -76],
+//    shadowUrl: null,
+//    shadowSize: null,
+//    shadowAnchor: null,
+//    iconSize: new L.Point(30, 45),
+//    className: 'leaflet-marker-icon'
+//  });
 
 export default function Favourites() {
 

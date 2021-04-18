@@ -78,6 +78,7 @@ export default function App() {
 
         </MapContainer>
 
+
       </UserContext.Provider>
     </div>
   );
