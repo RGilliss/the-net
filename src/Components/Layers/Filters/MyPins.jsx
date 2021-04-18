@@ -1,42 +1,44 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./Markers/PopupDisplay";
+import UserContext from "../../UserContext";
+import L from "leaflet";
+import { useContext } from "react";
 
-import L from 'leaflet';
-
-// change pin 
-const iconMypins = new L.Icon({
-  iconUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
-  iconRetinaUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
-  iconAnchor: null,
-  popupAnchor: null,
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(53, 55),
-  className: 'leaflet-marker-icon'
-});
-
+// change pin
+// const iconMypins = new L.Icon({
+//   iconUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
+//   iconRetinaUrl: "https://lh3.googleusercontent.com/proxy/3ZzE1sE90QhpIvP5f7A4C5fnGOMbQZ5dIVUsYKX1ERAyGAdCOQdelz09lGLn4szkfd7DWlZ4-5tb5lDeixppy0kCTjOdO9DJLR_PvMZ73EjMRjM",
+//   iconAnchor: null,
+//   popupAnchor: null,
+//   shadowUrl: null,
+//   shadowSize: null,
+//   shadowAnchor: null,
+//   iconSize: new L.Point(53, 55),
+//   className: 'leaflet-marker-icon'
+// });
 
 export default function MyPins() {
-  
-  const [{ data, loading, error }] = useAxios(
-    "/mypins"
-  );
+
+  const user = useContext(UserContext);
+
+  const [{ data, loading, error }] = useAxios({
+    url: "/mypins",
+    params: { user_id: user.id },
+  });
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
+
   const returnData = data;
-  //console.log("Mypins returnData", returnData)
 
   return (
     <>
       {returnData.map((myPin) => (
-
         <Marker
           key={myPin.id}
           position={[myPin.location.x, myPin.location.y]}
-          icon = {iconMypins}
-  
+          // icon = {iconMypins}
         >
           <Popup>
             <PopupDisplay
