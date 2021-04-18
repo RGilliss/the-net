@@ -12,28 +12,59 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
+
+//CSS FORM
 const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  title_root: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "5px"
+  },
+  date_root: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "5px"
+  },
+  species: {
+    display: "flex",
+    flexDirection: "column",
+
   },
   rating_root: {
     width: 200,
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    marginTop: "15px"
+  },
+  text_root: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "5px"
   },
   add_picture: {
-    margin: theme.spacing(1),
+    marginTop: "10px"
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
+  button: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10px",
   },
+  button_in: {
+    backgroundColor: "#b2dfdb"
+  }
+
 }));
+
+///END OF CSS
 
 //Rating
 const labels = {
@@ -164,13 +195,13 @@ export default function MarkerForm(props) {
       image: image,
       location: `(${currentLocation.lat}, ${currentLocation.lng})`,
     };
-    props.setMarkers({...props.markers, [marker.uuid]:marker});
+    props.setMarkers({ ...props.markers, [marker.uuid]: marker });
 
     axios
       .post("/pins", marker)
       .then((res) => {
         console.log("RES", res);
-       
+
       })
       .catch((err) => {
         console.log(err);
@@ -181,49 +212,58 @@ export default function MarkerForm(props) {
 
   return (
     <form className={classes.marker_form}>
-      <FormControl>
-        <InputLabel htmlFor="Title">Your Title</InputLabel>
-        <Input
-          name="title"
-          onChange={handleTitleChange}
-          id="Title"
-          aria-describedby="my-helper-text"
-          value={title}
+
+      <div className={classes.title_root}>
+        <FormControl>
+          <InputLabel htmlFor="Title">Your Title</InputLabel>
+          <Input
+            name="title"
+            onChange={handleTitleChange}
+            id="Title"
+            aria-describedby="my-helper-text"
+            value={title}
+          />
+        </FormControl>
+      </div>
+
+      <div className={classes.date_root}>
+        <TextField
+          id="date"
+          type="date"
+          value={date}
+          name="date"
+          onChange={handleDateChange}
         />
-      </FormControl>
+      </div>
 
-      <TextField
-        id="date"
-        type="date"
-        value={date}
-        name="date"
-        onChange={handleDateChange}
-      />
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Species</InputLabel>
-        <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
-          value={species}
-          onChange={handleSpeciesChange}
-          input={<Input />}
-          MenuProps={MenuProps}
-          name="species"
-        >
-          {speciesList.map((fish) => (
-            <MenuItem
-              key={fish.id}
-              value={fish.name}
-              style={getStyles(fish.name, fishName, theme)}
-            >
-              {fish.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <div className={classes.species}>
+        <FormControl>
+          <InputLabel id="demo-mutiple-name-label">Species</InputLabel>
+          <Select
+            labelId="demo-mutiple-name-label"
+            id="demo-mutiple-name"
+            value={species}
+            onChange={handleSpeciesChange}
+            input={<Input />}
+            MenuProps={MenuProps}
+            name="species"
+          >
+            {speciesList.map((fish) => (
+              <MenuItem
+                key={fish.id}
+                value={fish.name}
+                style={getStyles(fish.name, fishName, theme)}
+              >
+                {fish.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
 
       <div className={classes.rating_root}>
+        <Typography variant="h9" component="legend">Rate your spot</Typography>
         <Rating
           name="rating"
           value={rating}
@@ -232,43 +272,50 @@ export default function MarkerForm(props) {
           onChangeActive={(event, newHover) => {
             setHover(newHover);
           }}
+
         />
 
         {rating !== null && (
           <Box ml={2}>{labels[hover !== -1 ? hover : rating]}</Box>
         )}
+
       </div>
 
-      <TextareaAutosize
-        rowsMax={4}
-        aria-label="maximum height"
-        placeholder="Your comments"
-        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        name="description"
-        value={description}
-        onChange={handleDescriptionChange}
-      />
-
-      <FormControl className={classes.add_picture}>
-        <InputLabel htmlFor="input-with-icon-adornment">
-          Add a link to your picture
-        </InputLabel>
-        <Input
-          id="input-with-icon-adornment"
-          startAdornment={
-            <InputAdornment position="start">
-              <AddAPhotoIcon />
-            </InputAdornment>
-          }
-          name="image"
-          value={image}
-          onChange={handleImageChange}
+      <div className={classes.text_root}>
+        <TextareaAutosize
+          rowsMax={4}
+          aria-label="maximum height"
+          placeholder="Your comments"
+          name="description"
+          value={description}
+          onChange={handleDescriptionChange}
         />
-      </FormControl>
+      </div>
 
-      <Button variant="contained" color="primary" onClick={() => onSubmit()}>
-        Submit
+      <div className={classes.add_picture}>
+        <FormControl>
+          <InputLabel htmlFor="input-with-icon-adornment">
+            Add a link to your picture
+        </InputLabel>
+          <Input
+            id="input-with-icon-adornment"
+            startAdornment={
+              <InputAdornment position="start">
+                <AddAPhotoIcon />
+              </InputAdornment>
+            }
+            name="image"
+            value={image}
+            onChange={handleImageChange}
+          />
+        </FormControl>
+      </div>
+
+      <div className={classes.button}>
+        <Button className={classes.button_in} variant="contained" size="medium" onClick={() => onSubmit()}>
+          SUBMIT
       </Button>
+      </div>
     </form>
   );
 }
