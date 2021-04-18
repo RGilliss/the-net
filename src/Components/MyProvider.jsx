@@ -5,7 +5,7 @@ class MyProvider extends JsonProvider {
     console.log("query", query)
     return this.getUrl('http://localhost:8080/search', {
       q: query,
-      f: type,
+      f: 'json',
     });
   }
   parse({ data }) {
@@ -18,7 +18,8 @@ class MyProvider extends JsonProvider {
       x: pin.location.x,
       y: pin.location.y,
       label: pin.title,
-      bounds: [[49.7303, -125.91], [49.8, -125]],
+      bounds: [[51.4, -127.5], [48.5, -123]],
+      
     }));
   }
 }

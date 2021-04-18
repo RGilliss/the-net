@@ -8,7 +8,7 @@ import axios from "axios";
 
 //Marker function is called in NewMarkers component at bottom of file
 function Marker(props) {
-  console.log("Marker props:", props.species_name)
+
   const markerRef = useRef();
   //Delete a pin
   const handleDelete = function () {
@@ -40,14 +40,10 @@ function Marker(props) {
       leafletLocation: props.leafletLocation,
       uuid: props.uuid
     }
-    console.log("popupData", popupData)
+   
     props.setModal(true);
     props.setEdit(true);
     props.setEditPopup(popupData)
-    console.log("Marker props species,", props.species_name)
-    
-
-    
   };
   return (
 
@@ -82,9 +78,9 @@ function Marker(props) {
 
 //This component maps through the array of markers and executes the above function on each marker
 export default function NewMarkers(props) {
-  console.log("NewMarkers props", props)
+
   const pins = Object.values(props.markers);
-  console.log("Pins", pins)
+
   return (
     <>
       {pins.map((popup) => (

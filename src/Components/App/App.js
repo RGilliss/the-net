@@ -1,4 +1,4 @@
-import { MapContainer } from "react-leaflet";
+import { MapContainer, ZoomControl } from "react-leaflet";
 import "./App.css";
 import Navbar from "../Navbar";
 import Layers from "../Layers/Layers";
@@ -42,13 +42,15 @@ export default function App() {
 
   console.log("APP markers", markers);
   console.log("APP editPopup", editPopup);
+  
   return (
     <div>
       <UserContext.Provider value={user} >
         <Navbar />
         <MapContainer center={startPosition} zoom={8}>
+          <ZoomControl position={'bottomleft'} />
             <GeoSearch provider={new OpenStreetMapProvider()} />
-            <SpeciesSearch provider={new MyProvider()} />
+            <SpeciesSearch showPopup={true} showMarker={true} provider={new MyProvider()} />
             <Layers
               markers={markers}
               setMarkers={setMarkers}
