@@ -52,7 +52,7 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Fix Mapbox satellite view issues (Liam)
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
-- [ ] Species not showing from DB seeds (may not be important) (Liam)
+- [x] Species not showing from DB seeds in All Pins (Liam)
 - [ ] In edit the date must be filled out or it glitches (Rye)
 
 

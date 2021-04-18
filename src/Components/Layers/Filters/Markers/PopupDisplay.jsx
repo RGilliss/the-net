@@ -27,7 +27,10 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "flex-end"
   },
- 
+  fav: {
+    display: "flex",
+    flexDirection: "column",
+  },
   title: {
     display: "flex",
     flexDirection: "column",
@@ -42,7 +45,8 @@ const useStyles = makeStyles({
     backgroundColor:"#a7ffeb",
   },
   media: {
-    height: 0, paddingTop: "56.25%",
+    height: 0,
+    paddingTop: "56.25%",
     display: "flex",
     flexDirection: "column",
     marginTop: "10px"
@@ -57,6 +61,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
   },
+
   buttons: {
     display: "flex",
     flexDirection: "row",
@@ -80,30 +85,15 @@ const useStyles = makeStyles({
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
-
   const user = useContext(UserContext);
 
   const [selected, setSelected] = useState([]);
 
   const classes = useStyles({});
+
   console.log("POPUPDISPLAY props", props);
 
-  console.log(
-    "user outside favourite functions but inside pop up display:",
-    user
-  );
-
-  console.log("uuid outside favourite functions but inside pop up", props.uuid);
-
-
-
   const setFavourite = () => {
-    // console.log("props.user_id:", { userPropsId: props.user_id });
-    // console.log("props from PopUpDisplay inside set Favourite:", props);
-
-    
-    // console.log("user inside setFavourite:", user);
-    // console.log("pin uuid inside setFavourite:", props.uuid);
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
       .post("/favourites", postProps)
@@ -116,9 +106,8 @@ export default function PopupDisplay(props) {
   };
 
   const deleteFavourite = () => {
-    //const values = { user: user.id, uuid: props.uuid }
     axios
-      .delete("/favourites", { data: { user: user.id,  uuid: props.uuid} })
+      .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
       .then((res) => {
         console.log(res);
       })
@@ -142,7 +131,9 @@ export default function PopupDisplay(props) {
         <CardActionArea>
           <CardContent>
 
+
           <div class= "fav-icon-wrapper" onClick={setFavourite}>
+
               <ToggleButton
                 className={classes.fav}
                 size="small"
@@ -150,6 +141,8 @@ export default function PopupDisplay(props) {
                 aria-label="fav"
                 selected={selected}
                 onChange={() => {
+                  favouriteToggle();
+
                   setSelected(!selected);
                 }}
               >
@@ -179,23 +172,22 @@ export default function PopupDisplay(props) {
               value={props.rating}
               precision={0.5}
               disabled={true}
-
             />
-             
+
             <CardMedia
               className={classes.media}
               image={props.image}
               title={props.title}
             />
-            
+
             <Typography
-            className={classes.species}
+              className={classes.species}
               gutterBottom
               variant="p"
               component="h4"
             
             >
-              Species: {props.species_name}
+              Species: {props.species || props.species_name}
             </Typography>
 
             <Typography
