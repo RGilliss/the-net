@@ -3,7 +3,6 @@ import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./Markers/PopupDisplay";
 import { useContext } from "react";
 import UserContext from "../../UserContext";
-import axios from "axios";
  
 
 

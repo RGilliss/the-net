@@ -54,6 +54,8 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components
 - [ ] Species not showing from DB seeds (may not be important)
 - [ ] In edit the date must be filled out or it glitches
+- [ ] My Favourites filter doesn't grab objects in state
+- [ ] Date on edit popup must be filled out and can't be the same date or it errors out   
 
 ### April 16
 - [x] Scrap MarkerCreation.jsx

@@ -151,7 +151,7 @@ export default function PopupDisplay(props) {
               component="h4"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              Species: {props.species}
+              Species: {props.species_name}
             </Typography>
 
             <Typography variant="body2" color="textSecondary" component="p">
