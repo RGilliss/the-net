@@ -228,7 +228,7 @@ export default function MarkerForm(props) {
   return (
 
     
-    <form className={classes.marker_form}>
+    <form className={classes.marker_form} >
 
       <FormControl className={classes.title_root} >
         <InputLabel htmlFor="Title">Edit Your Pin</InputLabel>
