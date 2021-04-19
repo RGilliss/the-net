@@ -1,5 +1,5 @@
-import { Map, useMap, Marker, Popup } from 'react-leaflet'
-import { OpenStreetMapProvider, GeoSearchControl, JsonProvider } from 'leaflet-geosearch'
+import { useMap } from 'react-leaflet'
+import { GeoSearchControl } from 'leaflet-geosearch'
 import {useEffect} from 'react'
 
 

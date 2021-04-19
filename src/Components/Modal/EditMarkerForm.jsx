@@ -15,7 +15,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
 const _ = require('lodash');
-const assign = require('lodash.assign');
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {

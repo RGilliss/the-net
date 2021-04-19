@@ -85,7 +85,7 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState();
 
   const classes = useStyles({});
 
@@ -95,7 +95,7 @@ export default function PopupDisplay(props) {
     axios
       .post("/favourites", postProps)
       .then((res) => {
-       
+        console.log(res)
       })
       .catch((err) => {
       
@@ -106,6 +106,7 @@ export default function PopupDisplay(props) {
     axios
       .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
       .then((res) => {
+        console.log(res)
      
       })
       .catch((err) => {
@@ -171,6 +172,7 @@ export default function PopupDisplay(props) {
 
             <Rating
               className={classes.rating}
+              name = "name_rating"
               value={props.rating}
               precision={0.5}
               disabled={true}
@@ -185,7 +187,7 @@ export default function PopupDisplay(props) {
             <Typography
               className={classes.species}
               gutterBottom
-              variant="p"
+              variant="subtitle2"
               component="h4"
             
             >
