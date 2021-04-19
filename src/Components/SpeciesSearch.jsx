@@ -25,14 +25,15 @@ const SpeciesSearch = (props) => {
         const searchControl = new GeoSearchControl({
             provider,
             autoClose: true,
+            style: 'bar',
             searchLabel: 'Enter species',
-            propertyName: 'species_name',
-            showMarker: true,
+            propertyName: 'title',
+            showMarker: false,
             showPopup: true,
             position: "topright",
             maxMarkers: 10,
             keepResult: true,
-            // marker: {icon: iconMypins}          
+            marker: {icon: iconMypins}          
         })
         console.log("searchControl", searchControl)
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet

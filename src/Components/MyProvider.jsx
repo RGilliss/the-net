@@ -1,20 +1,5 @@
 import { JsonProvider, OpenStreetMapProvider } from "leaflet-geosearch";
 
-// export interface RawResult {
-//     place_id: string;
-//     license: string;
-//     osm_type: string;
-//     osm_id: number;
-//     boundingbox: [string, string, string, string];
-//     lat: string;
-//     lon: string;
-//     display_name: string;
-//     class: string;
-//     type: string;
-//     importance: number;
-//     icon?: string;
-// }
-
 
 class MyProvider extends OpenStreetMapProvider {
   endpoint({ query, type }) {
@@ -36,15 +21,15 @@ class MyProvider extends OpenStreetMapProvider {
       osm_type: "relation",           //string;
       osm_id: 1783980,             //number;
       boundingbox: [pin.location.x.toString(), pin.location.x.toString(), pin.location.y.toString(), pin.location.y.toString()],       //[string, string, string, string];
-      lat: pin.location.x.toString(),                //string;
-      lon: pin.location.y.toString(),                //string;
-      display_name: pin.image,                 //string;
+      lat: pin.location.y.toString(),                //string;
+      lon: pin.location.x.toString(),                //string;
+      display_name: "Hello",                 //string;
       class: "natural",                 //string;
       type: "administrative",                 //string;
       importance: 0.7514801395324393,             //number;
       icon: "https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png",  },               //string;
-      x: pin.location.x,
-      y: pin.location.y,
+      x: pin.location.y,
+      y: pin.location.x,
       
       label: pin.title,
       bounds: [
