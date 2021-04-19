@@ -7,7 +7,6 @@ import {useEffect} from 'react'
 const SpeciesSearch = (props) => {
     const map = useMap() // access to leaflet map
     const { provider } = props
-    console.log("Provider", provider)
     
     useEffect(() => {
         const searchControl = new GeoSearchControl({
@@ -15,8 +14,7 @@ const SpeciesSearch = (props) => {
             autoClose: true,
             searchLabel: 'Enter species'
         })
-        console.log("searchControl", searchControl)
-        console.log("searchControl.resultList", searchControl.resultList.results)
+        
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
         return () => map.removeControl(searchControl)
     }, [props])

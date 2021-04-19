@@ -8,7 +8,6 @@ import Favourites from "./Favourites"
 
 export default function Filters(props) {
 
-  console.log("props from FILTERS", props)
 
   return (
     <>

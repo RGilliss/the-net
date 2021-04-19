@@ -36,7 +36,6 @@ export default function MyPins(props) {
   const pins = data.reduce((acc, val) => {
     return {...acc, [val.uuid]:{...val, leafletLocation: [val.location.x, val.location.y]}};
   }, {});
-  console.log("PIN AFTER REDUCER:", pins)
 
   return (
     <>

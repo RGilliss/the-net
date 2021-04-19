@@ -89,17 +89,16 @@ export default function PopupDisplay(props) {
 
   const classes = useStyles({});
 
-  console.log("POPUPDISPLAY props", props);
 
   const setFavourite = () => {
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
       .post("/favourites", postProps)
       .then((res) => {
-        console.log("res.data", res.data);
+       
       })
       .catch((err) => {
-        console.log(err);
+      
       });
   };
 
@@ -107,10 +106,10 @@ export default function PopupDisplay(props) {
     axios
       .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
       .then((res) => {
-        console.log(res);
+     
       })
       .catch((err) => {
-        console.log(err);
+       
       });
   };
 

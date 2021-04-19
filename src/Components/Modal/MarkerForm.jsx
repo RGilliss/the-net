@@ -121,7 +121,7 @@ export default function MarkerForm(props) {
   const [date, setDate] = useState(formatDate(CurrentDate));
 
   const handleDateChange = (event) => {
-    console.log("datechange", event.target.value);
+  
     setDate(event.target.value);
   };
 
@@ -147,7 +147,6 @@ export default function MarkerForm(props) {
   //Rating
   const [rating, setRating] = useState("");
   const handleRatingChange = (event, value) => {
-    console.log("value", value);
     setRating(value);
   };
 
@@ -171,13 +170,9 @@ export default function MarkerForm(props) {
       axios
         .get("/species")
         .then((res) => {
-          // console.log(res.data);
           setSpeciesList(res.data);
         })
-        .catch((err) => {
-          console.log(err.response.data);
-        }),
-    []
+        .catch((err) => {}),[]
   );
 
   //OnSubmit Button makes post request to /pins, submitting the form data
@@ -200,13 +195,8 @@ export default function MarkerForm(props) {
 
     axios
       .post("/pins", marker)
-      .then((res) => {
-        console.log("RES", res);
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
 
     props.onClose();
   };
