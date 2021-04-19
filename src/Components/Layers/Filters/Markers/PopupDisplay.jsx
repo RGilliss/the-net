@@ -125,7 +125,12 @@ export default function PopupDisplay(props) {
 
   return (
     
-      <Card className={classes.root}>
+      <Card 
+      className={classes.root}  
+      style={{
+        boxShadow: "none"
+      }} 
+      >
         <CardActionArea >
           <CardContent>
 
