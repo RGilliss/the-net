@@ -14,7 +14,14 @@ export default function Filters(props) {
     <>
       <LayersControl.Overlay name="My Pins" checked={props.selected === "My Pins"}>
         <FeatureGroup>
-          <MyPins />
+          <MyPins 
+           edit={props.edit}
+           setEdit={props.setEdit}
+           modal={props.modal}
+           setModal={props.setModal}
+           editPopup={props.editPopup}
+           setEditPopup={props.setEditPopup}
+          />
         </FeatureGroup>
       </LayersControl.Overlay>
 

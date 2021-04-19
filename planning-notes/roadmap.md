@@ -69,8 +69,8 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Fix Mapbox satellite view issues (Liam)
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
-- [ ] Edit and Delete button don't work when viewing my pins
-- [ ] Edit and Delete button don't work when viewing my favourites
+- [x] Edit and Delete button don't work when viewing my pins
+- [x] Edit and Delete button don't work when viewing my favourites
 
 
 ### April 18 - 21

@@ -1,6 +1,7 @@
 import { Marker as LeafletMarker, Popup } from "react-leaflet";
 import { useRef } from "react";
 import PopupDisplay from "./PopupDisplay";
+import L from "leaflet";
 
 import axios from "axios";
 
@@ -24,11 +25,10 @@ function Marker(props) {
 
     markerRef.current.remove();
   };
-  //Edit a pin
+  //HANDLE EDIT FUNCTION
+  // triggers when you click edit, popupData is the currently stored data in that popup
+  // we want this information to populate the edit marker form
   const handleEdit = () => {
-    //HANDLE EDIT FUNCTION
-    // triggers when you click edit, popupData is the currently stored data in that popup
-    // we want this information to populate the edit marker form
     const popupData = {
       pin_id: props.id,
       date: props.date,
@@ -46,8 +46,6 @@ function Marker(props) {
     props.setEditPopup(popupData)
     console.log("Marker props species,", props.species_name)
     
-
-    
   };
   return (
 
@@ -55,6 +53,7 @@ function Marker(props) {
       key={props.leafletLocation}
       position={props.leafletLocation}
       ref={markerRef}
+      icon={props.icon || new L.Icon.Default()}
     >
       <Popup>
         <PopupDisplay
@@ -91,6 +90,7 @@ export default function NewMarkers(props) {
         <Marker
           key={popup.uuid}
           {...popup}
+          icon={props.icon}
           setModal={props.setModal}
           setEdit={props.setEdit}
           editPopup={props.editPopup}
