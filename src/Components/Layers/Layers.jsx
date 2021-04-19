@@ -29,7 +29,7 @@ export default function Layers(props) {
     container.addEventListener("click", handleClick)
     return () => container.removeEventListener("click", handleClick)
     }, [selected])
-console.log("Layers props", props)
+
   return (
     <LayersControl position="bottomright" ref={control}>
       <Maps/>

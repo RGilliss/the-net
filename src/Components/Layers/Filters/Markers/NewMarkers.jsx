@@ -24,11 +24,10 @@ function Marker(props) {
 
     markerRef.current.remove();
   };
-  //Edit a pin
+  //HANDLE EDIT FUNCTION
+  // triggers when you click edit, popupData is the currently stored data in that popup
+  // we want this information to populate the edit marker form
   const handleEdit = () => {
-    //HANDLE EDIT FUNCTION
-    // triggers when you click edit, popupData is the currently stored data in that popup
-    // we want this information to populate the edit marker form
     const popupData = {
       pin_id: props.id,
       date: props.date,
