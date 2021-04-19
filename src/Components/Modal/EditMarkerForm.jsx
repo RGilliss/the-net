@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
+    width: "20rem",
   },
   date_root: {
     marginTop: "15px"
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
     marginTop: "15px",
   },
   submit: {
@@ -48,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e3f2fd"
   },
   media: {
-    height: 0,
+    height: 140,
     marginTop: '20px',
-    paddingTop: "56.25%",
+   
     display: "flex",
     flexDirection: "column",
   },
@@ -225,7 +227,9 @@ export default function MarkerForm(props) {
 
 
   return (
-    <form className={classes.marker_form}>
+
+    
+    <form className={classes.marker_form} >
 
       <FormControl className={classes.title_root} >
         <InputLabel htmlFor="Title">Edit Your Pin</InputLabel>

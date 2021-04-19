@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    minWidth: 225,
   },
   bullet: {
     display: "inline-block",
@@ -28,7 +28,12 @@ export default function RegulationDisplay(props) {
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card
+        className={classes.root}
+        style={{
+          boxShadow: "none"
+        }} 
+        >
         <CardContent>
           <Typography variant="h5" component="h2">
             {props.water_body}
