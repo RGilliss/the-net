@@ -254,7 +254,7 @@ export default function MarkerForm(props) {
       </div>
 
       <div className={classes.rating_root}>
-        <Typography variant="h9" component="legend">Rate your spot</Typography>
+        <Typography variant="subtitle2" component="legend">Rate your spot</Typography>
         <Rating
           name="rating"
           value={rating}

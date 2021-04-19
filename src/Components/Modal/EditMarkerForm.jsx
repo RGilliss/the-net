@@ -288,7 +288,6 @@ export default function MarkerForm(props) {
         rowsMax={4}
         aria-label="maximum height"
         placeholder="Your comments"
-        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         name="description"
         value={description}
         onChange={handleDescriptionChange}
