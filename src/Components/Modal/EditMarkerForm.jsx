@@ -48,9 +48,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e3f2fd"
   },
   media: {
-    height: 0,
+    height: 140,
     marginTop: '20px',
-    paddingTop: "56.25%",
+   
     display: "flex",
     flexDirection: "column",
   },
@@ -225,6 +225,8 @@ export default function MarkerForm(props) {
 
 
   return (
+
+    
     <form className={classes.marker_form}>
 
       <FormControl className={classes.title_root} >

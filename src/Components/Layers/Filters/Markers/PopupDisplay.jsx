@@ -41,9 +41,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
   },
-  fav: {
-    backgroundColor:"#a7ffeb",
-  },
+
   media: {
     height: 0,
     paddingTop: "56.25%",
@@ -126,16 +124,17 @@ export default function PopupDisplay(props) {
   };
 
   return (
-    <>
+    
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea >
           <CardContent>
-
-
-          <div class= "fav-icon-wrapper">
 
               <ToggleButton
                 className={classes.fav}
+                style={{
+                  backgroundColor: "white",
+                  border: "none"
+              }}
                 size="small"
                 value="fav"
                 aria-label="fav"
@@ -145,9 +144,9 @@ export default function PopupDisplay(props) {
                   setSelected(!selected);
                 }}
               >
-                <StarsIcon />
+                <StarsIcon/>
               </ToggleButton>
-            </div>
+           
 
             <Typography className={classes.date}
               gutterBottom
@@ -221,6 +220,6 @@ export default function PopupDisplay(props) {
           </Button>
         </CardActions>
       </Card>
-    </>
+   
   );
 }
