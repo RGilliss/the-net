@@ -20,62 +20,29 @@ const iconMypins = new L.Icon({
 // make new leaflet element
 const SpeciesSearch = (props) => {
     const map = useMap() // access to leaflet map
-    const [searchPins, setSearchPins] = useState([])
-    
+    const { provider } = props
     useEffect(() => {
         const searchControl = new GeoSearchControl({
-            provider: props.provider,
+            provider,
             autoClose: true,
             searchLabel: 'Enter species',
             propertyName: 'species_name',
+            showMarker: true,
             showPopup: true,
             position: "topright",
             maxMarkers: 10,
             keepResult: true,
-            marker: {icon: iconMypins}
-            // marker: {
-            //     // optional: L.Marker    - default L.Icon.Default
-            //     icon: new L.Icon.Default(),
-            //     draggable: false,
-            //   },
-           
+            // marker: {icon: iconMypins}          
         })
         console.log("searchControl", searchControl)
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
-        setSearchPins(searchControl.resultList.results)
-        console.log("searchPins", searchPins)
+        console.log("searchControl.resultList.results", searchControl.resultList.results)
 
         return () => map.removeControl(searchControl)
         
     }, [props])
-    console.log("Search", searchPins)
-    return (
-    //     <>
-    //     {returnData.map((myPin) => (
-  
-    //       <Marker
-    //         key={myPin.id}
-    //         position={[myPin.location.x, myPin.location.y]}
-    //         icon = {iconMypins}
+    return null
     
-    //       >
-    //         <Popup>
-    //           <PopupDisplay
-    //             title={myPin.title}
-    //             description={myPin.description}
-    //             date={myPin.date}
-    //             image={myPin.image}
-    //             rating={myPin.rating}
-    //             location={myPin.location}
-    //             species_name={myPin.species_name}
-    //             user_id={myPin.user_id}
-    //           />
-    //         </Popup>
-    //       </Marker>
-    //     ))}
-    //   </>
-    null
-    )
 }
 
 export default SpeciesSearch 

@@ -1,6 +1,22 @@
-import { JsonProvider } from "leaflet-geosearch";
+import { JsonProvider, OpenStreetMapProvider } from "leaflet-geosearch";
 
-class MyProvider extends JsonProvider {
+// export interface RawResult {
+//     place_id: string;
+//     license: string;
+//     osm_type: string;
+//     osm_id: number;
+//     boundingbox: [string, string, string, string];
+//     lat: string;
+//     lon: string;
+//     display_name: string;
+//     class: string;
+//     type: string;
+//     importance: number;
+//     icon?: string;
+// }
+
+
+class MyProvider extends OpenStreetMapProvider {
   endpoint({ query, type }) {
     console.log("query", query)
     return this.getUrl('http://localhost:8080/search', {
@@ -10,18 +26,42 @@ class MyProvider extends JsonProvider {
   }
   parse({ data }) {
     console.log("Query Data", data)
-   
+  
     // Note that `data` is the raw result returned by the server. This
     // method should return data in the SearchResult format.
     return data.map((pin) => ({
-      ...pin,
+      // ...pin,
+      raw: {// place_id:                //string;
+      license: "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",            //string;
+      osm_type: "relation",           //string;
+      osm_id: 1783980,             //number;
+      boundingbox: [pin.location.x.toString(), pin.location.x.toString(), pin.location.y.toString(), pin.location.y.toString()],       //[string, string, string, string];
+      lat: pin.location.x.toString(),                //string;
+      lon: pin.location.y.toString(),                //string;
+      display_name: pin.image,                 //string;
+      class: "natural",                 //string;
+      type: "administrative",                 //string;
+      importance: 0.7514801395324393,             //number;
+      icon: "https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png",  },               //string;
       x: pin.location.x,
       y: pin.location.y,
+      
       label: pin.title,
-      bounds: [[51.4, -127.5], [48.5, -123]],
+      bounds: [
+        [pin.location.x, pin.location.y], 
+       [pin.location.x, pin.location.y]],
       
     }));
   }
 }
+// class MyProvider extends OpenStreetMapProvider {
+//   constructor(options) {
+//     super({
+//       ...options,
+//       searchUrl: 'http://localhost:8080/search',
+//       reverseUrl: 'http://localhost:8080/search',
+//     });
+//   }
+// }
 
 export default MyProvider;

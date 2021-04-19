@@ -34,7 +34,7 @@ const Search = (props) => {
             marker: {icon: iconMypins}
 
         })
-
+        console.log("GeoSearch Control", searchControl)
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
         return () => map.removeControl(searchControl)
     }, [props])

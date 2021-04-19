@@ -48,9 +48,8 @@ export default function App() {
       <UserContext.Provider value={user} >
         <Navbar />
         <MapContainer center={startPosition} zoom={8}>
-          <ZoomControl position={'bottomleft'} />
             <GeoSearch provider={new OpenStreetMapProvider()} />
-            <SpeciesSearch showPopup={true} showMarker={true} provider={new MyProvider()} />
+            <SpeciesSearch provider={new MyProvider()} />
             <Layers
               markers={markers}
               setMarkers={setMarkers}
