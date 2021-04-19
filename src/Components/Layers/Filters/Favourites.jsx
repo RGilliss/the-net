@@ -5,23 +5,22 @@ import { useContext } from "react";
 import UserContext from "../../UserContext";
  
 
+import L from 'leaflet';
 
-// import L from 'leaflet';
+ // change pin 
+ const iconUrl = require('../../../images/marker-icon-2x-gold.png').default;
 
-//  // change pin 
-//  const iconUrl = require('../../../images/marker-icon-2x-gold.png').default;
-
-//  const iconFavpins = new L.Icon({
-//    iconUrl,
-//    iconRetinaUrl: iconUrl,
-//    iconAnchor: null,
-//    popupAnchor: [-3, -76],
-//    shadowUrl: null,
-//    shadowSize: null,
-//    shadowAnchor: null,
-//    iconSize: new L.Point(30, 45),
-//    className: 'leaflet-marker-icon'
-//  });
+ const iconFavPins = new L.Icon({
+   iconUrl,
+   iconRetinaUrl: iconUrl,
+   iconAnchor: null,
+   popupAnchor: [-3, -76],
+   shadowUrl: null,
+   shadowSize: null,
+   shadowAnchor: null,
+   iconSize: new L.Point(25, 38),
+   className: 'leaflet-marker-icon'
+ });
 
 export default function Favourites() {
 
@@ -63,7 +62,7 @@ console.log("user ID", user.id)
         <Marker
           key={pin.id}
           position={[pin.location.x, pin.location.y]}
-          // icon = {iconFavPins}
+          icon = {iconFavPins}
   
         >
           <Popup>

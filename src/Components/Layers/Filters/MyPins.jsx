@@ -18,7 +18,7 @@ import { useContext } from "react";
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(30, 45),
+    iconSize: new L.Point(25, 38),
     className: 'leaflet-marker-icon'
   });
 
