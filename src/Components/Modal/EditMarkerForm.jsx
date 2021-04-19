@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
     marginTop: "15px",
   },
   submit: {
