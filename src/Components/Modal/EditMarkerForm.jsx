@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
+    width: "20rem",
   },
   date_root: {
     marginTop: "15px"
