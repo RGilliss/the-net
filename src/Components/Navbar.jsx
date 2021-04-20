@@ -30,13 +30,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: '150px'
+    marginRight: '150px',
+    fontFamily: 'calibri',
+    fontSize: '20px'
   },
   navBar: {
     display: 'flex',
-    backgroundColor: '#cfd8dc',
+    backgroundColor: '#AACACC',
     margin: 0,
-    height: "6em",
+    padding:'1em',
+    height: '5em',
     width: '100%'
   },
   typo: {
@@ -66,7 +69,7 @@ export default function DenseAppBar(props) {
           </Typography>
           </div>
           <div>
-          <Typography component="div">
+          <Typography>
             <Grid className={classes.toggle} component="label"  spacing={1}>
               <Grid item>Search Location</Grid>
                <Grid item>
