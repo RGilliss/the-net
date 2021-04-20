@@ -13,8 +13,8 @@ import L from 'leaflet';
  const iconFavPins = new L.Icon({
    iconUrl,
    iconRetinaUrl: iconUrl,
-   iconAnchor: null,
-   popupAnchor: [-3, -76],
+   iconAnchor: [12, 41],
+   popupAnchor: [0, -41],
    shadowUrl: null,
    shadowSize: null,
    shadowAnchor: null,

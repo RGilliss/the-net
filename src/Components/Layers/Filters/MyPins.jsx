@@ -10,12 +10,12 @@ import NewMarkers from "./Markers/NewMarkers";
   const iconMyPins = new L.Icon({
     iconUrl,
     iconRetinaUrl: iconUrl,
-    iconAnchor: null,
-    popupAnchor: [-3, -76],
+    iconAnchor: [12, 41],
+    popupAnchor: [0, -41],
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(25, 38),
+    iconSize: new L.Point(25, 41),
     className: 'leaflet-marker-icon'
   });
 
@@ -44,7 +44,12 @@ export default function MyPins(props) {
     setModal={props.setModal}
     editPopup={props.editPopup}
     setEditPopup={props.setEditPopup}
-    markers={pins}/>
+    markers={pins}
+    
+    style={{
+      backgroundColor: "white",
+      border: "none"
+    }}/>
     </>
   );
 }
