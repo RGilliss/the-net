@@ -31,6 +31,7 @@ const useStyles = makeStyles({
   fav: {
     display: "flex",
     flexDirection: "column",
+    color: "#ffdb70",
   },
   title: {
     display: "flex",
@@ -85,7 +86,7 @@ export default function PopupDisplay(props) {
 
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(false);
 
   const classes = useStyles({});
 
@@ -117,11 +118,15 @@ export default function PopupDisplay(props) {
   const favouriteToggle = () => {
     if (!selected) {
       setFavourite();
-      // setSelected(true)
+      setSelected(selected)
+
+
+      
     }
     if (selected) {
       deleteFavourite();
-      // setSelected(false)
+      setSelected(!selected)
+
     }
   };
 
@@ -143,7 +148,7 @@ export default function PopupDisplay(props) {
             size="small"
             value="fav"
             aria-label="fav"
-            selected={selected}
+            selected={!selected}
             onChange={() => {
               favouriteToggle();
               setSelected(!selected);
