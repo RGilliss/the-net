@@ -15,31 +15,29 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from "axios";
 const _ = require('lodash');
-const assign = require('lodash.assign');
 
 const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
-    width: "20rem",
   },
   date_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   rating_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   text_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   add_picture: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   buttons: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: "15px",
+    marginTop: "10px",
   },
   submit: {
     marginTop: "10px",
@@ -50,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e3f2fd"
   },
   media: {
-    height: 140,
-    marginTop: '20px',
+    height: 110,
+    marginTop: '10px',
    
     display: "flex",
     flexDirection: "column",
@@ -113,7 +111,6 @@ export default function MarkerForm(props) {
   const [date, setDate] = useState(creationDate);
 
   const handleDateChange = (event) => {
-    console.log("datechange", event.target.value);
     setDate(event.target.value);
   };
  
@@ -149,11 +146,10 @@ export default function MarkerForm(props) {
       axios
         .get("/species")
         .then((res) => {
-          // console.log(res.data);
           setSpeciesList(res.data);
         })
         .catch((err) => {
-          console.log(err.response.data);
+
         }),
     []
   );
@@ -174,7 +170,7 @@ export default function MarkerForm(props) {
     };
     props.setEditPopup(popup);
     // props.setMarkers([...props.markers, popup])
-    console.log("WHAT WE'RE SENDING TO THE POST REQUEST", popup)
+
 
     //this is the exact information going to the axios edit request
 
@@ -191,12 +187,10 @@ export default function MarkerForm(props) {
 
     }
     function assignValue(pin, markers) {
-      console.log("pin", pin)
-      console.log("marker", markers)
+    
       let pinValue = pin.uuid;
       if (markers[pinValue] || markers.marker.uuid === pinValue) {
         _.assign(markers[pinValue], pin)
-        console.log("_.assign(markers[uuid], pin", _.assign(markers[pinValue], pin))
       }
       else {
         console.log("UUID NOT VALID")
@@ -207,13 +201,8 @@ export default function MarkerForm(props) {
     
     axios
       .put("/pins", pin)
-      .then((res) => {
-        console.log("EDITED")
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
 
     props.setEdit(false);
     props.onClose();
@@ -298,7 +287,6 @@ export default function MarkerForm(props) {
         rowsMax={4}
         aria-label="maximum height"
         placeholder="Your comments"
-        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         name="description"
         value={description}
         onChange={handleDescriptionChange}

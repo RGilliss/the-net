@@ -33,8 +33,7 @@ export default function Favourites() {
   if (error) return <p>Error!</p>;
 
   const returnData = data;
-console.log("user ID", user.id)
-  console.log("Favourites returnData", returnData)
+
 
 // const [favouritesList, setFavouritesList] = useState([]);
 

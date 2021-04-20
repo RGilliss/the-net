@@ -1,10 +1,7 @@
 import useAxios from "axios-hooks";
-import axios from 'axios';
-import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./Markers/PopupDisplay";
 import UserContext from "../../UserContext";
 import L from "leaflet";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import NewMarkers from "./Markers/NewMarkers";
 
   // MyPins Marker Color
@@ -36,7 +33,6 @@ export default function MyPins(props) {
   const pins = data.reduce((acc, val) => {
     return {...acc, [val.uuid]:{...val, leafletLocation: [val.location.x, val.location.y]}};
   }, {});
-  console.log("PIN AFTER REDUCER:", pins)
 
   return (
     <>

@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   title: {
     display: "flex",
     flexDirection: "column",
-    alignItems:"center",
+    alignItems: "center",
     marginTop: "10px"
   },
   rating: {
@@ -53,11 +53,13 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     marginTop: "10px"
-  }, 
+  },
   text: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    
+
   },
 
   buttons: {
@@ -68,14 +70,14 @@ const useStyles = makeStyles({
   edit: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#a7ffeb",
+    backgroundColor: "#a7ffeb",
     width: "40%"
-    
+
   },
   delete: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#ffccbc",
+    backgroundColor: "#ffccbc",
     width: "40%"
   }
 
@@ -85,33 +87,24 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState();
 
   const classes = useStyles({});
 
-  console.log("POPUPDISPLAY props", props);
 
   const setFavourite = () => {
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
       .post("/favourites", postProps)
-      .then((res) => {
-        console.log("res.data", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => { })
+      .catch((err) => { });
   };
 
   const deleteFavourite = () => {
     axios
       .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => { })
+      .catch((err) => { });
   };
 
   const favouriteToggle = () => {
@@ -124,107 +117,106 @@ export default function PopupDisplay(props) {
   };
 
   return (
-    
-      <Card 
-      className={classes.root}  
+
+    <Card
+      className={classes.root}
       style={{
         boxShadow: "none"
-      }} 
-      >
-        <CardActionArea >
-          <CardContent>
+      }}
+    >
 
-              <ToggleButton
-                className={classes.fav}
-                style={{
-                  backgroundColor: "white",
-                  border: "none"
-              }}
-                size="small"
-                value="fav"
-                aria-label="fav"
-                selected={selected}
-                onChange={() => {
-                  favouriteToggle();
-                  setSelected(!selected);
-                }}
-              >
-                <StarsIcon/>
-              </ToggleButton>
-           
+      <CardContent>
 
-            <Typography className={classes.date}
-              gutterBottom
-              variant="body2"
-              component="h6"
-            >
-              {dateParser(props.date)}
-            </Typography>
-
-            <Typography
-              className={classes.title}
-              gutterBottom
-              variant="h6"
-              component="h4"
-            >
-              {props.title}
-            </Typography>
-
-            <Rating
-              className={classes.rating}
-              value={props.rating}
-              precision={0.5}
-              disabled={true}
-            />
-
-            <CardMedia
-              className={classes.media}
-              image={props.image}
-              title={props.title}
-            />
-
-            <Typography
-              className={classes.species}
-              gutterBottom
-              variant="p"
-              component="h4"
-            
-            >
-              Species: {props.species_name}
-            </Typography>
-
-            <Typography
-            className={classes.text}
-            variant="body2" 
-            color="textSecondary" 
-            component="p"
-            >
-              {props.description}
-            </Typography>
-
-          </CardContent>
+        <ToggleButton
+          className={classes.fav}
+          style={{
+            backgroundColor: "white",
+            border: "none"
+          }}
+          size="small"
+          value="fav"
+          aria-label="fav"
+          selected={selected}
+          onChange={() => {
+            favouriteToggle();
+            setSelected(!selected);
+          }}
+        >
+          <StarsIcon />
+        </ToggleButton>
 
 
-        </CardActionArea>
+        <Typography className={classes.date}
+          gutterBottom
+          variant="body2"
+          component="h6"
+        >
+          {dateParser(props.date)}
+        </Typography>
 
-        <CardActions className={classes.buttons}>
-          <Button 
+        <Typography
+          className={classes.title}
+          gutterBottom
+          variant="h6"
+          component="h4"
+        >
+          {props.title}
+        </Typography>
+
+        <Rating
+          className={classes.rating}
+          name="name_rating"
+          value={props.rating}
+          precision={0.5}
+          disabled={true}
+        />
+
+        <CardMedia
+          className={classes.media}
+          image={props.image}
+          title={props.title}
+        />
+
+        <Typography
+          className={classes.species}
+          gutterBottom
+          variant="subtitle2"
+          component="h4"
+
+        >
+          Species: {props.species_name}
+        </Typography>
+
+        <Typography
+          className={classes.text}
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
+          {props.description}
+        </Typography>
+
+      </CardContent>
+
+
+      <CardActions className={classes.buttons}>
+        <Button
           className={classes.edit}
-          variant="contained" 
+          variant="contained"
           onClick={props.onEdit}
-          >
-            Edit
+        >
+          Edit
           </Button>
 
-          <Button
+        <Button
           className={classes.delete}
-            variant="contained"
-            onClick={props.onDelete}
-          >
-            Delete
+          variant="contained"
+          onClick={props.onDelete}
+        >
+          Delete
           </Button>
-        </CardActions>
-      </Card>
-   
+      </CardActions>
+    </Card>
+
   );
 }
