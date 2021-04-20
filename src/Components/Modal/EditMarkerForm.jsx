@@ -20,25 +20,24 @@ const useStyles = makeStyles((theme) => ({
   marker_form: {
     display: "flex",
     flexDirection: "column",
-    width: "20rem",
   },
   date_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   rating_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   text_root: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   add_picture: {
-    marginTop: "15px"
+    marginTop: "10px"
   },
   buttons: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: "15px",
+    marginTop: "10px",
   },
   submit: {
     marginTop: "10px",
@@ -49,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e3f2fd"
   },
   media: {
-    height: 140,
-    marginTop: '20px',
+    height: 110,
+    marginTop: '10px',
    
     display: "flex",
     flexDirection: "column",
