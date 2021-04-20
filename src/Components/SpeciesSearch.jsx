@@ -1,51 +1,50 @@
-import { useMap } from 'react-leaflet'
+import { Map, useMap, Marker, Popup } from 'react-leaflet'
 import { GeoSearchControl } from 'leaflet-geosearch'
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
+import L from "leaflet";
 
 
+
+const iconUrl = require('../images/marker-icon-2x-red.png').default;
+
+const iconMypins = new L.Icon({
+  iconUrl,
+  iconRetinaUrl: iconUrl,
+  iconAnchor: null,
+  popupAnchor: [-3, -76],
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(30, 45),
+  className: 'leaflet-marker-icon'
+});
 // make new leaflet element
 const SpeciesSearch = (props) => {
     const map = useMap() // access to leaflet map
     const { provider } = props
-    
+
     useEffect(() => {
         const searchControl = new GeoSearchControl({
             provider,
             autoClose: true,
-            searchLabel: 'Enter species'
+            style: 'bar',
+            searchLabel: 'Search Pins',
+            propertyName: 'title',
+            showMarker: false,
+            // position: "topright",
+            maxMarkers: 10,
+            keepResult: true,
+            marker: {icon: iconMypins}          
         })
-        
-        map.addControl(searchControl) // this is how you add a control in vanilla leaflet
-        return () => map.removeControl(searchControl)
-    }, [props])
 
-    return (
-    //     <>
-    //     {returnData.map((myPin) => (
-  
-    //       <Marker
-    //         key={myPin.id}
-    //         position={[myPin.location.x, myPin.location.y]}
-    //         icon = {iconMypins}
+        map.addControl(searchControl) // this is how you add a control in vanilla leaflet
+        console.log("searchControl.resultList.results", searchControl.resultList.results)
+
+        return () => map.removeControl(searchControl)
+        
+    }, [props])
+    return null
     
-    //       >
-    //         <Popup>
-    //           <PopupDisplay
-    //             title={myPin.title}
-    //             description={myPin.description}
-    //             date={myPin.date}
-    //             image={myPin.image}
-    //             rating={myPin.rating}
-    //             location={myPin.location}
-    //             species_name={myPin.species_name}
-    //             user_id={myPin.user_id}
-    //           />
-    //         </Popup>
-    //       </Marker>
-    //     ))}
-    //   </>
-    null
-    )
 }
 
 export default SpeciesSearch 

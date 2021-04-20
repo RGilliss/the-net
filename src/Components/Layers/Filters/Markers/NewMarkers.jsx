@@ -44,7 +44,6 @@ function Marker(props) {
     props.setEdit(true);
     props.setEditPopup(popupData)
 
-    
   };
   return (
 
@@ -82,7 +81,7 @@ function Marker(props) {
 export default function NewMarkers(props) {
 
   const pins = Object.values(props.markers);
- 
+
   return (
     <>
       {pins.map((popup) => (

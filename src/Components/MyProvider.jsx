@@ -1,24 +1,29 @@
-import { JsonProvider } from "leaflet-geosearch";
+import { JsonProvider, OpenStreetMapProvider } from "leaflet-geosearch";
+
 
 class MyProvider extends JsonProvider {
   endpoint({ query, type }) {
     return this.getUrl('http://localhost:8080/search', {
       q: query,
-      f: type,
+      f: 'json',
     });
   }
   parse({ data }) {
    
     // Note that `data` is the raw result returned by the server. This
     // method should return data in the SearchResult format.
+
     return data.map((pin) => ({
-      ...pin,
-      x: pin.location.x,
-      y: pin.location.y,
-      label: pin.title,
-      bounds: [[49.7303, -125.91], [49.8, -125]],
+      x: pin.location.y,
+      y: pin.location.x,
+      label: `${pin.title}, ${pin.rating}, ${pin.species_name} `,
+      bounds: [
+        [pin.location.x, pin.location.y], 
+       [pin.location.x, pin.location.y]]
+      
     }));
   }
 }
+
 
 export default MyProvider;
