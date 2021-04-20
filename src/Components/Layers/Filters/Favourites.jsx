@@ -18,7 +18,7 @@ import L from 'leaflet';
    shadowUrl: null,
    shadowSize: null,
    shadowAnchor: null,
-   iconSize: new L.Point(25, 38),
+   iconSize: new L.Point(25, 41),
    className: 'leaflet-marker-icon'
  });
 
