@@ -3,12 +3,14 @@ import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./Markers/PopupDisplay";
 import { useContext } from "react";
 import UserContext from "../../UserContext";
- 
+import NewMarkers from "./Markers/NewMarkers";
 
-import L from 'leaflet';
+import L from "leaflet";
+import { LocalPrintshopSharp } from "@material-ui/icons";
 
- // change pin 
- const iconUrl = require('../../../images/marker-icon-2x-gold.png').default;
+// change pin
+const iconUrl = require("../../../images/marker-icon-2x-gold.png").default;
+
 
  const iconFavPins = new L.Icon({
    iconUrl,
@@ -22,62 +24,48 @@ import L from 'leaflet';
    className: 'leaflet-marker-icon'
  });
 
-export default function Favourites() {
 
-  const user = useContext(UserContext)
+export default function Favourites(props) {
+  const user = useContext(UserContext);
 
-  const [{ data, loading, error }] = useAxios({ url: "/favourites",
-    params: {user_id: user.id }
+  const [{ data, loading, error }] = useAxios({
+    url: "/favourites",
+    params: { user_id: user.id },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
 
-  const returnData = data;
 
-
-// const [favouritesList, setFavouritesList] = useState([]);
-
-// useEffect(
-
-//   () =>
-//     axios
-//       .get("/favourites", user.id)
-//       .then((res) => {
-//         // console.log(res.data);
-//         setFavouritesList(res.data);
-//       })
-//       .catch((err) => {
-//         console.log(err.response.data);
-//       }),
-//   []
-// );
-
+  const favourites = data.reduce((acc, val) => {
+    return {
+      ...acc,
+      [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y] },
+    };
+  }, {});
+  console.log("FAVOURITES AFTER REDUCER:", favourites);
+  console.log("FAV PROPS", props);
 
 
   return (
     <>
-      {returnData.map((pin) => (
-
-        <Marker
-          key={pin.id}
-          position={[pin.location.x, pin.location.y]}
-          icon = {iconFavPins}
-  
-        >
-          <Popup>
-            <PopupDisplay
-              title={pin.title}
-              description={pin.description}
-              date={pin.date}
-              image={pin.image}
-              rating={pin.rating}
-              location={pin.location}
-              species_name={pin.species_name}
-              user_id={pin.user_id}
-            />
-          </Popup>
-        </Marker>
-      ))}
+      <NewMarkers
+        markers={favourites}
+        icon={iconFavPins}
+        title={props.title}
+        description={props.description}
+        date={props.date}
+        image={props.image}
+        rating={props.rating}
+        location={props.location}
+        species_name={props.species_name}
+        user_id={props.user_id}
+        edit={props.edit}
+        setEdit={props.setEdit}
+        modal={props.modal}
+        setModal={props.setModal}
+        editPopup={props.editPopup}
+        setEditPopup={props.setEditPopup}
+      />
     </>
   );
 }

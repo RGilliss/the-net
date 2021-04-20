@@ -1,8 +1,10 @@
 import useAxios from "axios-hooks";
+
 import UserContext from "../../UserContext";
 import L from "leaflet";
 import { useContext } from "react";
 import NewMarkers from "./Markers/NewMarkers";
+
 
   // MyPins Marker Color
   const iconUrl = require('../../../images/marker-icon-2x-red.png').default;
@@ -20,19 +22,25 @@ import NewMarkers from "./Markers/NewMarkers";
   });
 
 
+
+
 export default function MyPins(props) {
   const user = useContext(UserContext);
 
   const [{ data, loading, error }] = useAxios({
     url: "/mypins",
-    params: { user_id: user.id }, 
+    params: { user_id: user.id },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
 
   const pins = data.reduce((acc, val) => {
-    return {...acc, [val.uuid]:{...val, leafletLocation: [val.location.x, val.location.y]}};
+    return {
+      ...acc,
+      [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y] },
+    };
   }, {});
+
 
   return (
     <>
@@ -50,6 +58,7 @@ export default function MyPins(props) {
       backgroundColor: "white",
       border: "none"
     }}/>
+
     </>
   );
 }

@@ -13,6 +13,7 @@ import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
 import { useState, useContext } from "react";
 import UserContext from "../../../UserContext";
+import createMuiThemetheme from "../../../../theme.js";
 
 const useStyles = makeStyles({
   root: {
@@ -20,22 +21,25 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     padding: 0,
-    margin: 0
+    margin: 0,
   },
   date: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   fav: {
     display: "flex",
     flexDirection: "column",
+    color: "#ffdb70",
   },
   title: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+
     marginTop: "10px"
+
   },
   rating: {
     display: "flex",
@@ -47,12 +51,14 @@ const useStyles = makeStyles({
     paddingTop: "56.25%",
     display: "flex",
     flexDirection: "column",
-    marginTop: "10px"
+    marginTop: "10px",
   },
   species: {
     display: "flex",
     flexDirection: "column",
+
     marginTop: "10px"
+
   },
   text: {
     display: "flex",
@@ -71,23 +77,31 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#a7ffeb",
+
     width: "40%"
+
 
   },
   delete: {
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#ffccbc",
+
     width: "40%"
   }
+
 
 });
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
+
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState();
+
+  const [selected, setSelected] = useState(false);
+
+
 
   const classes = useStyles({});
 
@@ -108,11 +122,17 @@ export default function PopupDisplay(props) {
   };
 
   const favouriteToggle = () => {
-    if (selected) {
-      setFavourite();
-    }
     if (!selected) {
+      setFavourite();
+      setSelected(selected)
+
+
+      
+    }
+    if (selected) {
       deleteFavourite();
+      setSelected(!selected)
+
     }
   };
 
@@ -127,23 +147,23 @@ export default function PopupDisplay(props) {
 
       <CardContent>
 
-        <ToggleButton
-          className={classes.fav}
-          style={{
-            backgroundColor: "white",
-            border: "none"
-          }}
-          size="small"
-          value="fav"
-          aria-label="fav"
-          selected={selected}
-          onChange={() => {
-            favouriteToggle();
-            setSelected(!selected);
-          }}
-        >
-          <StarsIcon />
-        </ToggleButton>
+   <ToggleButton
+            className={classes.fav}
+            style={{
+              backgroundColor: "white",
+              border: "none",
+            }}
+            size="small"
+            value="fav"
+            aria-label="fav"
+            selected={!selected}
+            onChange={() => {
+              favouriteToggle();
+              setSelected(!selected);
+            }}
+          >
+            <StarsIcon/>
+          </ToggleButton>
 
 
         <Typography className={classes.date}
@@ -199,6 +219,7 @@ export default function PopupDisplay(props) {
       </CardContent>
 
 
+
       <CardActions className={classes.buttons}>
         <Button
           className={classes.edit}
@@ -206,7 +227,9 @@ export default function PopupDisplay(props) {
           onClick={props.onEdit}
         >
           Edit
+
           </Button>
+
 
         <Button
           className={classes.delete}
@@ -214,9 +237,11 @@ export default function PopupDisplay(props) {
           onClick={props.onDelete}
         >
           Delete
+
           </Button>
       </CardActions>
     </Card>
+
 
   );
 }
