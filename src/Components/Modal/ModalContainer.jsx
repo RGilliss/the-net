@@ -31,8 +31,6 @@ export default function ModalContainer(props) {
     props.setModal(true);
   });
 
-
-  console.log("props in MODAL CONTAINER:", props)
   const whichForm = function (edit) {
     if (edit) {
       return (

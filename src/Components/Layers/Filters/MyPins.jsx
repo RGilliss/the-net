@@ -1,26 +1,28 @@
 import useAxios from "axios-hooks";
-import axios from "axios";
-import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./Markers/PopupDisplay";
+
 import UserContext from "../../UserContext";
 import L from "leaflet";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import NewMarkers from "./Markers/NewMarkers";
 
-// MyPins Marker Color
-const iconUrl = require("../../../images/marker-icon-2x-red.png").default;
 
-const iconMyPins = new L.Icon({
-  iconUrl,
-  iconRetinaUrl: iconUrl,
-  iconAnchor: null,
-  popupAnchor: [-3, -76],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 38),
-  className: "leaflet-marker-icon",
-});
+  // MyPins Marker Color
+  const iconUrl = require('../../../images/marker-icon-2x-red.png').default;
+
+  const iconMyPins = new L.Icon({
+    iconUrl,
+    iconRetinaUrl: iconUrl,
+    iconAnchor: [12, 41],
+    popupAnchor: [0, -41],
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(25, 41),
+    className: 'leaflet-marker-icon'
+  });
+
+
+
 
 export default function MyPins(props) {
   const user = useContext(UserContext);
@@ -38,20 +40,25 @@ export default function MyPins(props) {
       [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y] },
     };
   }, {});
-  console.log("PIN AFTER REDUCER:", pins);
-  console.log("MUY PINS PROPS", props)
+
+
   return (
     <>
-      <NewMarkers
-        icon={iconMyPins}
-        edit={props.edit}
-        setEdit={props.setEdit}
-        modal={props.modal}
-        setModal={props.setModal}
-        editPopup={props.editPopup}
-        setEditPopup={props.setEditPopup}
-        markers={pins}
-      />
+    <NewMarkers 
+    icon={iconMyPins}
+    edit={props.edit}
+    setEdit={props.setEdit}
+    modal={props.modal}
+    setModal={props.setModal}
+    editPopup={props.editPopup}
+    setEditPopup={props.setEditPopup}
+    markers={pins}
+    
+    style={{
+      backgroundColor: "white",
+      border: "none"
+    }}/>
+
     </>
   );
 }

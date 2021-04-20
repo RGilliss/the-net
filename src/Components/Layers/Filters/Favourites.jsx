@@ -11,17 +11,19 @@ import { LocalPrintshopSharp } from "@material-ui/icons";
 // change pin
 const iconUrl = require("../../../images/marker-icon-2x-gold.png").default;
 
-const iconFavPins = new L.Icon({
-  iconUrl,
-  iconRetinaUrl: iconUrl,
-  iconAnchor: null,
-  popupAnchor: [-3, -76],
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: new L.Point(25, 38),
-  className: "leaflet-marker-icon",
-});
+
+ const iconFavPins = new L.Icon({
+   iconUrl,
+   iconRetinaUrl: iconUrl,
+   iconAnchor: [12, 41],
+   popupAnchor: [0, -41],
+   shadowUrl: null,
+   shadowSize: null,
+   shadowAnchor: null,
+   iconSize: new L.Point(25, 41),
+   className: 'leaflet-marker-icon'
+ });
+
 
 export default function Favourites(props) {
   const user = useContext(UserContext);
@@ -33,6 +35,7 @@ export default function Favourites(props) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
 
+
   const favourites = data.reduce((acc, val) => {
     return {
       ...acc,
@@ -41,6 +44,7 @@ export default function Favourites(props) {
   }, {});
   console.log("FAVOURITES AFTER REDUCER:", favourites);
   console.log("FAV PROPS", props);
+
 
   return (
     <>
