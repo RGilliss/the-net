@@ -49,21 +49,18 @@ export default function App() {
   useEffect(() => {
     axios.get('/pins')
       .then((res) => {
-        console.log(res)
         const returnData = res.data.reduce((acc, val) => {
           return {...acc, [val.uuid]:{...val, leafletLocation: [val.location.x, val.location.y]}};
         }, {});
         setMarkers(returnData);
       })
       .catch((e) => {
-        console.log(e)
+
       })
 
   }, []);
 
-  console.log("APP markers", markers);
-  console.log("APP editPopup", editPopup);
-  
+
   return (
     <div>
       <UserContext.Provider value={user} >

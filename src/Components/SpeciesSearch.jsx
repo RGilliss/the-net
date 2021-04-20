@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react'
 import L from "leaflet";
 
 
+
 const iconUrl = require('../images/marker-icon-2x-red.png').default;
 
 const iconMypins = new L.Icon({
@@ -21,6 +22,7 @@ const iconMypins = new L.Icon({
 const SpeciesSearch = (props) => {
     const map = useMap() // access to leaflet map
     const { provider } = props
+
     useEffect(() => {
         const searchControl = new GeoSearchControl({
             provider,
@@ -34,7 +36,7 @@ const SpeciesSearch = (props) => {
             keepResult: true,
             marker: {icon: iconMypins}          
         })
-        console.log("searchControl", searchControl)
+
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
         console.log("searchControl.resultList.results", searchControl.resultList.results)
 

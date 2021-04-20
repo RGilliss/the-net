@@ -34,16 +34,14 @@ const useStyles = makeStyles({
   title: {
     display: "flex",
     flexDirection: "column",
-    alignItems:"center",
+    alignItems: "center",
     marginTop: "10px"
   },
   rating: {
     display: "flex",
     justifyContent: "center",
   },
-  fav: {
-    backgroundColor:"#a7ffeb",
-  },
+
   media: {
     height: 0,
     paddingTop: "56.25%",
@@ -55,11 +53,13 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     marginTop: "10px"
-  }, 
+  },
   text: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    
+
   },
 
   buttons: {
@@ -70,14 +70,14 @@ const useStyles = makeStyles({
   edit: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#a7ffeb",
+    backgroundColor: "#a7ffeb",
     width: "40%"
-    
+
   },
   delete: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#ffccbc",
+    backgroundColor: "#ffccbc",
     width: "40%"
   }
 
@@ -87,33 +87,24 @@ const useStyles = makeStyles({
 export default function PopupDisplay(props) {
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState();
 
   const classes = useStyles({});
 
-  console.log("POPUPDISPLAY props", props);
 
   const setFavourite = () => {
     const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
     axios
       .post("/favourites", postProps)
-      .then((res) => {
-        console.log("res.data", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => { })
+      .catch((err) => { });
   };
 
   const deleteFavourite = () => {
     axios
       .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => { })
+      .catch((err) => { });
   };
 
   const favouriteToggle = () => {
@@ -126,101 +117,106 @@ export default function PopupDisplay(props) {
   };
 
   return (
-    <>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardContent>
+
+    <Card
+      className={classes.root}
+      style={{
+        boxShadow: "none"
+      }}
+    >
+
+      <CardContent>
+
+        <ToggleButton
+          className={classes.fav}
+          style={{
+            backgroundColor: "white",
+            border: "none"
+          }}
+          size="small"
+          value="fav"
+          aria-label="fav"
+          selected={selected}
+          onChange={() => {
+            favouriteToggle();
+            setSelected(!selected);
+          }}
+        >
+          <StarsIcon />
+        </ToggleButton>
 
 
-          <div class= "fav-icon-wrapper">
+        <Typography className={classes.date}
+          gutterBottom
+          variant="body2"
+          component="h6"
+        >
+          {dateParser(props.date)}
+        </Typography>
 
-              <ToggleButton
-                className={classes.fav}
-                size="small"
-                value="fav"
-                aria-label="fav"
-                selected={selected}
-                onChange={() => {
-                  favouriteToggle();
-                  setSelected(!selected);
-                }}
-              >
-                <StarsIcon />
-              </ToggleButton>
-            </div>
+        <Typography
+          className={classes.title}
+          gutterBottom
+          variant="h6"
+          component="h4"
+        >
+          {props.title}
+        </Typography>
 
-            <Typography className={classes.date}
-              gutterBottom
-              variant="body2"
-              component="h6"
-            >
-              {dateParser(props.date)}
-            </Typography>
+        <Rating
+          className={classes.rating}
+          name="name_rating"
+          value={props.rating}
+          precision={0.5}
+          disabled={true}
+        />
 
-            <Typography
-              className={classes.title}
-              gutterBottom
-              variant="h6"
-              component="h4"
-            >
-              {props.title}
-            </Typography>
+        <CardMedia
+          className={classes.media}
+          image={props.image}
+          title={props.title}
+        />
 
-            <Rating
-              className={classes.rating}
-              value={props.rating}
-              precision={0.5}
-              disabled={true}
-            />
+        <Typography
+          className={classes.species}
+          gutterBottom
+          variant="subtitle2"
+          component="h4"
 
-            <CardMedia
-              className={classes.media}
-              image={props.image}
-              title={props.title}
-            />
+        >
+          Species: {props.species_name}
+        </Typography>
 
-            <Typography
-              className={classes.species}
-              gutterBottom
-              variant="p"
-              component="h4"
-            
-            >
-              Species: {props.species_name}
-            </Typography>
+        <Typography
+          className={classes.text}
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
+          {props.description}
+        </Typography>
 
-            <Typography
-            className={classes.text}
-            variant="body2" 
-            color="textSecondary" 
-            component="p"
-            >
-              {props.description}
-            </Typography>
-
-          </CardContent>
+      </CardContent>
 
 
-        </CardActionArea>
-
-        <CardActions className={classes.buttons}>
-          <Button 
+      <CardActions className={classes.buttons}>
+        <Button
           className={classes.edit}
-          variant="contained" 
+          variant="contained"
           onClick={props.onEdit}
-          >
-            Edit
+        >
+          Edit
           </Button>
 
-          <Button
+        <Button
           className={classes.delete}
-            variant="contained"
-            onClick={props.onDelete}
-          >
-            Delete
+          variant="contained"
+          onClick={props.onDelete}
+        >
+          Delete
           </Button>
-        </CardActions>
-      </Card>
-    </>
+      </CardActions>
+    </Card>
+
   );
 }

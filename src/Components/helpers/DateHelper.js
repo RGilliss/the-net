@@ -1,5 +1,4 @@
 const monthLookup = function(monthVal) {
-  //console.log(monthVal)
   switch (monthVal) {
     case "01":
       return 'January'
@@ -31,8 +30,6 @@ const monthLookup = function(monthVal) {
 }
 
 const dateParser = function(date) {
-  console.log("date", date)
-  console.log(typeof date)
   let year = date.substring(0, 4);
   let day = date.substring(8, 10);
   let month = monthLookup(date.substring(5, 7));

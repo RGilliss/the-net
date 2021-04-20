@@ -1,4 +1,3 @@
-
 import { Map, useMap } from 'react-leaflet'
 import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch'
 import react, {useEffect} from 'react'
@@ -19,6 +18,7 @@ const iconMypins = new L.Icon({
   className: 'leaflet-marker-icon'
 });
 
+
 // make new leaflet element
 const Search = (props) => {
     const map = useMap() // access to leaflet map
@@ -29,7 +29,7 @@ const Search = (props) => {
             provider,
             style: 'bar',
             autoClose: true,
-            searchLabel: 'Enter city',
+            searchLabel: 'Enter city or lake',
             keepResult: true,
             showPopup: true,
             marker: {icon: iconMypins}
