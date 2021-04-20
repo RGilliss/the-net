@@ -23,11 +23,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    
   },
   title_root: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "5px"
+    marginTop: "5px",
+ 
   },
   date_root: {
     display: "flex",

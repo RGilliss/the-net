@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -37,9 +36,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-
     marginTop: "10px"
-
   },
   rating: {
     display: "flex",
@@ -56,16 +53,12 @@ const useStyles = makeStyles({
   species: {
     display: "flex",
     flexDirection: "column",
-
     marginTop: "10px"
-
   },
   text: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    
-
   },
 
   buttons: {
@@ -77,16 +70,12 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#a7ffeb",
-
     width: "40%"
-
-
   },
   delete: {
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#ffccbc",
-
     width: "40%"
   }
 
@@ -125,8 +114,6 @@ export default function PopupDisplay(props) {
     if (!selected) {
       setFavourite();
       setSelected(selected)
-
-
       
     }
     if (selected) {
