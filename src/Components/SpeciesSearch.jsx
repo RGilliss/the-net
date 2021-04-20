@@ -1,5 +1,5 @@
 import { Map, useMap, Marker, Popup } from 'react-leaflet'
-import { OpenStreetMapProvider, GeoSearchControl, JsonProvider} from 'leaflet-geosearch'
+import { GeoSearchControl } from 'leaflet-geosearch'
 import {useEffect, useState} from 'react'
 import L from "leaflet";
 
@@ -26,11 +26,10 @@ const SpeciesSearch = (props) => {
             provider,
             autoClose: true,
             style: 'bar',
-            searchLabel: 'Enter species',
+            searchLabel: 'Search Pins',
             propertyName: 'title',
             showMarker: false,
-            showPopup: true,
-            position: "topright",
+            // position: "topright",
             maxMarkers: 10,
             keepResult: true,
             marker: {icon: iconMypins}          

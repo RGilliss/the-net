@@ -27,6 +27,7 @@ const Search = (props) => {
     useEffect(() => {
         const searchControl = new GeoSearchControl({
             provider,
+            style: 'bar',
             autoClose: true,
             searchLabel: 'Enter city',
             keepResult: true,

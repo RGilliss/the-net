@@ -1,18 +1,38 @@
 import { MapContainer, ZoomControl } from "react-leaflet";
 import "./App.css";
-import Navbar from "../Navbar";
-import Layers from "../Layers/Layers";
-import { useState, useEffect } from "react";
-import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { makeStyles } from '@material-ui/core/styles';
 import GeoSearch from "../GeoSearch";
 import ModalContainer from "../Modal/ModalContainer";
 import axios from "axios";
 import UserContext from '../UserContext'
 import SpeciesSearch from "../SpeciesSearch";
 import MyProvider from '../MyProvider'
+import Grid from '@material-ui/core/Grid';
+import Navbar from "../Navbar";
+import Layers from "../Layers/Layers";
+import { useState, useEffect } from "react";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
+import Switch from '@material-ui/core/Switch';
 
+const useStyles = makeStyles((theme) => ({
+  searchSwitch: {
+    position: 'absolute', 
+    zIndex: 500,
+    marginLeft: '500px',
+    marginTop: '-30px'
+  },
+  search: {
+    display: 'flex',
+    flexdDirection: 'column',
+    justifyContent: 'center',
+    // alignItems: "center"
+  }
+  
+
+}));
 
 export default function App() {
+  const classes = useStyles();
   const user = {
     id: 1,
     name: 'Tom Rosenbauer',
@@ -24,6 +44,7 @@ export default function App() {
   const [modal, setModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [editPopup, setEditPopup] = useState({});
+  const [search, setSearch] = useState(true)
 
   useEffect(() => {
     axios.get('/pins')
@@ -46,10 +67,14 @@ export default function App() {
   return (
     <div>
       <UserContext.Provider value={user} >
-        <Navbar />
+        <Navbar 
+        setSearch={setSearch}
+        search={search}
+        />
         <MapContainer center={startPosition} zoom={8}>
-            <GeoSearch provider={new OpenStreetMapProvider()} />
-            <SpeciesSearch provider={new MyProvider()} />
+            <div className={classes.search}>             
+              {search ? <GeoSearch provider={new OpenStreetMapProvider()} /> : <SpeciesSearch provider={new MyProvider()} />}
+            </div>
             <Layers
               markers={markers}
               setMarkers={setMarkers}
@@ -78,10 +103,7 @@ export default function App() {
               editPopup={editPopup}
               setEditPopup={setEditPopup}
               />
-
         </MapContainer>
-
-
       </UserContext.Provider>
     </div>
   );
