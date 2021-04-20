@@ -13,6 +13,7 @@ import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
 import { useState, useContext } from "react";
 import UserContext from "../../../UserContext";
+import createMuiThemetheme from "../../../../theme.js";
 
 const useStyles = makeStyles({
   root: {
@@ -20,12 +21,12 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     padding: 0,
-    margin: 0
+    margin: 0,
   },
   date: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   fav: {
     display: "flex",
@@ -34,8 +35,8 @@ const useStyles = makeStyles({
   title: {
     display: "flex",
     flexDirection: "column",
-    alignItems:"center",
-    marginTop: "10px"
+    alignItems: "center",
+    marginTop: "10px",
   },
   rating: {
     display: "flex",
@@ -47,13 +48,13 @@ const useStyles = makeStyles({
     paddingTop: "56.25%",
     display: "flex",
     flexDirection: "column",
-    marginTop: "10px"
+    marginTop: "10px",
   },
   species: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "10px"
-  }, 
+    marginTop: "10px",
+  },
   text: {
     display: "flex",
     flexDirection: "column",
@@ -68,24 +69,23 @@ const useStyles = makeStyles({
   edit: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#a7ffeb",
-    width: "40%"
-    
+    backgroundColor: "#a7ffeb",
+    width: "40%",
   },
   delete: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor:"#ffccbc",
-    width: "40%"
-  }
-
+    backgroundColor: "#ffccbc",
+    width: "40%",
+  },
 });
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
+
   const user = useContext(UserContext);
 
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState();
 
   const classes = useStyles({});
 
@@ -115,116 +115,111 @@ export default function PopupDisplay(props) {
   };
 
   const favouriteToggle = () => {
-    if (selected) {
-      setFavourite();
-    }
     if (!selected) {
+      setFavourite();
+      // setSelected(true)
+    }
+    if (selected) {
       deleteFavourite();
+      // setSelected(false)
     }
   };
 
   return (
-    
-      <Card 
-      className={classes.root}  
+    <Card
+      className={classes.root}
       style={{
-        boxShadow: "none"
-      }} 
-      >
-        <CardActionArea >
-          <CardContent>
+        boxShadow: "none",
+      }}
+    >
+      <CardActionArea>
+        <CardContent>
+          <ToggleButton
+            className={classes.fav}
+            style={{
+              backgroundColor: "white",
+              border: "none",
+            }}
+            size="small"
+            value="fav"
+            aria-label="fav"
+            selected={selected}
+            onChange={() => {
+              favouriteToggle();
+              setSelected(!selected);
+            }}
+          >
+            <StarsIcon/>
+          </ToggleButton>
 
-              <ToggleButton
-                className={classes.fav}
-                style={{
-                  backgroundColor: "white",
-                  border: "none"
-              }}
-                size="small"
-                value="fav"
-                aria-label="fav"
-                selected={selected}
-                onChange={() => {
-                  favouriteToggle();
-                  setSelected(!selected);
-                }}
-              >
-                <StarsIcon/>
-              </ToggleButton>
-           
+          <Typography
+            className={classes.date}
+            gutterBottom
+            variant="body2"
+            component="h6"
+          >
+            {dateParser(props.date)}
+          </Typography>
 
-            <Typography className={classes.date}
-              gutterBottom
-              variant="body2"
-              component="h6"
-            >
-              {dateParser(props.date)}
-            </Typography>
+          <Typography
+            className={classes.title}
+            gutterBottom
+            variant="h6"
+            component="h4"
+          >
+            {props.title}
+          </Typography>
 
-            <Typography
-              className={classes.title}
-              gutterBottom
-              variant="h6"
-              component="h4"
-            >
-              {props.title}
-            </Typography>
+          <Rating
+            className={classes.rating}
+            value={props.rating}
+            precision={0.5}
+            disabled={true}
+          />
 
-            <Rating
-              className={classes.rating}
-              value={props.rating}
-              precision={0.5}
-              disabled={true}
-            />
+          <CardMedia
+            className={classes.media}
+            image={props.image}
+            title={props.title}
+          />
 
-            <CardMedia
-              className={classes.media}
-              image={props.image}
-              title={props.title}
-            />
+          <Typography
+            className={classes.species}
+            gutterBottom
+            variant="p"
+            component="h4"
+          >
+            Species: {props.species_name}
+          </Typography>
 
-            <Typography
-              className={classes.species}
-              gutterBottom
-              variant="p"
-              component="h4"
-            
-            >
-              Species: {props.species_name}
-            </Typography>
-
-            <Typography
+          <Typography
             className={classes.text}
-            variant="body2" 
-            color="textSecondary" 
+            variant="body2"
+            color="textSecondary"
             component="p"
-            >
-              {props.description}
-            </Typography>
+          >
+            {props.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
 
-          </CardContent>
-
-
-        </CardActionArea>
-
-        <CardActions className={classes.buttons}>
-          <Button 
+      <CardActions className={classes.buttons}>
+        <Button
           className={classes.edit}
-          variant="contained" 
+          variant="contained"
           onClick={props.onEdit}
-          >
-            Edit
-          </Button>
+        >
+          Edit
+        </Button>
 
-          <Button
+        <Button
           className={classes.delete}
-            variant="contained"
-            onClick={props.onDelete}
-          >
-            Delete
-          </Button>
-        </CardActions>
-      </Card>
-   
+          variant="contained"
+          onClick={props.onDelete}
+        >
+          Delete
+        </Button>
+      </CardActions>
+    </Card>
   );
 }

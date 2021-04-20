@@ -70,7 +70,7 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Work our way through all the warnings and get them out of there, they could have weird side effects (All)
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
 - [x] Edit and Delete button don't work when viewing my pins
-- [ ] Edit and Delete button don't work when viewing my favourites
+- [x] Edit and Delete button don't work when viewing my favourites
 - [ ] Favourites: Star persists in state but not on refresh
 - [ ] Favourites: When you mark a favourite you cannot see it immediately (in state) from My Favs filter
 - [ ] My Pins: When you make a new pin you cannot see it immediately(in state) from My Favs filter
