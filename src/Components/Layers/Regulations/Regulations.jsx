@@ -1,6 +1,7 @@
 import useAxios from "axios-hooks";
 import { Popup, Circle } from "react-leaflet";
 import RegulationsCard from "./RegulationsCard";
+import waterSize from "../../helpers/RegulationHelpers"
 
 //Places regulations on the map and fills in the details from RegulationsCard
 export default function Regulations() {
@@ -12,8 +13,6 @@ export default function Regulations() {
 
   const returnData = data.regulations;
 
-  
-
   return (
     <>
       {returnData.map((regulation) => (
@@ -21,7 +20,7 @@ export default function Regulations() {
           <Circle
             key={regulation.id}
             center={[regulation.location.x, regulation.location.y]}
-            radius={2000}
+            radius={waterSize(regulation.lakeSize)}
           >
           <Popup>
             <RegulationsCard
