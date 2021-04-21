@@ -44,13 +44,13 @@ What are the features? Divide up amongst ourself into do-able units
 
 ### Stretch
 
-- [ ] User Login (Auth0) (Maybe not)
-- [ ] Saltwater Vancouver Island regulations
-- [ ] Saltwater regulations filter
-- [ ] Add feature to pins that display regulations within a nearby radius
-- [ ] Darkmode / Alternative theme toggle?
+- ~~User Login (Auth0) (Maybe not)~~
+- ~~Saltwater Vancouver Island regulations~~
+- ~~Saltwater regulations filter~~
+- ~~Add feature to pins that display regulations within a nearby radius~~
+- ~~Darkmode / Alternative theme toggle?~~
 - [x] Different coloured pins
-- [ ] Private/Public pins
+- ~~Private/Public pins~~
 
 ### Bugs / TO-DO
 
@@ -71,16 +71,22 @@ What are the features? Divide up amongst ourself into do-able units
 - [ ] Clean up codebase, remove console.logs, remove unused code, maybe refactor some of the unwieldy components (All)
 - [x] Edit and Delete button don't work when viewing my pins
 - [x] Edit and Delete button don't work when viewing my favourites
-- [ ] Favourites: Star persists in state but not on refresh
+- [x] Favourites: Star persists in state but not on refresh
 - [ ] Favourites: When you mark a favourite you cannot see it immediately (in state) from My Favs filter
 - [ ] My Pins: When you make a new pin you cannot see it immediately(in state) from My Favs filter
-- [ ] Favourites: You can set the same pin as a favourite multiple times if you refresh + add
+- [x] Favourites: You can set the same pin as a favourite multiple times if you refresh + add
 
 
-### April 18 - 21
-- [ ] Species Search
-- [ ] Logo
-- [ ] Testing
+### April 21
+- [x] Species Search
+- [x] Logo
+- [x] Testing
 - [ ] Presentation prep
 - [ ] Readme
 - [ ] Screenshots, gifs for Readme
+- [ ] Deploy to Heroku
+
+### April 22
+
+- [ ] Presentation
+
