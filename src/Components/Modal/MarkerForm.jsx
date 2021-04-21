@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -15,7 +15,7 @@ import Select from "@material-ui/core/Select";
 import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-
+import UserContext from "../UserContext";
 
 //CSS FORM
 const useStyles = makeStyles((theme) => ({
@@ -107,6 +107,7 @@ function getStyles(name, fishName, theme) {
 export default function MarkerForm(props) {
   // const [value, setValue] = useState(2);
   const [hover, setHover] = useState(-1);
+  const user = useContext(UserContext);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -185,6 +186,8 @@ export default function MarkerForm(props) {
     const marker = {
       leafletLocation: currentLocation,
       uuid: uuid,
+      user: user.id,
+      favourite: false,
       title: title,
       date: date,
       species_name: species,

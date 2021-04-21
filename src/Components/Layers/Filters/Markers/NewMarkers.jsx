@@ -89,7 +89,6 @@ export default function NewMarkers(props) {
     <>
       {pins.map((popup) => (
         <Marker
-          test={props.test}
           key={popup.uuid}
           {...popup}
           icon={props.icon}
