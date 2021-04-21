@@ -26,20 +26,26 @@ import NewMarkers from "./Markers/NewMarkers";
 
 export default function MyPins(props) {
   const user = useContext(UserContext);
+  console.log("props markers in my pins", props.markers) 
+  
+  let myPins = props.markers;
+  // const [{ data, loading, error }] = useAxios({
+  //   url: "/mypins",
+  //   params: { user_id: user.id },
+  // });
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error!</p>;
+  if (Object.keys(myPins).length > 0) {
+     const pins = Object.values(props.markers);
+    myPins = pins.filter((pin) => pin.user_id === user.id)
+  }
 
-  const [{ data, loading, error }] = useAxios({
-    url: "/mypins",
-    params: { user_id: user.id },
-  });
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
-
-  const pins = data.reduce((acc, val) => {
-    return {
-      ...acc,
-      [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y] },
-    };
-  }, {});
+  // const pins = data.reduce((acc, val) => {
+  //   return {
+  //     ...acc,
+  //     [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y]},
+  //   };
+  // }, {});
 
 
   return (
@@ -52,8 +58,9 @@ export default function MyPins(props) {
     setModal={props.setModal}
     editPopup={props.editPopup}
     setEditPopup={props.setEditPopup}
-    markers={pins}
-    
+    markers={myPins}
+    selected={props.selected}
+    setSelected={props.setSelected}
     style={{
       backgroundColor: "white",
       border: "none"

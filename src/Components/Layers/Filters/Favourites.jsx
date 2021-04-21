@@ -1,10 +1,10 @@
 import useAxios from "axios-hooks";
 import { Popup, Marker } from "react-leaflet";
 import PopupDisplay from "./Markers/PopupDisplay";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../UserContext";
 import NewMarkers from "./Markers/NewMarkers";
-
+import axios from "axios";
 import L from "leaflet";
 import { LocalPrintshopSharp } from "@material-ui/icons";
 
@@ -27,28 +27,38 @@ const iconUrl = require("../../../images/marker-icon-2x-gold.png").default;
 
 export default function Favourites(props) {
   const user = useContext(UserContext);
+  console.log("Favourites", props.markers)
+  let favourites = props.markers
+  if (Object.keys(favourites).length > 0) {
+    const pins = Object.values(props.markers);
+    favourites = pins.filter((pin) => pin.favourite === true)
 
-  const [{ data, loading, error }] = useAxios({
-    url: "/favourites",
-    params: { user_id: user.id },
-  });
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
+  }
+  // const [{ data, loading, error }] = useAxios({
+  //   url: "/favourites",
+  //   params: { user_id: user.id },
+  // });
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error!</p>;
+
+  
 
 
-  const favourites = data.reduce((acc, val) => {
-    return {
-      ...acc,
-      [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y] },
-    };
-  }, {});
-  console.log("FAVOURITES AFTER REDUCER:", favourites);
-  console.log("FAV PROPS", props);
-
+  // const favourites = data.reduce((acc, val) => {
+  //   // props.setSelected(false);
+  //   return {
+  //     ...acc,
+  //     [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y]},
+  //   };
+  // }, {});
+  // console.log("FAVOURITES AFTER REDUCER:", favourites);
+  // console.log("FAV PROPS", props);
 
   return (
     <>
       <NewMarkers
+        // selected={props.selected}
+        // setSelected={props.setSelected}
         markers={favourites}
         icon={iconFavPins}
         title={props.title}

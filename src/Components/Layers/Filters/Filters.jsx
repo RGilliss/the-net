@@ -1,10 +1,11 @@
 import { LayersControl, FeatureGroup } from "react-leaflet";
+import { useState } from 'react';
 import MyPins from "./MyPins";
 import NewMarkers from "./Markers/NewMarkers";
 import Favourites from "./Favourites";
 
 export default function Filters(props) {
-
+  console.log("Filters", props.markers)
 
   return (
     <>
@@ -20,6 +21,7 @@ export default function Filters(props) {
             setModal={props.setModal}
             editPopup={props.editPopup}
             setEditPopup={props.setEditPopup}
+            markers={props.markers}
           />
         </FeatureGroup>
       </LayersControl.Overlay>
@@ -38,6 +40,7 @@ export default function Filters(props) {
             editPopup={props.editPopup}
             setEditPopup={props.setEditPopup}
             markers={props.markers}
+           
           />
         </FeatureGroup>
       </LayersControl.Overlay>
@@ -54,6 +57,7 @@ export default function Filters(props) {
             setModal={props.setModal}
             editPopup={props.editPopup}
             setEditPopup={props.setEditPopup}
+            markers={props.markers}
           />
         </FeatureGroup>
       </LayersControl.Overlay>
