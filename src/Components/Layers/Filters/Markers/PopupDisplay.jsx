@@ -10,7 +10,7 @@ import Rating from "@material-ui/lab/Rating";
 import StarsIcon from "@material-ui/icons/Stars";
 import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UserContext from "../../../UserContext";
 import createMuiThemetheme from "../../../../theme.js";
 
@@ -32,11 +32,16 @@ const useStyles = makeStyles({
     flexDirection: "column",
     color: "#ffdb70",
   },
+  fav_disabled: {
+    display: "flex",
+    flexDirection: "column",
+    color: "gray",
+  },
   title: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: "10px"
+    marginTop: "10px",
   },
   rating: {
     display: "flex",
@@ -53,7 +58,7 @@ const useStyles = makeStyles({
   species: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "10px"
+    marginTop: "10px",
   },
   text: {
     display: "flex",
@@ -70,90 +75,100 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#a7ffeb",
-    width: "40%"
+    width: "40%",
   },
   delete: {
     display: "flex",
     flexDirection: "row",
     backgroundColor: "#ffccbc",
-    width: "40%"
-  }
-
-
+    width: "40%",
+  },
 });
 
 //Displays the inner content of each marker popup
 export default function PopupDisplay(props) {
-
   const user = useContext(UserContext);
-
-
   const [selected, setSelected] = useState(false);
-
-
 
   const classes = useStyles({});
 
+  // if(props.favourite) {
+  //   props.setSelected(true);
+  //   console.log("Props.selected TRUE", props.selected)
+  // }
+  // else {
+  //   props.setSelected(false);
+  //   console.log("Props.selected FALSE", props.selected)
+  // };
+
+  console.log("PROPS IN POPUPDISPLAY", props);
+  useEffect(() => {
+    if(props.favourite) {
+      setSelected(true);
+    } 
+  }, [props.favourite])
+  
 
   const setFavourite = () => {
-    const postProps = { user: user.id, uuid: props.uuid, pin_id: props.pin_id };
+    const postProps = {uuid: props.uuid, favourite: true};
     axios
-      .post("/favourites", postProps)
-      .then((res) => { })
-      .catch((err) => { });
+      .patch("/pins", postProps)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {});
   };
 
   const deleteFavourite = () => {
     axios
-      .delete("/favourites", { data: { user: user.id, uuid: props.uuid } })
-      .then((res) => { })
-      .catch((err) => { });
+      .patch("/pins", {uuid: props.uuid, favourite: false})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {});
   };
 
   const favouriteToggle = () => {
-    if (!selected) {
+    if (! selected) {
       setFavourite();
-      setSelected(selected)
-      
+      setSelected(true);
+     
     }
     if (selected) {
+      console.log("Untoggle favourites")
       deleteFavourite();
-      setSelected(!selected)
-
+      setSelected(false);
     }
   };
 
   return (
-
     <Card
       className={classes.root}
       style={{
-        boxShadow: "none"
+        boxShadow: "none",
       }}
     >
-
       <CardContent>
+        <ToggleButton
+          className={selected ? classes.fav : classes.fav_disabled}
+          style={{
+            backgroundColor: "white",
+            border: "none",
+          }}
+          size="small"
+          value="fav"
+          aria-label="fav"
+          selected={!selected}
+          onChange={() => {
+            favouriteToggle();
+            
+          }}
+        >
+          <StarsIcon />
+        </ToggleButton>
 
-   <ToggleButton
-            className={classes.fav}
-            style={{
-              backgroundColor: "white",
-              border: "none",
-            }}
-            size="small"
-            value="fav"
-            aria-label="fav"
-            selected={!selected}
-            onChange={() => {
-              favouriteToggle();
-              setSelected(!selected);
-            }}
-          >
-            <StarsIcon/>
-          </ToggleButton>
-
-
-        <Typography className={classes.date}
+        <Typography
+          className={classes.date}
           gutterBottom
           variant="body2"
           component="h6"
@@ -189,7 +204,6 @@ export default function PopupDisplay(props) {
           gutterBottom
           variant="subtitle2"
           component="h4"
-
         >
           Species: {props.species_name}
         </Typography>
@@ -202,10 +216,7 @@ export default function PopupDisplay(props) {
         >
           {props.description}
         </Typography>
-
       </CardContent>
-
-
 
       <CardActions className={classes.buttons}>
         <Button
@@ -214,9 +225,7 @@ export default function PopupDisplay(props) {
           onClick={props.onEdit}
         >
           Edit
-
-          </Button>
-
+        </Button>
 
         <Button
           className={classes.delete}
@@ -224,11 +233,8 @@ export default function PopupDisplay(props) {
           onClick={props.onDelete}
         >
           Delete
-
-          </Button>
+        </Button>
       </CardActions>
     </Card>
-
-
   );
 }

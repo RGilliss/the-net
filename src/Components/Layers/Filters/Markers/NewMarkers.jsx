@@ -45,6 +45,7 @@ function Marker(props) {
     props.setEditPopup(popupData)
 
   };
+  console.log("MARKER PROPS", props)
   return (
 
     <LeafletMarker
@@ -55,6 +56,7 @@ function Marker(props) {
     >
       <Popup>
         <PopupDisplay
+          favourite={props.favourite}
           pin_id={props.id}
           date={props.date}
           title={props.title}
@@ -79,13 +81,15 @@ function Marker(props) {
 
 //This component maps through the array of markers and executes the above function on each marker
 export default function NewMarkers(props) {
-
+  
+  // if (props.markers === {})
   const pins = Object.values(props.markers);
-
+  console.log("NEWMARKER PROPS", props)
   return (
     <>
       {pins.map((popup) => (
         <Marker
+          test={props.test}
           key={popup.uuid}
           {...popup}
           icon={props.icon}
