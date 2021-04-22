@@ -23,6 +23,7 @@ export default function Regulations() {
             center={[regulation.location.x, regulation.location.y]}
             radius={waterSize(regulation.circle_size)}
             pathOptions={{color: regColor}}
+            weight={1}
           >
           <Popup>
             <RegulationsCard
@@ -50,6 +51,7 @@ export default function Regulations() {
           key={regulation.id} 
           bounds={polygonSize}
           pathOptions={{color: regColor}}
+          weight={1}
         >
           <Popup>
             <RegulationsCard

@@ -40,10 +40,10 @@ export default function RegulationDisplay(props) {
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             <>
-              {props.class_water ? <div>{"\uD83D\uDCB5"}{"Classified Waters"}</div> : null}
-              {props.tributary ? <div>{"\u5DDD"}{"Regulation includes tributaries"}</div> : null}
-              {props.stocked ? <div>{"\uD83D\uDC1F"}{"Stocked"}</div> : null}
-              {props.accessible ? <div>{"\u267F"}{"Accessible fishing"}</div> : null}
+              {props.class_water ? <div>{"\uD83D\uDCB5"}{" Classified Waters"}</div> : null}
+              {props.tributary ? <div>{"\u5DDD"}{" Includes tributaries"}</div> : null}
+              {props.stocked ? <div>{"\uD83D\uDC1F"}{" Stocked"}</div> : null}
+              {props.accessible ? <div>{"\u267F"}{" Accessible fishing"}</div> : null}
             </>
           </Typography>
           <Typography variant="body2" component="p">
