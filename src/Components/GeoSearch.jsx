@@ -1,6 +1,6 @@
-import { Map, useMap } from 'react-leaflet'
-import { OpenStreetMapProvider, GeoSearchControl } from 'leaflet-geosearch'
-import react, {useEffect} from 'react'
+import { useMap } from 'react-leaflet'
+import { GeoSearchControl } from 'leaflet-geosearch'
+import {useEffect} from 'react'
 import L from "leaflet";
 
 
@@ -29,7 +29,7 @@ const Search = (props) => {
             provider,
             style: 'bar',
             autoClose: true,
-            searchLabel: 'Enter city or lake',
+            searchLabel: 'Enter City or Lake',
             keepResult: true,
             showPopup: true,
             marker: {icon: iconMypins}

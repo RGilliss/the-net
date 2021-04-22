@@ -7,8 +7,23 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Switch from '@material-ui/core/Switch';
 import { Grid } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 
+const GreenSwitch = withStyles({
+  switchBase: {
+    color: green[900],
+    '&$checked': {
+      color: green[600],
+    },
+    '&$checked + $track': {
+      backgroundColor: green[600],
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +88,7 @@ export default function DenseAppBar(props) {
             <Grid className={classes.toggle} component="label"  spacing={1}>
               <Grid item>Search Location</Grid>
                <Grid item>
-                <Switch 
+                <GreenSwitch 
                   value="checkedA" 
                   inputProps={{ 'aria-label': 'Switch A' }} 
                   onClick={() => props.setSearch(!props.search)} 
