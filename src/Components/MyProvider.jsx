@@ -3,7 +3,7 @@ import { JsonProvider, OpenStreetMapProvider } from "leaflet-geosearch";
 
 class MyProvider extends JsonProvider {
   endpoint({ query, type }) {
-    return this.getUrl('http://localhost:8080/search', {
+    return this.getUrl('http://localhost:8000/search', {
       q: query,
       f: 'json',
     });

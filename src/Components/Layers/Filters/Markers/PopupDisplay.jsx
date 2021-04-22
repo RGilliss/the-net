@@ -92,14 +92,30 @@ export default function PopupDisplay(props) {
 
   const classes = useStyles({});
 
-  // if(props.favourite) {
-  //   props.setSelected(true);
-  //   console.log("Props.selected TRUE", props.selected)
-  // }
-  // else {
-  //   props.setSelected(false);
-  //   console.log("Props.selected FALSE", props.selected)
-  // };
+  function showButtons(id) {
+   
+    if (user.id === id) {
+      return (
+      <CardActions className={classes.buttons}>
+        <Button
+          className={classes.edit}
+          variant="contained"
+          onClick={props.onEdit}
+        >
+          Edit
+        </Button>
+
+        <Button
+          className={classes.delete}
+          variant="contained"
+          onClick={props.onDelete}
+        >
+          Delete
+        </Button>
+      </CardActions>
+      ) 
+    }
+  }
 
   console.log("PROPS IN POPUPDISPLAY", props);
   useEffect(() => {
@@ -217,24 +233,8 @@ export default function PopupDisplay(props) {
           {props.description}
         </Typography>
       </CardContent>
-
-      <CardActions className={classes.buttons}>
-        <Button
-          className={classes.edit}
-          variant="contained"
-          onClick={props.onEdit}
-        >
-          Edit
-        </Button>
-
-        <Button
-          className={classes.delete}
-          variant="contained"
-          onClick={props.onDelete}
-        >
-          Delete
-        </Button>
-      </CardActions>
+          {showButtons(props.user_id)}
+      
     </Card>
   );
 }

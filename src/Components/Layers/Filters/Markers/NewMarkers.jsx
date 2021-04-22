@@ -56,6 +56,7 @@ function Marker(props) {
     >
       <Popup>
         <PopupDisplay
+          user_id={props.user_id}
           favourite={props.favourite}
           pin_id={props.id}
           date={props.date}

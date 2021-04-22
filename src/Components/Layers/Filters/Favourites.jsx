@@ -31,34 +31,12 @@ export default function Favourites(props) {
   let favourites = props.markers
   if (Object.keys(favourites).length > 0) {
     const pins = Object.values(props.markers);
-    favourites = pins.filter((pin) => pin.favourite === true)
-
+    favourites = pins.filter((pin) => pin.favourite === true);
   }
-  // const [{ data, loading, error }] = useAxios({
-  //   url: "/favourites",
-  //   params: { user_id: user.id },
-  // });
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error!</p>;
-
-  
-
-
-  // const favourites = data.reduce((acc, val) => {
-  //   // props.setSelected(false);
-  //   return {
-  //     ...acc,
-  //     [val.uuid]: { ...val, leafletLocation: [val.location.x, val.location.y]},
-  //   };
-  // }, {});
-  // console.log("FAVOURITES AFTER REDUCER:", favourites);
-  // console.log("FAV PROPS", props);
 
   return (
     <>
       <NewMarkers
-        // selected={props.selected}
-        // setSelected={props.setSelected}
         markers={favourites}
         icon={iconFavPins}
         title={props.title}
