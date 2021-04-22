@@ -16,12 +16,12 @@ function waterSize(size) {
 }
 function regulationColor(color) {
   switch (color) {
-    case null:
-      return 'blue';
     case 'YELLOW':
-      return 'yellow';
+      return '#fce45b';
     case 'RED':
-      return 'red';
+      return '#d44c5f';
+    default:
+      return '#3a88c5';
   }
 }
 
