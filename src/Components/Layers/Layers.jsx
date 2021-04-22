@@ -3,7 +3,6 @@ import Filters from "./Filters/Filters"
 import RegulationFilter from "./Regulations/RegulationFilter"
 import {LayersControl} from "react-leaflet";
 import {useRef, useEffect, useState} from 'react';
-
 const layerNames = [" My Pins", " All Pins", " My Favourites"]
 
 //Controls the layers of the map interface
@@ -43,7 +42,8 @@ export default function Layers(props) {
         modal={props.modal}
         setModal={props.setModal}
         editPopup={props.editPopup}
-        setEditPopup={props.setEditPopup}/>
+        setEditPopup={props.setEditPopup}
+      />
 
     </LayersControl>
   );

@@ -4,8 +4,6 @@ import NewMarkers from "./Markers/NewMarkers";
 import Favourites from "./Favourites";
 
 export default function Filters(props) {
- console.log("Filter Props", props)
-
   return (
     <>
       <LayersControl.Overlay

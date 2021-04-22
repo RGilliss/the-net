@@ -1,12 +1,5 @@
-import useAxios from "axios-hooks";
-import { Popup, Marker } from "react-leaflet";
-import PopupDisplay from "./Markers/PopupDisplay";
-import { useContext, useState } from "react";
-import UserContext from "../../UserContext";
 import NewMarkers from "./Markers/NewMarkers";
-import axios from "axios";
 import L from "leaflet";
-import { LocalPrintshopSharp } from "@material-ui/icons";
 
 // change pin
 const iconUrl = require("../../../images/marker-icon-2x-gold.png").default;
@@ -26,8 +19,6 @@ const iconUrl = require("../../../images/marker-icon-2x-gold.png").default;
 
 
 export default function Favourites(props) {
-  const user = useContext(UserContext);
-  console.log("Favourites", props.markers)
   let favourites = props.markers
   if (Object.keys(favourites).length > 0) {
     const pins = Object.values(props.markers);

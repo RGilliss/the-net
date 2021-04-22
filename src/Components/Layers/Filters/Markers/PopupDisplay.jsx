@@ -12,7 +12,6 @@ import { dateParser } from "../../../helpers/DateHelper";
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import UserContext from "../../../UserContext";
-import createMuiThemetheme from "../../../../theme.js";
 
 const useStyles = makeStyles({
   root: {
@@ -117,7 +116,6 @@ export default function PopupDisplay(props) {
     }
   }
 
-  console.log("PROPS IN POPUPDISPLAY", props);
   useEffect(() => {
     if(props.favourite) {
       setSelected(true);
@@ -151,7 +149,6 @@ export default function PopupDisplay(props) {
      
     }
     if (selected) {
-      console.log("Untoggle favourites")
       deleteFavourite();
       setSelected(false);
     }
@@ -177,7 +174,6 @@ export default function PopupDisplay(props) {
           selected={!selected}
           onChange={() => {
             favouriteToggle();
-            
           }}
         >
           <StarsIcon />
@@ -233,7 +229,8 @@ export default function PopupDisplay(props) {
           {props.description}
         </Typography>
       </CardContent>
-          {showButtons(props.user_id)}
+      
+      {showButtons(props.user_id)}
       
     </Card>
   );

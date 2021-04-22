@@ -32,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirect: 'column',
     width: '100%'
   },
-  navLeft: {
-    // flexGrow: 1,  
+  navLeft: { 
     display: 'flex',
     justifyContent: 'space-between'
   },

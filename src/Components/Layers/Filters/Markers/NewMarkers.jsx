@@ -2,7 +2,6 @@ import { Marker as LeafletMarker, Popup } from "react-leaflet";
 import { useRef } from "react";
 import PopupDisplay from "./PopupDisplay";
 import L from "leaflet";
-
 import axios from "axios";
 
 //Places new markers on the map after a user submits the Marker Form
@@ -39,13 +38,10 @@ function Marker(props) {
       leafletLocation: props.leafletLocation,
       uuid: props.uuid
     }
-
     props.setModal(true);
     props.setEdit(true);
     props.setEditPopup(popupData)
-
   };
-  console.log("MARKER PROPS", props)
   return (
 
     <LeafletMarker
@@ -83,9 +79,7 @@ function Marker(props) {
 //This component maps through the array of markers and executes the above function on each marker
 export default function NewMarkers(props) {
   
-  // if (props.markers === {})
   const pins = Object.values(props.markers);
-  console.log("NEWMARKER PROPS", props)
   return (
     <>
       {pins.map((popup) => (
