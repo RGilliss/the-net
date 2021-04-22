@@ -184,6 +184,7 @@ export default function MarkerForm(props) {
     let currentLocation = [...props.location];
     currentLocation = currentLocation.pop();
     const marker = {
+      user_id: user.id,
       leafletLocation: currentLocation,
       uuid: uuid,
       user: user.id,

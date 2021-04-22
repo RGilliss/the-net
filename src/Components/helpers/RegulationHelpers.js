@@ -1,6 +1,5 @@
 function waterSize(size) {
   //Sets the size of the regulation circle for each body of water
-  console.log("Lake Size", size)
   switch (size) {
     case 'Large':
       return 4000;

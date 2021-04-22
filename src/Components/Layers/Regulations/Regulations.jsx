@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { Popup, Circle, Polygon, Rectangle } from "react-leaflet";
+import { Popup, Circle, Rectangle } from "react-leaflet";
 import RegulationsCard from "./RegulationsCard";
 import {waterSize, regulationColor} from "../../helpers/RegulationHelpers"
 
@@ -12,37 +12,34 @@ export default function Regulations() {
   if (error) return <p>Error!</p>;
 
   const returnData = data.regulations;
-  console.log("returnData",returnData)
   function lakeCircle(regulation) {
-    console.log('Lake Circle Regulation', regulation)
     const regColor = regulationColor(regulation.reg_colour);
         return (        
           <>
-          <Circle
-            key={regulation.id}
-            center={[regulation.location.x, regulation.location.y]}
-            radius={waterSize(regulation.circle_size)}
-            pathOptions={{color: regColor}}
-            weight={1}
-          >
-          <Popup>
-            <RegulationsCard
-              water_body={regulation.water_body}
-              class_water={regulation.class_water}
-              tributary={regulation.tributary}
-              stocked={regulation.stocked}
-              accessible={regulation.accessible}
-              regulation={regulation.regulation}
-              date_range={regulation.date_range}
-            />
-          </Popup>
-          </Circle>
+            <Circle
+              key={regulation.id}
+              center={[regulation.location.x, regulation.location.y]}
+              radius={waterSize(regulation.circle_size)}
+              pathOptions={{color: regColor}}
+              weight={2}
+            >
+              <Popup>
+                <RegulationsCard
+                  water_body={regulation.water_body}
+                  class_water={regulation.class_water}
+                  tributary={regulation.tributary}
+                  stocked={regulation.stocked}
+                  accessible={regulation.accessible}
+                  regulation={regulation.regulation}
+                  date_range={regulation.date_range}
+                />
+              </Popup>
+            </Circle>
           </>
         )
     }
 
     function lakeRectangle(regulation) {
-      console.log('Lake Rectangle Regulation', regulation)
       const polygonSize = [[regulation.location.x, regulation.location.y], [regulation.size_water.x, regulation.size_water.y]]
       const regColor = regulationColor(regulation.reg_colour);
       return (        
@@ -51,7 +48,7 @@ export default function Regulations() {
           key={regulation.id} 
           bounds={polygonSize}
           pathOptions={{color: regColor}}
-          weight={1}
+          weight={2}
         >
           <Popup>
             <RegulationsCard
@@ -69,7 +66,7 @@ export default function Regulations() {
       )
   }
 
-  const regs = returnData.map((regulation) => {
+  const showRegs = returnData.map((regulation) => {
     if(regulation.size_water) {
       return lakeRectangle(regulation)
     }
@@ -78,12 +75,9 @@ export default function Regulations() {
     }
   })
       
-
-
-
   return (
     <>
-      {regs}
+      {showRegs}
     </>
   );
 }

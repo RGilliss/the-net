@@ -98,7 +98,7 @@ export default function DenseAppBar(props) {
                     inputProps={{ 'aria-label': 'Switch A' }}
                     onClick={() => props.setSearch(!props.search)}
                     className={classes.searchSwitch}
-                    size={'large'}
+                    size={'medium'}
                   />
                 </Grid>
                 <Grid item>Search Pins</Grid>

@@ -1,11 +1,10 @@
 import { LayersControl, FeatureGroup } from "react-leaflet";
-import { useState } from 'react';
 import MyPins from "./MyPins";
 import NewMarkers from "./Markers/NewMarkers";
 import Favourites from "./Favourites";
 
 export default function Filters(props) {
-  console.log("Filters", props.markers)
+ console.log("Filter Props", props)
 
   return (
     <>
