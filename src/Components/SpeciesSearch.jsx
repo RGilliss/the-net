@@ -17,7 +17,6 @@ const SpeciesSearch = (props) => {
             searchLabel: 'Search Pins',
             propertyName: 'title',
             showMarker: false,
-            maxMarkers: 10,
             keepResult: true,        
         })
 

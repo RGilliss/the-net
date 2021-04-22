@@ -1,7 +1,5 @@
 import { TileLayer, LayersControl } from "react-leaflet";
 
-
-
 //Each section is a different map type
 export default function MapTiles() {
   return (

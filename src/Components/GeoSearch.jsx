@@ -33,7 +33,6 @@ const Search = (props) => {
             keepResult: true,
             showPopup: true,
             marker: {icon: iconMypins}
-
         })
         map.addControl(searchControl) // this is how you add a control in vanilla leaflet
         return () => map.removeControl(searchControl)

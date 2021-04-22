@@ -23,13 +23,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    
   },
   title_root: {
     display: "flex",
     flexDirection: "column",
     marginTop: "5px",
- 
   },
   date_root: {
     display: "flex",
@@ -39,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   species: {
     display: "flex",
     flexDirection: "column",
-
   },
   rating_root: {
     width: 200,
@@ -105,13 +102,11 @@ function getStyles(name, fishName, theme) {
 }
 
 export default function MarkerForm(props) {
-  // const [value, setValue] = useState(2);
+  const user = useContext(UserContext);  
   const [hover, setHover] = useState(-1);
-  const user = useContext(UserContext);
-
+  const [fishName, setFishName] = useState([]);
   const classes = useStyles();
   const theme = useTheme();
-  const [fishName, setFishName] = useState([]);
 
   //Tile
   const [title, setTitle] = useState("");

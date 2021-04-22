@@ -169,22 +169,17 @@ export default function MarkerForm(props) {
       location: `(${props.editPopup.leafletLocation[0]}, ${props.editPopup.leafletLocation[1]})`,
     };
     props.setEditPopup(popup);
-    // props.setMarkers([...props.markers, popup])
-
 
     //this is the exact information going to the axios edit request
 
     const pin = {
-
       title: title,
       description: description,
       date: date,
       image: image,
       rating: rating,
       species_name: species,
-      // species: species,
       uuid: props.editPopup.uuid,
-
     }
     function assignValue(pin, markers) {
     

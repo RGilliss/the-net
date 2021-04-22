@@ -1,4 +1,4 @@
-import { JsonProvider, OpenStreetMapProvider } from "leaflet-geosearch";
+import { JsonProvider } from "leaflet-geosearch";
 
 
 class MyProvider extends JsonProvider {

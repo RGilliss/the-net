@@ -21,12 +21,9 @@ import NewMarkers from "./Markers/NewMarkers";
 
 export default function MyPins(props) {
   const user = useContext(UserContext);
-  console.log("props markers in my pins", props.markers) 
-  
   let myPins = props.markers;
-
   if (Object.keys(myPins).length > 0) {
-     const pins = Object.values(props.markers);
+    const pins = Object.values(props.markers);
     myPins = pins.filter((pin) => pin.user_id === user.id)
   }
 
