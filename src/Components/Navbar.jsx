@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: '150px',
+    marginRight: '20px',
     fontFamily: 'calibri',
     fontSize: '20px'
   },
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundColor: '#AACACC',
     margin: 0,
-    padding:'1em',
+    padding: '1em',
     height: '5em',
     width: '100%'
   },
@@ -64,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  }, 
+  login: {
+    fontFamily: "Calibri",
+    color: "black",
+    margin: "6px"
   }
 }));
 
@@ -81,29 +86,31 @@ export default function DenseAppBar(props) {
 
             <Typography variant="h4" className={classes.typo}>
               The Net
-          </Typography>
+           </Typography>
           </div>
           <div>
-          <Typography>
-            <Grid className={classes.toggle} component="label"  spacing={1}>
-              <Grid item>Search Location</Grid>
-               <Grid item>
-                <GreenSwitch 
-                  value="checkedA" 
-                  inputProps={{ 'aria-label': 'Switch A' }} 
-                  onClick={() => props.setSearch(!props.search)} 
-                  className={classes.searchSwitch}
-                  size={'large'}
-                />
-             </Grid>
-              <Grid item>Search Pins</Grid>
-            </Grid>
-          </Typography>
+            <Typography>
+              <Grid className={classes.toggle} component="label" spacing={1}>
+                <Grid item>Search Location</Grid>
+                <Grid item>
+                  <GreenSwitch
+                    value="checkedA"
+                    inputProps={{ 'aria-label': 'Switch A' }}
+                    onClick={() => props.setSearch(!props.search)}
+                    className={classes.searchSwitch}
+                    size={'large'}
+                  />
+                </Grid>
+                <Grid item>Search Pins</Grid>
+              </Grid>
+            </Typography>
           </div>
-          
-          <div className={classes.navRight}>
-          <Avatar alt="Avatar Remy Sharp" src="https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166__340.jpg" />
 
+          <div className={classes.navRight}>
+            <Avatar alt="Avatar Remy Sharp" src="https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166__340.jpg" />
+            <Typography variant="h6" className={classes.login}>
+            Remy Sharp
+           </Typography>
           </div>
 
         </Toolbar>
