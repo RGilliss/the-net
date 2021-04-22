@@ -218,6 +218,7 @@ export default function MarkerForm(props) {
             id="Title"
             aria-describedby="my-helper-text"
             value={title}
+            data-test-title={"title-input"}
           />
         </FormControl>
       </div>
@@ -229,6 +230,7 @@ export default function MarkerForm(props) {
           value={date}
           name="date"
           onChange={handleDateChange}
+      
         />
       </div>
 
@@ -244,6 +246,7 @@ export default function MarkerForm(props) {
             input={<Input />}
             MenuProps={MenuProps}
             name="species"
+            data-test-species={"select-species"}
           >
             {speciesList.map((fish) => (
               <MenuItem
@@ -285,6 +288,7 @@ export default function MarkerForm(props) {
           name="description"
           value={description}
           onChange={handleDescriptionChange}
+          data-test-text={"enter-text"}
         />
       </div>
 
@@ -303,6 +307,7 @@ export default function MarkerForm(props) {
             name="image"
             value={image}
             onChange={handleImageChange}
+            data-test-link={"enter-link"}
           />
         </FormControl>
       </div>

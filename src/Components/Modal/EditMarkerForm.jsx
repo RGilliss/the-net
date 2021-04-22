@@ -223,12 +223,12 @@ export default function MarkerForm(props) {
       <FormControl className={classes.title_root} >
         <InputLabel htmlFor="Title">Edit Your Pin</InputLabel>
         <Input
-        
           name="title"
           onChange={handleTitleChange}
           id="Title"
           aria-describedby="my-helper-text"
           value={title}
+          data-test-title={"title-input"}
         />
       </FormControl>
 
@@ -252,6 +252,7 @@ export default function MarkerForm(props) {
           input={<Input />}
           MenuProps={MenuProps}
           name="species_name"
+          data-test-species="select-species"
         >
           {speciesList.map((fish) => (
             <MenuItem
@@ -290,6 +291,7 @@ export default function MarkerForm(props) {
         name="description"
         value={description}
         onChange={handleDescriptionChange}
+        data-test-text='enter-text'
       />
         <CardMedia
             className={classes.media}
@@ -310,6 +312,7 @@ export default function MarkerForm(props) {
           name="image"
           value={image}
           onChange={handleImageChange}
+          data-test-link="enter-link"
         />
       </FormControl>
 
