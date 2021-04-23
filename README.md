@@ -31,7 +31,7 @@ Then we recommend:
 #### Main Page
 !["Screenshot of Main Page"](https://raw.githubusercontent.com/brjl/the-net/master/documents/1_Home%20Page.png)
 
-#### Other View
+#### Other View and Filters
 !["Screenshot of view"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Other_view.png)
 
 #### Filters
