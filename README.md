@@ -25,3 +25,8 @@ Then we recommend:
 - Material UI
 - UUID
 - PostgreSQL
+
+### Screenshots
+
+#### Main Page
+!["Screenshot of Main Page"](https://raw.githubusercontent.com/brjl/the-net/master/documents/1_Home%20Page.png)
