@@ -30,3 +30,33 @@ Then we recommend:
 
 #### Main Page
 !["Screenshot of Main Page"](https://raw.githubusercontent.com/brjl/the-net/master/documents/1_Home%20Page.png)
+
+#### Other View
+!["Screenshot of view"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Other_view.png)
+
+#### Filters
+!["Screenshot of Filters"](https://raw.githubusercontent.com/brjl/the-net/master/documents/2_Filters.png)
+
+#### Search Bar
+!["Screenshot of Search Bar"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Search_Bar.png)
+
+#### Pin's Colour changing for My Pins and Favourites
+!["Screenshot of Pin's Colour"](https://github.com/brjl/the-net/blob/master/documents/Pins_colour.png)
+
+#### Pin's View
+!["Screenshot of pins' view"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Pins_view.png)
+
+
+#### Edit Pin
+!["Screenshot of Edit Pin"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Edit.png)
+
+
+#### Regulations View
+!["Screenshot of Regulations View"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Regulation_view.png)
+
+#### Regulation Pin
+!["Screenshot of Regulations View"](https://raw.githubusercontent.com/brjl/the-net/master/documents/Regulation_example.png)
+
+
+
+
